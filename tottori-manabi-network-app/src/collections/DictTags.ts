@@ -1,17 +1,13 @@
 import type { CollectionConfig } from 'payload'
 
-export const Media: CollectionConfig = {
-  slug: 'media',
-  upload: {
-    staticDir: 'media',
-    mimeTypes: ['image/*'],
-  },
+export const DictTags: CollectionConfig = {
+  slug: 'dictTags',
   access: {
     read: () => true,
   },
   fields: [
     {
-      name: 'alt',
+      name: 'name',
       type: 'text',
       required: true,
     },

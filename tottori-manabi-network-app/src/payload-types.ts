@@ -69,7 +69,8 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    dictFS: DictF;
+    dict: Dict;
+    dictTags: DictTag;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -78,7 +79,8 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    dictFS: DictFSSelect<false> | DictFSSelect<true>;
+    dict: DictSelect<false> | DictSelect<true>;
+    dictTags: DictTagsSelect<false> | DictTagsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -153,29 +155,46 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "dictFS".
+ * via the `definition` "dict".
  */
-export interface DictF {
+export interface Dict {
   id: number;
   published?: boolean | null;
+  types: 'フリースクール' | '適応指導教室';
   name: string;
   org: string;
   address: string;
   'slogan-short': string;
   'slogan-long': string;
-  tags: ('小学生' | '中学生' | '高校生' | '不登校' | '夜間制')[];
+  tags: (number | DictTag)[];
   targets: ('小学生' | '中学生' | '高校生' | '不登校' | '夜間制')[];
   transport: string;
   lunch: string;
   tuition: string;
   recognition: string;
+  thumbnail: number | Media;
   chair: string;
+  gallery: number | Media;
   citation: string;
   keywords: {
     tag?: string | null;
     id?: string | null;
   }[];
-  point: string;
+  point: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
   main: {
     root: {
       type: string;
@@ -191,16 +210,63 @@ export interface DictF {
     };
     [k: string]: unknown;
   };
-  schedule: string;
-  costs: string;
-  events: string;
+  schedule: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  costs: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  events: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
   capacity: number;
   'date-launch': string;
   'date-recognized'?: string | null;
-  location: string;
+  /**
+   * @minItems 2
+   * @maxItems 2
+   */
+  location: [number, number];
+  link: string;
   updatedAt: string;
   createdAt: string;
-  url: string;
+  url?: string | null;
   thumbnailURL?: string | null;
   filename?: string | null;
   mimeType?: string | null;
@@ -209,6 +275,16 @@ export interface DictF {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "dictTags".
+ */
+export interface DictTag {
+  id: number;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -226,8 +302,12 @@ export interface PayloadLockedDocument {
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'dictFS';
-        value: number | DictF;
+        relationTo: 'dict';
+        value: number | Dict;
+      } | null)
+    | ({
+        relationTo: 'dictTags';
+        value: number | DictTag;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -306,10 +386,11 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "dictFS_select".
+ * via the `definition` "dict_select".
  */
-export interface DictFSSelect<T extends boolean = true> {
+export interface DictSelect<T extends boolean = true> {
   published?: T;
+  types?: T;
   name?: T;
   org?: T;
   address?: T;
@@ -321,7 +402,9 @@ export interface DictFSSelect<T extends boolean = true> {
   lunch?: T;
   tuition?: T;
   recognition?: T;
+  thumbnail?: T;
   chair?: T;
+  gallery?: T;
   citation?: T;
   keywords?:
     | T
@@ -338,6 +421,7 @@ export interface DictFSSelect<T extends boolean = true> {
   'date-launch'?: T;
   'date-recognized'?: T;
   location?: T;
+  link?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -349,6 +433,15 @@ export interface DictFSSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "dictTags_select".
+ */
+export interface DictTagsSelect<T extends boolean = true> {
+  name?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
