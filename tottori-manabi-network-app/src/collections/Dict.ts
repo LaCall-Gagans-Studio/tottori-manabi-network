@@ -5,6 +5,9 @@ export const Dict: CollectionConfig = {
   access: {
     read: () => true,
   },
+  admin: {
+    useAsTitle: 'name',
+  },
   fields: [
     {
       type: 'tabs',
@@ -41,35 +44,30 @@ export const Dict: CollectionConfig = {
               // 運営組織
               name: 'org',
               type: 'text',
-              required: true,
               label: '運営組織',
             },
             {
               // 住所
               name: 'address',
               type: 'text',
-              required: true,
               label: '住所',
             },
             {
               // アイキャッチ（短）
-              name: 'slogan-short',
+              name: 'slogan_short',
               type: 'text',
-              required: true,
               label: 'アイキャッチ（短）',
             },
             {
               // アイキャッチ（長）
-              name: 'slogan-long',
+              name: 'slogan_long',
               type: 'textarea',
-              required: true,
               label: 'アイキャッチ（長）',
             },
             {
               // タグ
               name: 'tags',
               type: 'relationship',
-              required: true,
               label: 'タグ',
               hasMany: true,
               relationTo: 'dictTags',
@@ -78,44 +76,96 @@ export const Dict: CollectionConfig = {
               // ターゲット
               name: 'targets',
               type: 'select',
-              required: true,
               label: 'ターゲット',
               hasMany: true,
-              options: ['小学生', '中学生', '高校生', '不登校', '夜間制'],
+              options: [
+                {
+                  label: '未就学児',
+                  value: 'preschooler',
+                },
+                {
+                  label: '小学1年生',
+                  value: 'E1',
+                },
+                {
+                  label: '小学2年生',
+                  value: 'E2',
+                },
+                {
+                  label: '小学3年生',
+                  value: 'E3',
+                },
+                {
+                  label: '小学4年生',
+                  value: 'E4',
+                },
+                {
+                  label: '小学5年生',
+                  value: 'E5',
+                },
+                {
+                  label: '小学6年生',
+                  value: 'E6',
+                },
+                {
+                  label: '中学1年生',
+                  value: 'J1',
+                },
+                {
+                  label: '中学2年生',
+                  value: 'J2',
+                },
+                {
+                  label: '中学3年生',
+                  value: 'J3',
+                },
+                {
+                  label: '高校1年生',
+                  value: 'H1',
+                },
+                {
+                  label: '高校2年生',
+                  value: 'H2',
+                },
+                {
+                  label: '高校3年生',
+                  value: 'H3',
+                },
+                {
+                  label: '18歳以上',
+                  value: 'adult',
+                },
+              ],
             },
             {
               // 送迎
               name: 'transport',
               type: 'text',
-              required: true,
               label: '送迎',
             },
             {
               // 給食
               name: 'lunch',
               type: 'text',
-              required: true,
               label: '給食',
             },
             {
               // 学費
               name: 'tuition',
               type: 'text',
-              required: true,
               label: '学費',
             },
             {
               // 認定
               name: 'recognition',
-              type: 'textarea',
-              required: true,
+              type: 'checkbox',
+              defaultValue: false,
               label: '認定',
             },
             {
               // サムネイル
               name: 'thumbnail',
               type: 'upload',
-              required: true,
               label: 'サムネイル',
               relationTo: 'media',
             },
@@ -128,29 +178,26 @@ export const Dict: CollectionConfig = {
               // 代表者氏名
               name: 'chair',
               type: 'text',
-              required: true,
               label: '代表者氏名',
             },
             {
               // ギャラリー
               name: 'gallery',
               type: 'upload',
-              required: true,
               label: 'ギャラリー',
               relationTo: 'media',
+              hasMany: true,
             },
             {
               // 引用
               name: 'citation',
               type: 'textarea',
-              required: true,
               label: '引用',
             },
             {
               // キーワード
               name: 'keywords',
               type: 'array',
-              required: true,
               label: 'キーワード',
               fields: [
                 {
@@ -163,54 +210,47 @@ export const Dict: CollectionConfig = {
               // ポイント
               name: 'point',
               type: 'richText',
-              required: true,
               label: 'ポイント',
             },
             {
               // 本文
               name: 'main',
               type: 'richText',
-              required: true,
               label: '本文',
             },
             {
               // 時間割
               name: 'schedule',
               type: 'richText',
-              required: true,
               label: '時間割',
             },
             {
               // 費用
               name: 'costs',
               type: 'richText',
-              required: true,
               label: '費用',
             },
             {
               // 行事
               name: 'events',
               type: 'richText',
-              required: true,
               label: '行事',
             },
             {
               // 定員
               name: 'capacity',
               type: 'number',
-              required: true,
               label: '定員',
             },
             {
               // 設立年月日
-              name: 'date-launch',
+              name: 'date_launch',
               type: 'date',
-              required: true,
               label: '設立年月日',
             },
             {
               // 認定年月日
-              name: 'date-recognized',
+              name: 'date_recognized',
               type: 'date',
               label: '認定年月日（認定済の場合）',
             },
@@ -218,14 +258,12 @@ export const Dict: CollectionConfig = {
               // 座標
               name: 'location',
               type: 'point',
-              required: true,
               label: '座標',
             },
             {
               // Link
               name: 'link',
               type: 'text',
-              required: true,
               label: 'URL',
             },
           ],
@@ -233,5 +271,4 @@ export const Dict: CollectionConfig = {
       ],
     },
   ],
-  upload: true,
 }

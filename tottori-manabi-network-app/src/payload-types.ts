@@ -162,25 +162,29 @@ export interface Dict {
   published?: boolean | null;
   types: 'フリースクール' | '適応指導教室';
   name: string;
-  org: string;
-  address: string;
-  'slogan-short': string;
-  'slogan-long': string;
-  tags: (number | DictTag)[];
-  targets: ('小学生' | '中学生' | '高校生' | '不登校' | '夜間制')[];
-  transport: string;
-  lunch: string;
-  tuition: string;
-  recognition: string;
-  thumbnail: number | Media;
-  chair: string;
-  gallery: number | Media;
-  citation: string;
-  keywords: {
-    tag?: string | null;
-    id?: string | null;
-  }[];
-  point: {
+  org?: string | null;
+  address?: string | null;
+  slogan_short?: string | null;
+  slogan_long?: string | null;
+  tags?: (number | DictTag)[] | null;
+  targets?:
+    | ('preschooler' | 'E1' | 'E2' | 'E3' | 'E4' | 'E5' | 'E6' | 'J1' | 'J2' | 'J3' | 'H1' | 'H2' | 'H3' | 'adult')[]
+    | null;
+  transport?: string | null;
+  lunch?: string | null;
+  tuition?: string | null;
+  recognition?: boolean | null;
+  thumbnail?: (number | null) | Media;
+  chair?: string | null;
+  gallery?: (number | Media)[] | null;
+  citation?: string | null;
+  keywords?:
+    | {
+        tag?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  point?: {
     root: {
       type: string;
       children: {
@@ -194,8 +198,8 @@ export interface Dict {
       version: number;
     };
     [k: string]: unknown;
-  };
-  main: {
+  } | null;
+  main?: {
     root: {
       type: string;
       children: {
@@ -209,8 +213,8 @@ export interface Dict {
       version: number;
     };
     [k: string]: unknown;
-  };
-  schedule: {
+  } | null;
+  schedule?: {
     root: {
       type: string;
       children: {
@@ -224,8 +228,8 @@ export interface Dict {
       version: number;
     };
     [k: string]: unknown;
-  };
-  costs: {
+  } | null;
+  costs?: {
     root: {
       type: string;
       children: {
@@ -239,8 +243,8 @@ export interface Dict {
       version: number;
     };
     [k: string]: unknown;
-  };
-  events: {
+  } | null;
+  events?: {
     root: {
       type: string;
       children: {
@@ -254,27 +258,18 @@ export interface Dict {
       version: number;
     };
     [k: string]: unknown;
-  };
-  capacity: number;
-  'date-launch': string;
-  'date-recognized'?: string | null;
+  } | null;
+  capacity?: number | null;
+  date_launch?: string | null;
+  date_recognized?: string | null;
   /**
    * @minItems 2
    * @maxItems 2
    */
-  location: [number, number];
-  link: string;
+  location?: [number, number] | null;
+  link?: string | null;
   updatedAt: string;
   createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -394,8 +389,8 @@ export interface DictSelect<T extends boolean = true> {
   name?: T;
   org?: T;
   address?: T;
-  'slogan-short'?: T;
-  'slogan-long'?: T;
+  slogan_short?: T;
+  slogan_long?: T;
   tags?: T;
   targets?: T;
   transport?: T;
@@ -418,21 +413,12 @@ export interface DictSelect<T extends boolean = true> {
   costs?: T;
   events?: T;
   capacity?: T;
-  'date-launch'?: T;
-  'date-recognized'?: T;
+  date_launch?: T;
+  date_recognized?: T;
   location?: T;
   link?: T;
   updatedAt?: T;
   createdAt?: T;
-  url?: T;
-  thumbnailURL?: T;
-  filename?: T;
-  mimeType?: T;
-  filesize?: T;
-  width?: T;
-  height?: T;
-  focalX?: T;
-  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
