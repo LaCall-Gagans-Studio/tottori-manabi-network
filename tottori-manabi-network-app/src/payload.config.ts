@@ -12,6 +12,8 @@ import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Dict } from './collections/Dict'
 import { DictTags } from './collections/DictTags'
+import { DictTargets } from './collections/DictTargets'
+import { DictType } from './collections/DictType'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -23,7 +25,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Dict, DictTags],
+  collections: [Users, Media, Dict, DictTags, DictTargets, DictType],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -36,20 +38,20 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-  payloadCloudPlugin(),
-  s3Storage({
-    collections: {
-      media: true, // Apply storage to 'media' collection
-    },
-    bucket: process.env.R2_BUCKET || '',
-    config: {
-      credentials: {
-        accessKeyId: process.env.R2_ACCESS_KEY_ID || '',
-        secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || '',
+    payloadCloudPlugin(),
+    s3Storage({
+      collections: {
+        media: true, // Apply storage to 'media' collection
       },
-      region: 'auto', // Cloudflare R2 uses 'auto' as the region
-      endpoint: process.env.R2_PUBLIC_URL || '',
-    },
-  }),
-],
+      bucket: process.env.R2_BUCKET || '',
+      config: {
+        credentials: {
+          accessKeyId: process.env.R2_ACCESS_KEY_ID || '',
+          secretAccessKey: process.env.R2_SECRET_ACCESS_KEY || '',
+        },
+        region: 'auto', // Cloudflare R2 uses 'auto' as the region
+        endpoint: process.env.R2_PUBLIC_URL || '',
+      },
+    }),
+  ],
 })

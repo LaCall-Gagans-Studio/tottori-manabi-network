@@ -1,24 +1,27 @@
-import { getDictEntries } from '../lib/getDictEntries'
+// components
+import { getDicts } from '../lib/getDict'
+import { DictFilter } from './DictsFilterBar'
 
 // icon
 import { CiLocationOn, CiUser } from 'react-icons/ci'
 
 export default async function DictsPage() {
-  const entries = await getDictEntries()
+  const entries = await getDicts()
 
   return (
     <div className="p-4 pt-4 lg:pt-12 h-[calc(100svh*11/12)] lg:h-full w-full mx-auto overflow-y-scroll bg-[#f8fdee] lg:bg-transparent z-20">
       <div className="w-full lg:max-w-[800px] lg:w-4/6 h-auto mx-auto grid grid-cols-1 gap-6 lg:gap-8 items-center relative">
-        {entries.map((entry) => (
+        <DictFilter />
+        {entries?.map((entry) => (
           <a
             key={entry.id}
             href={`http://localhost:3000/dicts/${entry.id}`}
-            className="h-48 relative rounded-lg shadow-md hover:shadow-xl group duration-300 cursor-pointer transition-shadow"
+            className="h-52 relative rounded-lg shadow-md hover:shadow-xl group duration-300 cursor-pointer transition-shadow"
           >
             <div className="h-full z-10 bg-[#f8fdee] pr-3 rounded-lg rounded-r-lg flex relative duration-300 group-hover:-translate-x-1 lg:group-hover:-translate-x-8 transition-all">
               <img
                 className="h-full w-1/3 lg:w-1/4 rounded-l-lg border-l-2 border-ws-primary object-cover object-center"
-                src={entry.thumbnail?.url}
+                src={entry.thumbnail?.url ?? undefined}
                 alt="画像がありません"
               />
 
@@ -36,9 +39,13 @@ export default async function DictsPage() {
                 <div className="mt-2 flex flex-col gap-0.5">
                   <div className="flex items-center gap-1">
                     <CiUser className="text-ws-primary" />
-                    <p className="text-xs lg:text-sm font-normal text-slate-400">
-                      {entry.target ? entry.target : '対象が未設定'}
-                    </p>
+                    <div className="text-xs lg:text-sm font-normal text-slate-400 flex">
+                      {entry.targets?.map((target) => (
+                        <p key={target.id} className="">
+                          {target.name}
+                        </p>
+                      ))}
+                    </div>
                   </div>
 
                   <div className="flex items-center gap-1">
@@ -48,9 +55,9 @@ export default async function DictsPage() {
                     </p>
                   </div>
 
-                  <div className="relative lg:h-auto mt-2 mb-1 lg:my-0 lg:absolute lg:bottom-2 lg:right-1 text-[0.6rem] text-nowrap lg:text-xs font-thin flex flex-wrap lg:flex-nowrap gap-1 lg:gap-2 lg:font-semibold text-slate-600">
+                  <div className="relative lg:h-auto mt-2 mb-1 lg:my-0 lg:absolute lg:bottom-2 lg:right-1 text-[0.6rem] text-nowrap lg:text-xs font-thin flex flex-wrap justify-end gap-1 lg:font-semibold text-slate-600">
                     {entry.tags?.map((tag) => (
-                      <p key={tag.name} className="bg-black px-1 py-1 rounded text-slate-50">
+                      <p key={tag.id} className="bg-ws-black px-1 py-1 rounded text-slate-50">
                         {tag.name}
                       </p>
                     ))}

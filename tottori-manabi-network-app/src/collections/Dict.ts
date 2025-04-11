@@ -27,11 +27,11 @@ export const Dict: CollectionConfig = {
             },
             {
               // 種別
-              name: 'types',
-              type: 'select',
-              label: '種別',
-              options: ['フリースクール', '適応指導教室'],
-              required: true,
+              name: 'type',
+              type: 'relationship',
+              label: '種別（1つのみ｜暫定対応）',
+              relationTo: 'dictType',
+              hasMany: true,
             },
             {
               // 名前
@@ -75,67 +75,10 @@ export const Dict: CollectionConfig = {
             {
               // ターゲット
               name: 'targets',
-              type: 'select',
+              type: 'relationship',
               label: 'ターゲット',
               hasMany: true,
-              options: [
-                {
-                  label: '未就学児',
-                  value: 'preschooler',
-                },
-                {
-                  label: '小学1年生',
-                  value: 'E1',
-                },
-                {
-                  label: '小学2年生',
-                  value: 'E2',
-                },
-                {
-                  label: '小学3年生',
-                  value: 'E3',
-                },
-                {
-                  label: '小学4年生',
-                  value: 'E4',
-                },
-                {
-                  label: '小学5年生',
-                  value: 'E5',
-                },
-                {
-                  label: '小学6年生',
-                  value: 'E6',
-                },
-                {
-                  label: '中学1年生',
-                  value: 'J1',
-                },
-                {
-                  label: '中学2年生',
-                  value: 'J2',
-                },
-                {
-                  label: '中学3年生',
-                  value: 'J3',
-                },
-                {
-                  label: '高校1年生',
-                  value: 'H1',
-                },
-                {
-                  label: '高校2年生',
-                  value: 'H2',
-                },
-                {
-                  label: '高校3年生',
-                  value: 'H3',
-                },
-                {
-                  label: '18歳以上',
-                  value: 'adult',
-                },
-              ],
+              relationTo: 'dictTargets',
             },
             {
               // 送迎

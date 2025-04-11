@@ -71,6 +71,8 @@ export interface Config {
     media: Media;
     dict: Dict;
     dictTags: DictTag;
+    dictTargets: DictTarget;
+    dictType: DictType;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -81,6 +83,8 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     dict: DictSelect<false> | DictSelect<true>;
     dictTags: DictTagsSelect<false> | DictTagsSelect<true>;
+    dictTargets: DictTargetsSelect<false> | DictTargetsSelect<true>;
+    dictType: DictTypeSelect<false> | DictTypeSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -160,16 +164,14 @@ export interface Media {
 export interface Dict {
   id: number;
   published?: boolean | null;
-  types: 'フリースクール' | '適応指導教室';
+  type?: (number | DictType)[] | null;
   name: string;
   org?: string | null;
   address?: string | null;
   slogan_short?: string | null;
   slogan_long?: string | null;
   tags?: (number | DictTag)[] | null;
-  targets?:
-    | ('preschooler' | 'E1' | 'E2' | 'E3' | 'E4' | 'E5' | 'E6' | 'J1' | 'J2' | 'J3' | 'H1' | 'H2' | 'H3' | 'adult')[]
-    | null;
+  targets?: (number | DictTarget)[] | null;
   transport?: string | null;
   lunch?: string | null;
   tuition?: string | null;
@@ -273,9 +275,29 @@ export interface Dict {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "dictType".
+ */
+export interface DictType {
+  id: number;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "dictTags".
  */
 export interface DictTag {
+  id: number;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "dictTargets".
+ */
+export interface DictTarget {
   id: number;
   name: string;
   updatedAt: string;
@@ -303,6 +325,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'dictTags';
         value: number | DictTag;
+      } | null)
+    | ({
+        relationTo: 'dictTargets';
+        value: number | DictTarget;
+      } | null)
+    | ({
+        relationTo: 'dictType';
+        value: number | DictType;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -385,7 +415,7 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface DictSelect<T extends boolean = true> {
   published?: T;
-  types?: T;
+  type?: T;
   name?: T;
   org?: T;
   address?: T;
@@ -425,6 +455,24 @@ export interface DictSelect<T extends boolean = true> {
  * via the `definition` "dictTags_select".
  */
 export interface DictTagsSelect<T extends boolean = true> {
+  name?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "dictTargets_select".
+ */
+export interface DictTargetsSelect<T extends boolean = true> {
+  name?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "dictType_select".
+ */
+export interface DictTypeSelect<T extends boolean = true> {
   name?: T;
   updatedAt?: T;
   createdAt?: T;
