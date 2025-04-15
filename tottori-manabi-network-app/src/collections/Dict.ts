@@ -144,7 +144,7 @@ export const Dict: CollectionConfig = {
               label: 'キーワード',
               fields: [
                 {
-                  name: 'tag',
+                  name: 'keyword',
                   type: 'text',
                 },
               ],

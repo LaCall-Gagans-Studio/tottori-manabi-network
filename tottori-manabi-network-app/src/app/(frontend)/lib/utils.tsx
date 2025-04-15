@@ -135,6 +135,27 @@ export const FormatDate: React.FC<{ date: string }> = ({ date }) => {
   return formatted
 }
 
+// DictTargetsConverts
+import { DictTarget } from '@/payload-types'
+export const DictTargetsConverts: React.FC<{ targets: DictTarget[] }> = ({ targets }) => {
+  if (!targets || targets.length === 0) return null
+
+  const first = targets[0]
+  const last = targets[targets.length - 1]
+
+  return (
+    <div className="flex gap-2">
+      <p>{first.name}</p>
+      {first.id !== last.id && (
+        <>
+          <p>～</p>
+          <p>{last.name}</p>
+        </>
+      )}
+    </div>
+  )
+}
+
 // Tooltips
 export const Tooltips: React.FC<{ main: ReactNode }> = ({ main }) => {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false)

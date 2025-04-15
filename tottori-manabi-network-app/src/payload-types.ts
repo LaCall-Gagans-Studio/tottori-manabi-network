@@ -182,7 +182,7 @@ export interface Dict {
   citation?: string | null;
   keywords?:
     | {
-        tag?: string | null;
+        keyword?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -434,7 +434,7 @@ export interface DictSelect<T extends boolean = true> {
   keywords?:
     | T
     | {
-        tag?: T;
+        keyword?: T;
         id?: T;
       };
   point?: T;

@@ -4,7 +4,14 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 
 // components
 import { getDict } from '../../lib/getDict'
-import { Accordion, ImageCarousel, GoogleMapEmbed, FormatDate, Tooltips } from './utils'
+import {
+  Accordion,
+  ImageCarousel,
+  GoogleMapEmbed,
+  FormatDate,
+  Tooltips,
+  DictTargetsConverts,
+} from '../../lib/utils'
 
 // icons
 import {
@@ -69,12 +76,8 @@ export default async function DictPage(props: { params: Promise<{ slug: string }
               <CiUser />
               <p className="text-sm lg:text-base">対象</p>
             </div>
-            <div className="text-base">
-              {dict.targets?.map((target) => (
-                <div key={target.id} className="">
-                  {target.name}
-                </div>
-              ))}
+            <div className="text-base flex">
+              {dict.targets && <DictTargetsConverts targets={dict.targets} />}
             </div>
           </div>
           <div className="border-ws-primary border-2 py-4 gap-2 flex flex-col items-center justify-center">

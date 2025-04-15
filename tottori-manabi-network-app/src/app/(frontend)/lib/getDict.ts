@@ -18,19 +18,20 @@ export interface Dicts {
   recognition: boolean
   tuition: number
   date_launch: string
+  org: string
+  keywords: string[]
+  capacity: number
 }
 
 export interface Dict extends Dicts {
-  org: string
   date_recognized: string
   gallery: Media[]
   transport: string
   lunch: string
   citation: string
   link: string
-  capacity: number
   location: string[]
-
+  // richTexts
   main: SerializedEditorState
   point: SerializedEditorState
   schedule: SerializedEditorState
