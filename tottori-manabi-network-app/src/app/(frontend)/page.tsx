@@ -1,32 +1,40 @@
-import { headers as getHeaders } from 'next/headers.js'
-import { getPayload } from 'payload'
+// library
 import React from 'react'
 
-import config from '@/payload.config'
-import './styles.css'
+// payload
+// import config from '@/payload.config'
+
+// components
+import Header from '../components/header'
+import Hero from '../components/section.root/hero'
+import News from '../components/section.root/news'
+import Gallery from '../components/section.root/gallery'
+import About from '../components/section.root/about'
+import Links from '../components/section.root/links'
+import Footer from '../components/footer'
 
 export default async function HomePage() {
-  const payloadConfig = await config
+  // const payloadConfig = await config
 
   return (
-    <div className="home">
+    <div className="w-full overflow-x-hidden">
+      <Header />
+      <Hero />
+      <News />
+      <Gallery />
+      <About />
+      <Links />
+      <Footer />
+
       <div className="links">
-        <a
+        {/* <a
           className="admin "
           href={payloadConfig.routes.admin}
           rel="noopener noreferrer"
           target="_blank"
         >
           Go to admin panel
-        </a>
-        <a
-          className="docs"
-          href="https://payloadcms.com/docs"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          Documentation
-        </a>
+        </a> */}
       </div>
     </div>
   )
