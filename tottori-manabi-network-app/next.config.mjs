@@ -1,8 +1,11 @@
-import { withPayload } from '@payloadcms/next/withPayload'
-
+// next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  // App Router を使用している場合、特に設定は不要なことが多い
+  // その他の Next.js の設定があればここに追加
+  // images: {
+  //   remotePatterns: [], // 必要であれば画像ドメインなどを追加
+  // },
 }
 
-export default withPayload(nextConfig, { devBundleServerPackages: false })
+export default nextConfig
