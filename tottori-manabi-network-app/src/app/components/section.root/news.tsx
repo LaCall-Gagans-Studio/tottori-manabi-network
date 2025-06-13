@@ -144,12 +144,12 @@ const infoNewsData: NewsArticle[] = [
 ]
 
 const carouselImages = [
-  { url: '/root/hero.title.png', alt: '2025夏季とっとりインターンシップ' },
-  { url: '/root/hero.title.png', alt: '個別相談受付中' },
-  { url: '/root/hero.title.png', alt: '2025夏季とっとりインターンシップ' },
-  { url: '/root/hero.title.png', alt: '個別相談受付中' },
-  { url: '/root/hero.title.png', alt: '2025夏季とっとりインターンシップ' },
-  { url: '/root/hero.title.png', alt: '個別相談受付中' },
+  { url: '/root/hero-title.png', alt: '2025夏季とっとりインターンシップ' },
+  { url: '/root/hero-title.png', alt: '個別相談受付中' },
+  { url: '/root/hero-title.png', alt: '2025夏季とっとりインターンシップ' },
+  { url: '/root/hero-title.png', alt: '個別相談受付中' },
+  { url: '/root/hero-title.png', alt: '2025夏季とっとりインターンシップ' },
+  { url: '/root/herotitle.png', alt: '個別相談受付中' },
 ]
 
 export default function News() {

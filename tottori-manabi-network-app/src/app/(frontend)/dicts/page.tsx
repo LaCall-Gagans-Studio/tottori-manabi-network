@@ -33,7 +33,7 @@ export default async function DictsPage({
         {dicts?.map((dict) => (
           <a
             key={dict.id}
-            href={`http://localhost:3000/dicts/${dict.id}`}
+            href={`/dicts/${dict.id}`}
             className="h-52 relative rounded-lg shadow-md hover:shadow-xl group duration-300 cursor-pointer transition-shadow"
           >
             <div className="h-full z-10 bg-[#f8fdee] pr-3 rounded-lg rounded-r-lg flex relative duration-300 group-hover:-translate-x-1 lg:group-hover:-translate-x-8 transition-all">
