@@ -27,13 +27,16 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: ./tottori-manabi-network-app
 
       - name: Build the project
         run: npm run build
+        working-directory: ./tottori-manabi-network-app
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./out --project-name=tottori-manabi-network
+          command: pages deploy ./out  # ← .output の場合はここ変更
+        working-directory: ./tottori-manabi-network-app
