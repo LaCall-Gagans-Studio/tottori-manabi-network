@@ -13,6 +13,8 @@ const mainSliderImages = [
   'https://cdn.pixabay.com/photo/2023/07/05/20/12/ai-generated-8109142_1280.jpg',
 ]
 
+// aaaaaa
+
 import { Button_big } from '../button-big'
 
 export default function Hero() {
