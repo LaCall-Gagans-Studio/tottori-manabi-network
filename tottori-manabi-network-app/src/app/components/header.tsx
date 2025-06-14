@@ -1,9 +1,12 @@
 'use client'
 
+// modules
 import { useState } from 'react'
+import Image from 'next/image'
+
+// icons
 import { FaLine, FaInstagram } from 'react-icons/fa6'
 import { FaSearch } from 'react-icons/fa'
-import Image from 'next/image'
 import { RxCross1 } from 'react-icons/rx'
 import { RxHamburgerMenu } from 'react-icons/rx'
 

@@ -1,10 +1,13 @@
 'use client'
 
+// modules
 import Image from 'next/image'
 import Link from 'next/link'
+import Autoplay from 'embla-carousel-autoplay'
+
+// icons
 import { AiOutlineQuestion } from 'react-icons/ai'
 import { FiInfo } from 'react-icons/fi'
-import Autoplay from 'embla-carousel-autoplay'
 
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
 
@@ -50,7 +53,7 @@ export default function Hero() {
         <div className="max-w-6xl mx-auto text-center py-2 px-4">
           <p className="font-bold">
             <Link
-              href="https://www.tottori-internship.net/news/s102/"
+              href="/dicts"
               target="_blank"
               rel="noopener noreferrer"
               className="text-base text-ws-white hover:underline"
@@ -81,7 +84,7 @@ export default function Hero() {
             alt="県外の方も! 鳥取県のフリースクール・相談できる場所を探そう!"
             width={800}
             height={200}
-            className="mx-auto"
+            className="mx-auto hidden lg:block"
           />
           <Button_big
             text={<p>フリースクール・教育支援センターを探す</p>}

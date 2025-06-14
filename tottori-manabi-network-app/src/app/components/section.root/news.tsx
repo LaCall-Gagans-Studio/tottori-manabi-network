@@ -1,5 +1,6 @@
 'use client'
 
+// modules
 import * as React from 'react'
 import {
   Carousel,
@@ -238,10 +239,10 @@ export default function News() {
           <div>
             <NewsList articles={tabContents[activeTab]} />
           </div>
-          <div className="mt-8 flex flex-col sm:flex-row justify-center gap-8 text-xl">
+          <div className="mt-8 grid grid-cols-2 lg:grid-cols-3 justify-center gap-8 text-xl">
             <a
               href="https://www.tottori-internship.net/news/"
-              className="bg-ws-white text-ws-primary py-2 px-6 rounded-full text-center border-2 border-ws-primary hover:opacity-70"
+              className="bg-ws-white col-span-2 lg:col-span-1 text-ws-primary py-2 px-6 rounded-full text-center border-2 border-ws-primary hover:opacity-70"
             >
               お知らせ一覧
             </a>
