@@ -14,8 +14,6 @@ import Links from '../components/section.root/links'
 import Footer from '../components/footer'
 
 export default async function HomePage() {
-  // const payloadConfig = await config
-
   return (
     <div className="w-full overflow-x-hidden">
       <Header />
@@ -25,17 +23,6 @@ export default async function HomePage() {
       <About />
       <Links />
       <Footer />
-
-      <div className="links">
-        {/* <a
-          className="admin "
-          href={payloadConfig.routes.admin}
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          Go to admin panel
-        </a> */}
-      </div>
     </div>
   )
 }

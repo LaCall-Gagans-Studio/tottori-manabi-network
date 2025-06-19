@@ -1,5 +1,6 @@
 import { CiMail } from 'react-icons/ci'
 import { FaLine } from 'react-icons/fa6'
+import Link from 'next/link'
 
 export default function Footer() {
   return (
@@ -11,24 +12,29 @@ export default function Footer() {
             <h3 className="font-bold text-6xl">CONTACT</h3>
             <p className="mt-2 mb-4 font-semibold">お気軽にご質問・ご相談ください</p>
             <div className="flex justify-center mt-2 gap-2">
-              <a className="underline pointer-events-auto cursor-pointer">よくあるご質問</a>｜
-              <a className="underline pointer-events-auto cursor-pointer">つなかんとは？</a>
+              <Link href="/ongoing" className="underline pointer-events-auto cursor-pointer">
+                よくあるご質問
+              </Link>
+              ｜
+              <Link href="/ongoing" className="underline pointer-events-auto cursor-pointer">
+                つなかんとは？
+              </Link>
             </div>
           </div>
 
           <div className="flex flex-col md:flex-row justify-center items-center gap-4 mt-6">
             <div className="text-xl lg:text-2xl">
-              <a
-                href="#"
+              <Link
+                href="/ongoing"
                 className="inline-flex text-nowrap items-center px-6 py-3 text-ws-primary font-bold gap-3 bg-ws-white border-4 border-ws-white rounded-full shadow hover:opacity-80"
               >
                 <CiMail className="text-4xl" />
                 申し込みフォーム
-              </a>
+              </Link>
             </div>
             <div className="text-xl lg:text-2xl">
               <a
-                href="#"
+                href="https://line.me/R/ti/p/@183ehjyb"
                 className="inline-flex text-nowrap items-center px-6 py-3 text-ws-primary font-bold gap-3 bg-ws-white border-4 border-ws-white rounded-full shadow hover:opacity-80"
               >
                 <FaLine className="text-4xl" />
@@ -46,19 +52,19 @@ export default function Footer() {
             <h4 className="font-bold text-white mb-2">保護者向け</h4>
             <ul>
               <li>
-                <a href="https://www.tottori-internship.net/about/" className="hover:underline">
+                <Link href="/ongoing" className="hover:underline">
                   つなかんとは？
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="https://www.tottori-internship.net/search/" className="hover:underline">
+                <Link href="/dicts" className="hover:underline">
                   フリースクール・教育支援センター検索
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="https://www.tottori-internship.net/manual/" className="hover:underline">
+                <Link href="/ongoing" className="hover:underline">
                   教育者の声
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -66,12 +72,9 @@ export default function Footer() {
             <h4 className="font-bold text-white mb-2">学生向け</h4>
             <ul>
               <li>
-                <a
-                  href="https://www.tottori-internship.net/company/manual/"
-                  className="hover:underline"
-                >
+                <Link href="/ongoing" className="hover:underline">
                   OB・OGの声
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -79,19 +82,19 @@ export default function Footer() {
             <h4 className="font-bold text-white mb-2">その他</h4>
             <ul>
               <li>
-                <a href="https://www.tottori-internship.net/news/" className="hover:underline">
+                <Link href="/ongoing" className="hover:underline">
                   お知らせ
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="https://www.tottori-internship.net/faq/" className="hover:underline">
+                <Link href="/ongoing" className="hover:underline">
                   よくあるご質問
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="https://www.tottori-internship.net/contact/" className="hover:underline">
+                <Link href="/ongoing" className="hover:underline">
                   お問い合わせ
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -99,14 +102,14 @@ export default function Footer() {
             <h4 className="font-bold text-white mb-2">規約等</h4>
             <ul>
               <li>
-                <a href="https://www.tottori-internship.net/policy/" className="hover:underline">
+                <Link href="/ongoing" className="hover:underline">
                   プライバシーポリシー
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="https://www.tottori-internship.net/terms/" className="hover:underline">
+                <Link href="/ongoing" className="hover:underline">
                   利用規約
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

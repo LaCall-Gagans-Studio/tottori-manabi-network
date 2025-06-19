@@ -3,6 +3,7 @@
 // modules
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 
 // icons
 import { FaLine, FaInstagram } from 'react-icons/fa6'
@@ -14,10 +15,10 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
   const navItems = [
-    { label: 'つなかんとは？', href: '#' },
-    { label: 'フリースクール等・支援機関検索', href: '#' },
-    { label: 'みんなの声', href: '#' },
-    { label: 'イベント・相談会', href: '#' },
+    { label: 'つなかんとは？', href: '/ongoing' },
+    { label: 'フリースクール等・支援機関検索', href: '/dicts' },
+    { label: 'みんなの声', href: '/ongoing' },
+    { label: 'イベント・相談会', href: '/ongoing' },
   ]
 
   return (
@@ -26,19 +27,23 @@ export default function Header() {
       <div className="hidden lg:block justify-between items-center w-full mt-2 pb-3">
         <div className="flex justify-around items-center px-6 py-6 h-24">
           {/* ロゴ */}
-          <div className="text-2xl font-bold">
+          <Link href="/" className="text-2xl font-bold">
             <Image src="/logo-long.png" alt="logo" width={500} height={100} />
-          </div>
+          </Link>
 
           {/* SNSアイコン */}
           <div className="flex justify-between items-center px-6 py-4">
             <div className="flex justify-between items-center space-x-2">
-              <FaLine className="ml-4 text-3xl text-green-500" />
-              <FaInstagram className="text-3xl text-black" />
+              <a href="https://line.me/R/ti/p/@183ehjyb">
+                <FaLine className="ml-4 text-3xl text-green-500" />
+              </a>
+              <a href="https://www.instagram.com/tottori.manabi.network?igsh=MXd3NTNtbWJmejlwbA==">
+                <FaInstagram className="text-3xl text-black" />
+              </a>
             </div>
             {/* CTAボタン */}
             <a
-              href="#"
+              href="/ongoing"
               className="ml-4 bg-rose-400 hover:bg-rose-500 text-white px-4 py-2 rounded-full text-xl"
             >
               不登校になったら
@@ -48,15 +53,15 @@ export default function Header() {
 
         {/* ナビゲーション */}
         <nav className="flex items-center justify-center space-x-4 px-12 w-full mt-2">
-          <a href="#" className="font-bold text-lg hover:underline">
+          <a href="" className="font-bold text-lg hover:underline">
             HOME
           </a>
           {navItems.map((item, i) => (
             <div key={i} className="flex items-center space-x-4 text-lg">
               <span className="text-ws-primary text-4xl font-thin">/</span>
-              <a href={item.href} className="font-semibold hover:underline">
+              <Link href={item.href} className="font-semibold hover:underline">
                 {item.label}
-              </a>
+              </Link>
             </div>
           ))}
         </nav>
@@ -102,16 +107,16 @@ export default function Header() {
 
             {/* ナビゲーション */}
             <nav className="flex flex-col space-y-4 text-base font-medium w-full  ">
-              <a href="#" className="border-b py-4 px-4 bg-slate-100 text-slate-500 text-sm">
+              <Link href="/" className="border-b py-4 px-4 bg-slate-100 text-slate-500 text-sm">
                 HOME
-              </a>
+              </Link>
               {navItems.map((item, i) => (
                 <div
                   key={i}
                   className="flex items-center space-x-2 px-4 py-2 border-b pb-2 text-lg whitespace-pre-wrap"
                 >
                   <span className="text-ws-primary text-2xl font-normal">/</span>
-                  <a href={item.href}>{item.label}</a>
+                  <Link href={item.href}>{item.label}</Link>
                 </div>
               ))}
             </nav>
@@ -125,8 +130,12 @@ export default function Header() {
                 不登校になったら
               </button>
               <div className="flex gap-4 pt-2">
-                <FaLine className="text-4xl text-green-500" />
-                <FaInstagram className="text-4xl text-black" />
+                <a href="https://line.me/R/ti/p/@183ehjyb">
+                  <FaLine className="text-4xl text-green-500" />
+                </a>
+                <a href="https://www.instagram.com/tottori.manabi.network?igsh=MXd3NTNtbWJmejlwbA==">
+                  <FaInstagram className="text-4xl text-black" />
+                </a>
               </div>
             </div>
           </div>
