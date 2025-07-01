@@ -29,120 +29,14 @@ const allNewsData: NewsArticle[] = [
     date: '2025年05月14日',
     category: 'お知らせ',
     categoryClass: 'bg-ws-secondary',
-    title: 'とっとりインターンシップ〔Instagram公式アカウント〕を開設しました  (^O^)／',
-    url: 'https://www.tottori-internship.net/news/a901/',
-  },
-  {
-    id: 'z622',
-    date: '2025年05月01日',
-    category: 'お知らせ',
-    categoryClass: 'bg-ws-secondary',
-    title:
-      '【学生のみなさまへ】２０２５夏もパッケージ型プログラムを実施！いろいろなテーマを持った楽しいプログラムを用意しています！',
-    url: 'https://www.tottori-internship.net/news/z622/',
-  },
-  {
-    id: 's102',
-    date: '2025年04月01日',
-    category: 'お知らせ',
-    categoryClass: 'bg-ws-secondary',
-    title: '【学生のみなさまへ】２０２５新緑・夏季インターンのエントリー受付を開始します。',
-    url: 'https://www.tottori-internship.net/news/s102/',
-  },
-  {
-    id: 'y147',
-    date: '2025年03月24日',
-    category: 'お知らせ',
-    categoryClass: 'bg-ws-secondary',
-    title:
-      '【学生のみなさまへ】２～３月実施のプログラムには締切が迫っているものが多数ありますのでエントリーはお早めに (^^♪',
-    url: 'https://www.tottori-internship.net/news/y147/',
+    title: 'つなかん〔Instagram公式アカウント〕を開設しました  (^O^)／',
+    url: 'https://www.instagram.com/tottori.manabi.network/',
   },
 ]
 
-const eventNewsData: NewsArticle[] = [
-  {
-    id: 'g338',
-    date: '2024年11月19日',
-    category: 'イベント',
-    categoryClass: 'bg-ws-primary',
-    title:
-      '【学生のみなさまへ】とっとりインターンシップ冬春オンラインフェスティバル（12/6～7）を開催します ❕',
-    url: 'https://www.tottori-internship.net/event/g338/',
-  },
-  {
-    id: 'q172',
-    date: '2024年06月03日',
-    category: 'イベント',
-    categoryClass: 'bg-ws-primary',
-    title: '【学生のみなさまへ】〈開催決定！！〉とっとりインターンシップpresentsオンライン大交流会',
-    url: 'https://www.tottori-internship.net/event/q172-copy-3/',
-  },
-  {
-    id: '6568',
-    date: '2024年05月27日',
-    category: 'イベント',
-    categoryClass: 'bg-ws-primary',
-    title:
-      '【学生のみなさまへ】とっとりインターンシップWEBセミナー＆交流会を開催いたします（6/27，7/1）申込受付中！',
-    url: 'https://www.tottori-internship.net/event/6568-copy-2/',
-  },
-  {
-    id: '2023',
-    date: '2024年04月12日',
-    category: 'イベント',
-    categoryClass: 'bg-ws-primary',
-    title:
-      '【企業のみなさまへ】２０２４とっとりインターンシップ企業セミナー＆個別相談会を開催します。',
-    url: 'https://www.tottori-internship.net/event/20231225-copy-2-copy-2-copy-2-copy-2/',
-  },
-]
+const eventNewsData: NewsArticle[] = []
 
-const infoNewsData: NewsArticle[] = [
-  {
-    id: 'a901i',
-    date: '2025年05月14日',
-    category: 'お知らせ',
-    categoryClass: 'bg-ws-secondary',
-    title: 'とっとりインターンシップ〔Instagram公式アカウント〕を開設しました  (^O^)／',
-    url: 'https://www.tottori-internship.net/news/a901/',
-  },
-  {
-    id: 'z622i',
-    date: '2025年05月01日',
-    category: 'お知らせ',
-    categoryClass: 'bg-ws-secondary',
-    title:
-      '【学生のみなさまへ】２０２５夏もパッケージ型プログラムを実施！いろいろなテーマを持った楽しいプログラムを用意しています！',
-    url: 'https://www.tottori-internship.net/news/z622/',
-  },
-  {
-    id: 's102i',
-    date: '2025年04月01日',
-    category: 'お知らせ',
-    categoryClass: 'bg-ws-secondary',
-    title: '【学生のみなさまへ】２０２５新緑・夏季インターンのエントリー受付を開始します。',
-    url: 'https://www.tottori-internship.net/news/s102/',
-  },
-  {
-    id: 'y147i',
-    date: '2025年03月24日',
-    category: 'お知らせ',
-    categoryClass: 'bg-ws-secondary',
-    title:
-      '【学生のみなさまへ】２～３月実施のプログラムには締切が迫っているものが多数ありますのでエントリーはお早めに (^^♪',
-    url: 'https://www.tottori-internship.net/news/y147/',
-  },
-  {
-    id: '233',
-    date: '2025年02月01日',
-    category: 'お知らせ',
-    categoryClass: 'bg-ws-secondary',
-    title:
-      '【学生のみなさまへ】２～３月実施プログラム・スケジュールまとめ（短期型、インターンシップ〔タイプ３〕、有償型）',
-    url: 'https://www.tottori-internship.net/news/233/',
-  },
-]
+const infoNewsData: NewsArticle[] = []
 
 const carouselImages = [
   { url: '/root/hero-title.png', alt: '2025夏季とっとりインターンシップ' },
@@ -241,19 +135,19 @@ export default function News() {
           </div>
           <div className="mt-8 grid grid-cols-2 lg:grid-cols-3 justify-center gap-8 text-xl">
             <a
-              href="https://www.tottori-internship.net/news/"
+              href="/ongoing"
               className="bg-ws-white col-span-2 lg:col-span-1 text-ws-primary py-2 px-6 rounded-full text-center border-2 border-ws-primary hover:opacity-70"
             >
               お知らせ一覧
             </a>
             <a
-              href="https://www.tottori-internship.net/event/"
+              href="/ongoing"
               className="bg-ws-primary text-ws-white py-2 px-6 rounded-full text-center hover:opacity-70"
             >
               イベント一覧
             </a>
             <a
-              href="https://www.tottori-internship.net/column/"
+              href="/ongoing"
               className="bg-ws-secondary text-ws-white py-2 px-6 rounded-full text-center hover:opacity-70"
             >
               コラム・特集一覧

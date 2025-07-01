@@ -12,7 +12,7 @@ export default function About() {
     {
       num: '01',
       small: '鳥取県の公認を受けた',
-      large: '安心できる情報限',
+      large: '安心できる情報源',
       props: 'lg:col-span-2 lg:justify-center lg:gap-6',
       link: '#merit01',
     },

@@ -15,7 +15,7 @@ export default function Links() {
       <div className="max-w-6xl mx-auto px-4 pb-6">
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-6 mb-10">
           <li>
-            <Link href="https://www.tottori-internship.net/voice/" target="_blank">
+            <Link href="/ongoing'" target="_blank">
               <div className="relative w-full aspect-[3/1] hover:opacity-90">
                 <Image
                   src="/root/links-staff.png"
@@ -28,7 +28,7 @@ export default function Links() {
             </Link>
           </li>
           <li>
-            <Link href="https://www.tottori-internship.net/company/voice/" target="_blank">
+            <Link href="/ongoing'" target="_blank">
               <div className="relative w-full aspect-[3/1] hover:opacity-90">
                 <Image
                   src="/root/links-student.png"
@@ -53,7 +53,7 @@ export default function Links() {
               </>
             }
             sub="FreeSchool list"
-            url="#"
+            url="/dicts?type=1"
           />
           <Bottun_links
             num={1}
@@ -65,7 +65,7 @@ export default function Links() {
               </>
             }
             sub="Support Center List"
-            url="#"
+            url="/dicts?type=2"
           />
           <Bottun_links num={2} text={<>医療機関一覧</>} sub="Hospital List" url="#" />
           <Bottun_links num={3} text={<>よくあるご質問</>} sub="FAQ" url="#" />

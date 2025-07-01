@@ -1,6 +1,8 @@
 // libs
 import { notFound } from 'next/navigation'
 import { RichText } from '@payloadcms/richtext-lexical/react'
+// import RadarChartBlock from '@/app/components/section.dict/radarChartBlock'
+import WordCloudCanvas from '@/app/components/section.dict/wordCloudBlock'
 
 // components
 import { getDict } from '../../lib/getDict'
@@ -114,13 +116,20 @@ export default async function DictPage(props: { params: Promise<{ slug: string }
               <RichText data={dict.main} className="" />
             </div>
             <div className="w-11/12 lg:w-5/12 mx-auto lg:mx-0 flex flex-col justify-center items-center overflow-visible">
-              {/* {dict.point} */}
+              {/* レーダーチャート */}
+              {/* <RadarChartBlock data={dict.keywords} /> */}
+
+              <div className="mb-4 flex flex-col items-center justify-center text-center text-sm">
+                <p>
+                  {dict.name}
+                  <br />
+                  を表すキーワード
+                </p>
+                <WordCloudCanvas keywords={dict.keywords} />
+              </div>
+
               <div className="w-full lg:w-4/6 h-auto px-2 pb-3 lg:pb-1 bg-ws-gray rounded-md">
-                <img
-                  src="/portfolio/kanako_anime.png"
-                  alt="可奈子ポイント"
-                  className="h-24 w-auto"
-                />
+                <img src="/dict/kanako_anime.png" alt="可奈子ポイント" className="h-24 w-auto" />
                 <div className="text-sm prose">
                   <RichText data={dict.point} className="" />
                 </div>
