@@ -16,7 +16,7 @@ import { Button_big } from '../button-big'
 const carouselImages = [
   {
     url: 'https://cdn.pixabay.com/photo/2023/07/05/20/12/ai-generated-8109142_1280.jpg',
-    alt: '2025夏季とっとりインターンシップ',
+    alt: '不登校の悩みなら【つなかん！】',
   },
   {
     url: 'https://cdn.pixabay.com/photo/2018/03/04/23/37/child-3199624_1280.jpg',
@@ -53,12 +53,12 @@ export default function Hero() {
         <div className="max-w-6xl mx-auto text-center py-2 px-4">
           <p className="font-bold">
             <Link
-              href="/dicts/2"
+              href="/dicts/4"
               target="_blank"
               rel="noopener noreferrer"
               className="text-base text-ws-white hover:underline"
             >
-              こ・ラボを追加しました👉🔘
+              フリースクールこ・ラボを追加しました👉🔘
             </Link>
           </p>
         </div>
