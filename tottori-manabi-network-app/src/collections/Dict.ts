@@ -36,7 +36,7 @@ export const Dict: CollectionConfig = {
               // 種別
               name: 'type',
               type: 'relationship',
-              label: '種別（1つのみ｜暫定対応）',
+              label: '種別',
               relationTo: 'dictType',
               hasMany: true,
             },
