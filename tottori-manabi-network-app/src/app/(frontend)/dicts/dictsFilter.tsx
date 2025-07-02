@@ -162,8 +162,8 @@ export const DictFilter: React.FC<{ initialResults: Dicts[] }> = ({ initialResul
             <SelectItem value="tuition_asc">学費が安い順</SelectItem>
             <SelectItem value="capacity_asc">定員が少ない順</SelectItem>
             <SelectItem value="capacity_desc">定員が多い順</SelectItem>
-            {/* <SelectItem value="date_old">設立が古い順</SelectItem>
-            <SelectItem value="date_new">設立が新しい順</SelectItem> */}
+            <SelectItem value="date_old">設立が古い順</SelectItem>
+            <SelectItem value="date_new">設立が新しい順</SelectItem>
           </SelectContent>
         </Select>
       </div>
