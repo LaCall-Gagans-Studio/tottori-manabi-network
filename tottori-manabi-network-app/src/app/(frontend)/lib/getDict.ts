@@ -47,6 +47,7 @@ export async function getDicts(queryString: string = ''): Promise<Dicts[]> {
   const baseParams = new URLSearchParams({
     'where[published][equals]': 'true',
     depth: '1',
+    limit: '1000',
   })
 
   // 追加クエリがある場合は末尾に追加
