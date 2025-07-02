@@ -164,6 +164,7 @@ export interface Media {
 export interface Dict {
   id: number;
   published?: boolean | null;
+  hasPage?: boolean | null;
   type?: (number | DictType)[] | null;
   name: string;
   org?: string | null;
@@ -415,6 +416,7 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface DictSelect<T extends boolean = true> {
   published?: T;
+  hasPage?: T;
   type?: T;
   name?: T;
   org?: T;

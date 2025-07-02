@@ -26,6 +26,13 @@ export const Dict: CollectionConfig = {
               },
             },
             {
+              // 公開状況
+              name: 'hasPage',
+              type: 'checkbox',
+              defaultValue: false,
+              label: '詳細ページあり',
+            },
+            {
               // 種別
               name: 'type',
               type: 'relationship',

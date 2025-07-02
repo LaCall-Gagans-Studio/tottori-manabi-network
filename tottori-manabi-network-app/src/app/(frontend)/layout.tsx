@@ -8,7 +8,7 @@ const siteConfig = {
   title: 'つなかん｜鳥取のフリースクール情報・不登校支援ネットワーク',
   description:
     '鳥取県のフリースクール情報なら「つなかん」。不登校や行き渋りで悩むお子様と保護者のため、元教員が県内の施設を徹底比較。特徴や費用、サポート内容を網羅し、お子様に最適な学びの場探しを支援します。',
-  url: 'https://tuna-kan.org',
+  url: 'https://www.tuna-kan.org',
   siteName: 'とっとりフリースクールネットワーク つなかん',
   twitterId: 'YourTwitterHandle',
 }

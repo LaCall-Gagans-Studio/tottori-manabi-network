@@ -7,6 +7,7 @@ import { Media } from '@/payload-types'
 export interface Dicts {
   id: string
   published: string
+  hasPage: boolean
   name: string
   type: DictType[] | null
   slogan_short: string
@@ -21,6 +22,7 @@ export interface Dicts {
   org: string
   keywords: string[]
   capacity: number
+  link: string
 }
 
 export interface Dict extends Dicts {
@@ -29,7 +31,6 @@ export interface Dict extends Dicts {
   transport: string
   lunch: string
   citation: string
-  link: string
   location: string[]
   // richTexts
   main: SerializedEditorState

@@ -153,7 +153,7 @@ export default function About() {
 
           <div className="mt-4 lg:mt-12">
             <Link
-              href="#"
+              href="/ongoing"
               className="mx-auto w-auto gap-4 text-lg hover:underline flex items-center justify-center text-white font-bold py-3 px-10 rounded-full"
             >
               <FaRegQuestionCircle className="text-2xl" />
