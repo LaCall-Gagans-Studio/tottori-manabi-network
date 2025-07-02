@@ -25,6 +25,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
+  cors: ['https://www.tuna-kan.org', 'https://ocalhost:3000/'],
   collections: [Users, Media, Dict, DictTags, DictTargets, DictType],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
