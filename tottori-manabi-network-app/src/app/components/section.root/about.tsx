@@ -25,21 +25,21 @@ export default function About() {
     {
       num: '03',
       small: '地域との連携強化',
-      large: '教育機関や福祉機関との<br />ネットワークづくりが進む',
+      large: '教育機関や福祉機関との<br />ネットワークづくり',
       link: '#merit03',
     },
-    {
-      num: '04',
-      small: '運営ノウハウの蓄積',
-      large: 'フリースクール等の<br />情報整備・可視化ができる',
-      link: '#merit04',
-    },
-    {
-      num: '05',
-      small: '自由度の高い活動設計',
-      large: '地域や対象に応じた<br />柔軟な取り組みが可能',
-      link: '#merit05',
-    },
+    // {
+    //   num: '04',
+    //   small: '運営ノウハウの蓄積',
+    //   large: 'フリースクール等の<br />情報整備・可視化ができる',
+    //   link: '#merit04',
+    // },
+    // {
+    //   num: '05',
+    //   small: '自由度の高い活動設計',
+    //   large: '地域や対象に応じた<br />柔軟な取り組みが可能',
+    //   link: '#merit05',
+    // },
   ]
 
   return (
@@ -114,7 +114,7 @@ export default function About() {
           </p>
 
           <Link
-            href="https://youtu.be/JH_PUMq027A"
+            href="https://www.instagram.com/tottori.manabi.network/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-white border font-semibold border-ws-primary text-ws-primary py-6 px-12 rounded-full hover:bg-red-50 transition-colors my-10"
