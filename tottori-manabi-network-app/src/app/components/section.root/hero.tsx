@@ -23,8 +23,8 @@ const carouselImages = [
     alt: '個別相談受付中',
   },
   {
-    url: 'https://cdn.pixabay.com/photo/2021/07/02/03/17/culture-6380756_1280.jpg',
-    alt: '2025夏季とっとりインターンシップ',
+    url: 'https://cdn.pixabay.com/photo/2020/12/20/09/08/girl-5846483_1280.jpg',
+    alt: '不登校の悩みなら【つなかん！】',
   },
   {
     url: 'https://cdn.pixabay.com/photo/2023/07/05/20/12/ai-generated-8109142_1280.jpg',

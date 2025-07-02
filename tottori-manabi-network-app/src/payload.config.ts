@@ -14,6 +14,9 @@ import { Dict } from './collections/Dict'
 import { DictTags } from './collections/DictTags'
 import { DictTargets } from './collections/DictTargets'
 import { DictType } from './collections/DictType'
+import { Article } from './collections/Article'
+import { ArticleTags } from './collections/ArticleTags'
+import { ArticleWriter } from './collections/ArticleWriter'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -25,8 +28,18 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  cors: ['https://www.tuna-kan.org', 'https://ocalhost:3000/'],
-  collections: [Users, Media, Dict, DictTags, DictTargets, DictType],
+  cors: ['https://www.tuna-kan.org', 'https://localhost:3000/'],
+  collections: [
+    Users,
+    Media,
+    Dict,
+    DictTags,
+    DictTargets,
+    DictType,
+    Article,
+    ArticleTags,
+    ArticleWriter,
+  ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

@@ -26,7 +26,7 @@ export const Dict: CollectionConfig = {
               },
             },
             {
-              // 公開状況
+              // 詳細ページの有無
               name: 'hasPage',
               type: 'checkbox',
               defaultValue: false,

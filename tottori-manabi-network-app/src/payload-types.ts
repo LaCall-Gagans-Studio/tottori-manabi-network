@@ -73,6 +73,9 @@ export interface Config {
     dictTags: DictTag;
     dictTargets: DictTarget;
     dictType: DictType;
+    article: Article;
+    articleTags: ArticleTag;
+    articleWriter: ArticleWriter;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -85,6 +88,9 @@ export interface Config {
     dictTags: DictTagsSelect<false> | DictTagsSelect<true>;
     dictTargets: DictTargetsSelect<false> | DictTargetsSelect<true>;
     dictType: DictTypeSelect<false> | DictTypeSelect<true>;
+    article: ArticleSelect<false> | ArticleSelect<true>;
+    articleTags: ArticleTagsSelect<false> | ArticleTagsSelect<true>;
+    articleWriter: ArticleWriterSelect<false> | ArticleWriterSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -306,6 +312,80 @@ export interface DictTarget {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "article".
+ */
+export interface Article {
+  id: number;
+  published?: boolean | null;
+  name: string;
+  slogan_short?: string | null;
+  tags?: (number | ArticleTag)[] | null;
+  thumbnail?: (number | null) | Media;
+  keywords?:
+    | {
+        keyword?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  main?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  date_created?: string | null;
+  date_updated?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articleTags".
+ */
+export interface ArticleTag {
+  id: number;
+  name: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articleWriter".
+ */
+export interface ArticleWriter {
+  id: number;
+  name: string;
+  position: string;
+  icon?: (number | null) | Media;
+  main?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -334,6 +414,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'dictType';
         value: number | DictType;
+      } | null)
+    | ({
+        relationTo: 'article';
+        value: number | Article;
+      } | null)
+    | ({
+        relationTo: 'articleTags';
+        value: number | ArticleTag;
+      } | null)
+    | ({
+        relationTo: 'articleWriter';
+        value: number | ArticleWriter;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -476,6 +568,49 @@ export interface DictTargetsSelect<T extends boolean = true> {
  */
 export interface DictTypeSelect<T extends boolean = true> {
   name?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "article_select".
+ */
+export interface ArticleSelect<T extends boolean = true> {
+  published?: T;
+  name?: T;
+  slogan_short?: T;
+  tags?: T;
+  thumbnail?: T;
+  keywords?:
+    | T
+    | {
+        keyword?: T;
+        id?: T;
+      };
+  main?: T;
+  date_created?: T;
+  date_updated?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articleTags_select".
+ */
+export interface ArticleTagsSelect<T extends boolean = true> {
+  name?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articleWriter_select".
+ */
+export interface ArticleWriterSelect<T extends boolean = true> {
+  name?: T;
+  position?: T;
+  icon?: T;
+  main?: T;
   updatedAt?: T;
   createdAt?: T;
 }
