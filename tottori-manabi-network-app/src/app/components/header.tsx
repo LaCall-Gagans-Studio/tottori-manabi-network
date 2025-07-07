@@ -70,13 +70,15 @@ export default function Header() {
       {/* モバイル表示 */}
       <div className="lg:hidden w-full">
         <div className="text-2xl font-bold h-16 flex items-center justify-start">
-          <Image
-            src="/logo-long.png"
-            alt="logo"
-            width={300}
-            height={60}
-            className="py-2 px-2 object-contain"
-          />
+          <Link href="/">
+            <Image
+              src="/logo-long.png"
+              alt="logo"
+              width={300}
+              height={60}
+              className="py-2 px-2 object-contain"
+            />
+          </Link>
         </div>
 
         {/* スライドメニュー */}

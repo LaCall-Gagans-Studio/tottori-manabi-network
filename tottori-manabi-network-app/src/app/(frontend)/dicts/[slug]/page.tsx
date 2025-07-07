@@ -41,7 +41,7 @@ export default async function DictPage(props: { params: Promise<{ slug: string }
   return (
     <main>
       <Header />
-      <div className="p-4 pt-4 lg:pt-12 h-[calc(100svh*11/12)] lg:h-full w-full mx-auto overflow-y-scroll bg-[#f8fdee] lg:bg-transparent z-20">
+      <div className="p-4 pt-4 lg:pt-12  w-full mx-auto bg-[#f8fdee] lg:bg-transparent z-20">
         <div className="w-full lg:max-w-[1200px] lg:w-4/5 h-auto mx-auto">
           <h1 className="text-3xl font-bold text-ws-primary">{dict.name}</h1>
           <h2 className="text-lg">{dict.org}</h2>

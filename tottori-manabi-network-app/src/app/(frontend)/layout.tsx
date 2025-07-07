@@ -96,7 +96,6 @@ export const metadata: Metadata = {
   // Webサイトのアイコン設定
   icons: {
     icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
   },
 
   // ビューポート設定
