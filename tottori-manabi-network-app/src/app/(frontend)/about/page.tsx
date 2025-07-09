@@ -57,7 +57,7 @@ export default async function HomePage() {
   return (
     <main>
       <Header />
-      <div className="pt-24 bg-opacity-80 relative w-10/12 lg:w-auto max-w-5xl mx-auto px-4 text-center pb-24">
+      <div className="pt-24 bg-opacity-80 relative w-11/12 lg:w-auto max-w-5xl mx-auto px-4 text-center pb-12">
         <p className="text-xl lg:text-2xl font-bold  leading-relaxed mb-14 text-ws-primary">
           鳥取県でフリースクール<span className="hidden lg:inline">・</span>
           <br />
@@ -124,9 +124,9 @@ export default async function HomePage() {
                 </span>
                 <span className="h-3/4 lg:h-5/6 w-0.5 rotate-12 bg-ws-primary"></span>
                 <div>
-                  <p className="text-ws-primary text-base lg:text-lg text-left">{merit.small}</p>
+                  <p className="text-ws-primary text-sm lg:text-lg text-left">{merit.small}</p>
                   <p
-                    className="text-ws-primary font-bold text-left text-xl lg:text-2xl lg:leading-relaxed"
+                    className="text-ws-primary font-bold text-left text-base lg:text-2xl lg:leading-relaxed"
                     dangerouslySetInnerHTML={{
                       __html: merit.large.replace(/<br.*?>/g, '<br />'),
                     }}
@@ -145,13 +145,16 @@ export default async function HomePage() {
             </div>
           ))}
         </ol>
+      </div>
 
+      <div className="mb-12">
         <Button_big
           text={<p>さっそくフリースクール・教育支援センターを探す</p>}
           url="/dicts"
           props="mt-6 px-12"
         />
       </div>
+
       <Footer />
     </main>
   )
