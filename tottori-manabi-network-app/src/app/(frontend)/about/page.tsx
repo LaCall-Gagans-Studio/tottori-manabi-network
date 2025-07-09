@@ -1,5 +1,6 @@
 // library
 import Link from 'next/link'
+import Image from 'next/image'
 
 // icons
 import { FiChevronRight } from 'react-icons/fi'
@@ -16,31 +17,41 @@ export default async function HomePage() {
       small: '鳥取県の公認を受けた',
       large: '安心できる情報源',
       link: '#merit01',
+      detail:
+        '施設ごとに認定日や特色、場所、活動内容などを明記し、利用者が安心して利用できる情報を提供しています。<br />情報は施設への取材や意向確認をもとに、正確に更新されています。',
     },
     {
       num: '02',
       small: 'フリースクール・教育支援センターと',
       large: '直接つながれるネットワーク',
       link: '#merit02',
+      detail:
+        'ポータルサイトから、各施設の公式ホームページや連絡先にアクセスでき、気になる施設と直接つながれます。<br />さらに、SNSや座談会などを通じて、地域の支援者や同じ悩みを持つ保護者同士も交流できる仕組みを整えています。',
     },
     {
       num: '03',
+      small: '保護者・子どもからの声をヒアリング',
+      large: '不登校の子どもや保護者の<br />“声”に耳を傾けて改善',
+      link: '#merit04',
+      detail:
+        '実際にサイトを見た保護者や、支援を受けた子どもたちへのヒアリングを実施し、改善の声を反映しています。<br />「もっとこうしてほしい」「これが役立った」などの声をもとに、ポータルサイトや座談会の内容を見直し、<br />使いやすさと支援の質を高めています。',
+    },
+    {
+      num: '04',
+      small: '気軽に相談できる環境づくり',
+      large: 'オフライン・オンライン両方で<br />いつでも、どこでも相談できる',
+      link: '#merit05',
+      detail:
+        '週1回のオンライン配信や、県内各地域での座談会を通じて、<br />家でも、地域でも、好きな方法で相談や情報収集ができます。<br />忙しい保護者でも夜間や休日に参加できる工夫や、子どもたち自身が参加できる場所づくりも進めています。',
+    },
+    {
+      num: '05',
       small: '地域との連携強化',
       large: '教育機関や福祉機関との<br />ネットワークづくり',
       link: '#merit03',
+      detail:
+        '地域ごとの教育支援センターや福祉機関とも連携し、鳥取県全体で不登校支援のネットワークを構築しています。<br />地域の関係機関と協力しながら、孤立しがちな保護者や子どもたちに地域全体で寄り添います。',
     },
-    // {
-    //   num: '04',
-    //   small: '運営ノウハウの蓄積',
-    //   large: 'フリースクール等の<br />情報整備・可視化ができる',
-    //   link: '#merit04',
-    // },
-    // {
-    //   num: '05',
-    //   small: '自由度の高い活動設計',
-    //   large: '地域や対象に応じた<br />柔軟な取り組みが可能',
-    //   link: '#merit05',
-    // },
   ]
 
   return (
@@ -106,26 +117,32 @@ export default async function HomePage() {
 
         <ol className="grid grid-cols-1 gap-2 lg:gap-4">
           {merits.map((merit) => (
-            <Link
-              key={merit.num}
-              href={merit.link}
-              className={`bg-white flex h-24 lg:h-36 relative items-center justify-start gap-4 rounded-md p-5 shadow-md hover:shadow-xl hover:opacity-70 duration-500 transition-shadow `}
-            >
-              <span className="text-4xl lg:text-6xl font-extrabold text-ws-secondary mr-2">
-                {merit.num}
-              </span>
-              <span className="h-3/4 lg:h-5/6 w-0.5 rotate-12 bg-ws-primary"></span>
-              <div>
-                <p className="text-ws-primary text-sm lg:text-base text-left">{merit.small}</p>
+            <div key={merit.num} className="bg-slate-100 shadow-md  my-3 p-5">
+              <div className="flex h-24 lg:h-36 relative items-center justify-start gap-4 rounded-md">
+                <span className="text-4xl lg:text-6xl font-extrabold text-ws-secondary mr-2">
+                  {merit.num}
+                </span>
+                <span className="h-3/4 lg:h-5/6 w-0.5 rotate-12 bg-ws-primary"></span>
+                <div>
+                  <p className="text-ws-primary text-base lg:text-lg text-left">{merit.small}</p>
+                  <p
+                    className="text-ws-primary font-bold text-left text-xl lg:text-2xl lg:leading-relaxed"
+                    dangerouslySetInnerHTML={{
+                      __html: merit.large.replace(/<br.*?>/g, '<br />'),
+                    }}
+                  />
+                </div>
+                <FiChevronRight className="absolute right-2 text-4xl text-slate-200" />
+              </div>
+              <div className="mt-2 pt-2 border-t border-ws-black">
                 <p
-                  className="text-ws-primary font-bold text-left text-base lg:text-xl lg:leading-relaxed"
+                  className="font-base lg:text-lg text-left text-base leading-relaxed"
                   dangerouslySetInnerHTML={{
-                    __html: merit.large.replace(/<br.*?>/g, '<br />'),
+                    __html: merit.detail.replace(/<br.*?>/g, '<br />'),
                   }}
                 />
               </div>
-              <FiChevronRight className="absolute right-2 text-4xl text-slate-200" />
-            </Link>
+            </div>
           ))}
         </ol>
 

@@ -24,22 +24,22 @@ export default function About() {
     },
     {
       num: '03',
+      small: '保護者・子どもからの声をヒアリング',
+      large: '不登校の子どもや保護者の<br />“声”に耳を傾けて改善',
+      link: '#merit04',
+    },
+    {
+      num: '04',
+      small: '気軽に相談できる環境づくり',
+      large: 'オフライン・オンライン両方で<br />いつでも、どこでも相談できる',
+      link: '#merit05',
+    },
+    {
+      num: '05',
       small: '地域との連携強化',
       large: '教育機関や福祉機関との<br />ネットワークづくり',
       link: '#merit03',
     },
-    // {
-    //   num: '04',
-    //   small: '運営ノウハウの蓄積',
-    //   large: 'フリースクール等の<br />情報整備・可視化ができる',
-    //   link: '#merit04',
-    // },
-    // {
-    //   num: '05',
-    //   small: '自由度の高い活動設計',
-    //   large: '地域や対象に応じた<br />柔軟な取り組みが可能',
-    //   link: '#merit05',
-    // },
   ]
 
   return (
@@ -153,7 +153,7 @@ export default function About() {
 
           <div className="mt-4 lg:mt-12">
             <Link
-              href="/ongoing"
+              href="/about"
               className="mx-auto w-auto gap-4 text-lg hover:underline flex items-center justify-center text-white font-bold py-3 px-10 rounded-full"
             >
               <FaRegQuestionCircle className="text-2xl" />
