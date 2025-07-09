@@ -126,7 +126,7 @@ export default function About() {
             <span>＼ つなかんの特徴 ／</span>
           </h3>
 
-          <ol className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-4">
+          <ol className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
             {merits.map((merit) => (
               <Link
                 key={merit.num}
