@@ -117,7 +117,7 @@ export default async function HomePage() {
 
         <ol className="grid grid-cols-1 gap-2 lg:gap-4">
           {merits.map((merit) => (
-            <div key={merit.num} className="bg-slate-100 shadow-md  my-3 p-5">
+            <div key={merit.num} id={merit.num} className="bg-slate-100 shadow-md  my-3 p-5">
               <div className="flex h-24 lg:h-36 relative items-center justify-start gap-4 rounded-md">
                 <span className="text-4xl lg:text-6xl font-extrabold text-ws-secondary mr-2">
                   {merit.num}
@@ -132,7 +132,6 @@ export default async function HomePage() {
                     }}
                   />
                 </div>
-                <FiChevronRight className="absolute right-2 text-4xl text-slate-200" />
               </div>
               <div className="mt-2 pt-2 border-t border-ws-black">
                 <p
@@ -145,14 +144,17 @@ export default async function HomePage() {
             </div>
           ))}
         </ol>
-      </div>
 
-      <div className="mb-12">
         <Button_big
           text={<p>さっそくフリースクール・教育支援センターを探す</p>}
           url="/dicts"
           props="mt-6 px-12"
         />
+
+        <div className="mt-12">
+          <Title text="運営メンバー" />
+          <p>今しばらくお待ちください。</p>
+        </div>
       </div>
 
       <Footer />

@@ -130,7 +130,7 @@ export default function About() {
             {merits.map((merit) => (
               <Link
                 key={merit.num}
-                href={merit.link}
+                href={'/about#' + merit.num}
                 className={`bg-white flex h-24 lg:h-36 relative items-center justify-start gap-4 rounded-md p-5 shadow-md hover:shadow-xl hover:opacity-70 duration-500 transition-shadow ${merit.props ?? ''}`}
               >
                 <span className="text-4xl lg:text-6xl font-extrabold text-ws-secondary mr-2">

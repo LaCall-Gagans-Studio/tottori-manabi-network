@@ -125,12 +125,18 @@ export default function Header() {
 
             {/* ボタン群 */}
             <div className="flex flex-col items-center mt-6 space-y-3 px-4">
-              <button className="flex items-center text-lg justify-center w-full py-2 bg-cyan-500 text-white font-bold rounded-full">
+              <Link
+                href="/dicts"
+                className="flex items-center text-lg justify-center w-full py-2 bg-cyan-500 text-white font-bold rounded-full"
+              >
                 <FaSearch className="mr-2 " /> フリースクールを探す
-              </button>
-              <button className="w-full text-lg py-2 bg-rose-400 text-white font-bold rounded-full">
+              </Link>
+              <Link
+                href="/ongoing"
+                className="w-full text-lg py-2 flex justify-center bg-rose-400 text-white font-bold rounded-full"
+              >
                 不登校になったら
-              </button>
+              </Link>
               <div className="flex gap-4 pt-2">
                 <a href="https://line.me/R/ti/p/@183ehjyb">
                   <FaLine className="text-4xl text-green-500" />
