@@ -52,7 +52,7 @@ export default function Footer() {
             <h4 className="font-bold text-white mb-2">保護者向け</h4>
             <ul>
               <li>
-                <Link href="/ongoing" className="hover:underline">
+                <Link href="/about" className="hover:underline">
                   つなかんとは？
                 </Link>
               </li>

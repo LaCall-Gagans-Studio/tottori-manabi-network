@@ -2,6 +2,10 @@ import type { CollectionConfig } from 'payload'
 
 export const Dict: CollectionConfig = {
   slug: 'dict',
+  labels: {
+    singular: '施設',
+    plural: '施設',
+  },
   access: {
     read: () => true,
   },

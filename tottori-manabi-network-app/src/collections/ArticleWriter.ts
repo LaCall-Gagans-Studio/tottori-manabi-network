@@ -2,6 +2,10 @@ import type { CollectionConfig } from 'payload'
 
 export const ArticleWriter: CollectionConfig = {
   slug: 'articleWriter',
+  labels: {
+    singular: '記事ライター',
+    plural: '記事ライター',
+  },
   access: {
     read: () => true,
   },

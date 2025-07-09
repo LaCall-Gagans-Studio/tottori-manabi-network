@@ -15,7 +15,7 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
   const navItems = [
-    { label: 'つなかんとは？', href: '/ongoing' },
+    { label: 'つなかんとは？', href: '/about' },
     { label: 'フリースクール等・支援機関検索', href: '/dicts' },
     { label: 'みんなの声', href: '/ongoing' },
     { label: 'イベント・相談会', href: '/ongoing' },
@@ -53,9 +53,9 @@ export default function Header() {
 
         {/* ナビゲーション */}
         <nav className="flex items-center justify-center space-x-4 px-12 w-full mt-2">
-          <a href="" className="font-bold text-lg hover:underline">
+          <Link href="/" className="font-bold text-lg hover:underline">
             HOME
-          </a>
+          </Link>
           {navItems.map((item, i) => (
             <div key={i} className="flex items-center space-x-4 text-lg">
               <span className="text-ws-primary text-4xl font-thin">/</span>

@@ -88,7 +88,7 @@ export default async function Gallery() {
         <div className="max-w-5xl mx-auto px-4">
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-6">
             <li>
-              <Link href="https://www.tottori-internship.net/manual/#a_subsidy" target="_blank">
+              <Link href="/ongoing" target="_blank">
                 <Image
                   src="/root/gallery-recognized.png"
                   alt="通学費用が半額に！認定フリースクール一覧"
@@ -99,7 +99,7 @@ export default async function Gallery() {
               </Link>
             </li>
             <li>
-              <Link href="https://www.tottori-internship.net/accounts/signup/" target="_blank">
+              <Link href="/ongoing" target="_blank">
                 <Image
                   src="/root/gallery-line.png"
                   alt="はじめての方へ まずはLINE登録"

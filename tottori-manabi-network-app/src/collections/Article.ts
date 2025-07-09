@@ -2,6 +2,10 @@ import type { CollectionConfig } from 'payload'
 
 export const Article: CollectionConfig = {
   slug: 'article',
+  labels: {
+    singular: '記事',
+    plural: '記事',
+  },
   access: {
     read: () => true,
   },
@@ -77,13 +81,12 @@ export const Article: CollectionConfig = {
       type: 'date',
       label: '更新日',
     },
-    // {
-    //   // 担当者
-    //   name: 'createdBy',
-    //   type: 'relationship',
-    //   label: '担当者',
-    //   hasMany: true,
-    //   relationTo: 'articleWriter',
-    // },
+    {
+      // 担当者
+      name: 'createdBy',
+      type: 'relationship',
+      label: '担当者',
+      relationTo: 'articleWriter',
+    },
   ],
 }

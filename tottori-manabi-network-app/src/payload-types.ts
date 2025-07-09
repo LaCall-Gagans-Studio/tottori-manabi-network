@@ -344,6 +344,7 @@ export interface Article {
   } | null;
   date_created?: string | null;
   date_updated?: string | null;
+  createdBy?: (number | null) | ArticleWriter;
   updatedAt: string;
   createdAt: string;
 }
@@ -590,6 +591,7 @@ export interface ArticleSelect<T extends boolean = true> {
   main?: T;
   date_created?: T;
   date_updated?: T;
+  createdBy?: T;
   updatedAt?: T;
   createdAt?: T;
 }
