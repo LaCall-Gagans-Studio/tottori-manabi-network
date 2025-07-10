@@ -1,12 +1,13 @@
 import Header from '@/app/components/header'
 import Footer from '@/app/components/footer'
 
-export default function PolicyPage({
+export default async function PolicyPage({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | undefined }
+  searchParams: Promise<Record<string, string>>
 }) {
-  const section = searchParams.s ?? 'rule'
+  const resolvedParams = await searchParams
+  const section = resolvedParams.s || 'rule'
 
   return (
     <main>
