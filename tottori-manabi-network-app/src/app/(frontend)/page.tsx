@@ -14,7 +14,6 @@ import Links from '../components/section.root/links'
 import Footer from '../components/footer'
 
 export default async function HomePage() {
-
   return (
     <div className="w-full overflow-x-hidden">
       <Header />

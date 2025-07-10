@@ -7,7 +7,6 @@ import Autoplay from 'embla-carousel-autoplay'
 
 // icons
 import { AiOutlineQuestion } from 'react-icons/ai'
-import { FiInfo } from 'react-icons/fi'
 
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
 

@@ -17,6 +17,7 @@ import { DictType } from './collections/DictType'
 import { Article } from './collections/Article'
 import { ArticleTags } from './collections/ArticleTags'
 import { ArticleWriter } from './collections/ArticleWriter'
+import { News } from './collections/News'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -39,6 +40,7 @@ export default buildConfig({
     Article,
     ArticleTags,
     ArticleWriter,
+    News,
   ],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

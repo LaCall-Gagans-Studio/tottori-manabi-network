@@ -1,13 +1,5 @@
 'use client'
 
-// ボタン大
-import { ReactElement } from 'react'
-import { FiSearch } from 'react-icons/fi'
-
-import { Dicts } from '@/app/(frontend)/lib/getDict'
-
-import Image from 'next/image'
-import Link from 'next/link'
 import * as React from 'react'
 import {
   Carousel,

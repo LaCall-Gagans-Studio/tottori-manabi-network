@@ -76,6 +76,7 @@ export interface Config {
     article: Article;
     articleTags: ArticleTag;
     articleWriter: ArticleWriter;
+    news: News;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -91,6 +92,7 @@ export interface Config {
     article: ArticleSelect<false> | ArticleSelect<true>;
     articleTags: ArticleTagsSelect<false> | ArticleTagsSelect<true>;
     articleWriter: ArticleWriterSelect<false> | ArticleWriterSelect<true>;
+    news: NewsSelect<false> | NewsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -317,6 +319,7 @@ export interface DictTarget {
 export interface Article {
   id: number;
   published?: boolean | null;
+  type: 'events' | 'article' | 'notice';
   name: string;
   slogan_short?: string | null;
   tags?: (number | ArticleTag)[] | null;
@@ -387,6 +390,19 @@ export interface ArticleWriter {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news".
+ */
+export interface News {
+  id: number;
+  name: string;
+  type: 'events' | 'article' | 'notice';
+  link: string;
+  date_created: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -427,6 +443,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'articleWriter';
         value: number | ArticleWriter;
+      } | null)
+    | ({
+        relationTo: 'news';
+        value: number | News;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -578,6 +598,7 @@ export interface DictTypeSelect<T extends boolean = true> {
  */
 export interface ArticleSelect<T extends boolean = true> {
   published?: T;
+  type?: T;
   name?: T;
   slogan_short?: T;
   tags?: T;
@@ -613,6 +634,18 @@ export interface ArticleWriterSelect<T extends boolean = true> {
   position?: T;
   icon?: T;
   main?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "news_select".
+ */
+export interface NewsSelect<T extends boolean = true> {
+  name?: T;
+  type?: T;
+  link?: T;
+  date_created?: T;
   updatedAt?: T;
   createdAt?: T;
 }

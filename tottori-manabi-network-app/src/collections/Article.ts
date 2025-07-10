@@ -24,6 +24,21 @@ export const Article: CollectionConfig = {
       },
     },
     {
+      name: 'type',
+      type: 'select',
+      required: true,
+      defaultValue: 'notice',
+      label: '種類',
+      options: [
+        { label: 'イベント', value: 'events' },
+        { label: 'コラム・特集', value: 'article' },
+        { label: 'お知らせ', value: 'notice' },
+      ],
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
       // 名前
       name: 'name',
       type: 'text',
