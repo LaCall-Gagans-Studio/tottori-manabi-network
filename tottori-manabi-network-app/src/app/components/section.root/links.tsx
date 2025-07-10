@@ -65,7 +65,7 @@ export default function Links() {
               </>
             }
             sub="Support Center List"
-            url="/dicts?type=2"
+            url="/dicts?type=3"
           />
           <Bottun_links num={2} text={<>医療機関一覧</>} sub="Hospital List" url="#" />
           <Bottun_links num={3} text={<>よくあるご質問</>} sub="FAQ" url="#" />
