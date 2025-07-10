@@ -99,7 +99,7 @@ export default function Hero() {
               <br className="lg:hidden" />
               とは
             </Link>
-            <Link
+            {/* <Link
               href="#"
               className="px-4 flex gap-2 items-center justify-center py-2 border border-gray-300 bg-ws-white rounded-full shadow text-gray-700 text-sm hover:text-ws-white hover:bg-ws-primary duration-300"
             >
@@ -107,7 +107,7 @@ export default function Hero() {
               お子さんが学校に
               <br className="lg:hidden" />
               行かなくなったら
-            </Link>
+            </Link> */}
           </div>
         </div>
 

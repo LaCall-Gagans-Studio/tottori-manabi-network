@@ -16,22 +16,22 @@ export default function Footer() {
                 よくあるご質問
               </Link>
               ｜
-              <Link href="/ongoing" className="underline pointer-events-auto cursor-pointer">
+              <Link href="/about" className="underline pointer-events-auto cursor-pointer">
                 つなかんとは？
               </Link>
             </div>
           </div>
 
           <div className="flex flex-col md:flex-row justify-center items-center gap-4 mt-6">
-            <div className="text-xl lg:text-2xl">
+            {/* <div className="text-xl lg:text-2xl">
               <Link
                 href="/ongoing"
                 className="inline-flex text-nowrap items-center px-6 py-3 text-ws-primary font-bold gap-3 bg-ws-white border-4 border-ws-white rounded-full shadow hover:opacity-80"
               >
                 <CiMail className="text-4xl" />
-                申し込みフォーム
+                お問い合わせ
               </Link>
-            </div>
+            </div> */}
             <div className="text-xl lg:text-2xl">
               <a
                 href="https://line.me/R/ti/p/@183ehjyb"

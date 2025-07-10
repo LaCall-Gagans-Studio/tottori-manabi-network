@@ -42,12 +42,12 @@ export default function Header() {
               </a>
             </div>
             {/* CTAボタン */}
-            <a
+            {/* <a
               href="/ongoing"
               className="ml-4 bg-rose-400 hover:bg-rose-500 text-white px-4 py-2 rounded-full text-xl"
             >
               不登校になったら
-            </a>
+            </a> */}
           </div>
         </div>
 
@@ -131,12 +131,12 @@ export default function Header() {
               >
                 <FaSearch className="mr-2 " /> フリースクールを探す
               </Link>
-              <Link
+              {/* <Link
                 href="/ongoing"
                 className="w-full text-lg py-2 flex justify-center bg-rose-400 text-white font-bold rounded-full"
               >
                 不登校になったら
-              </Link>
+              </Link> */}
               <div className="flex gap-4 pt-2">
                 <a href="https://line.me/R/ti/p/@183ehjyb">
                   <FaLine className="text-4xl text-green-500" />
