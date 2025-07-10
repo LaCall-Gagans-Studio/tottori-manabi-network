@@ -1,12 +1,8 @@
-'use client'
-
-import { useSearchParams } from 'next/navigation'
 import Header from '@/app/components/header'
 import Footer from '@/app/components/footer'
 
-export default function Policy() {
-  const searchParams = useSearchParams()
-  const section = searchParams.get('s')
+export default function PolicyPage({ searchParams }: { searchParams: { [key: string]: string } }) {
+  const section = searchParams.s
 
   return (
     <main>
