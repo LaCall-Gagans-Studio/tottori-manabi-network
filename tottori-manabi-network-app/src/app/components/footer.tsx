@@ -23,15 +23,15 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col md:flex-row justify-center items-center gap-4 mt-6">
-            {/* <div className="text-xl lg:text-2xl">
+            <div className="text-xl lg:text-2xl">
               <Link
-                href="/ongoing"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdLSt6eRfqxkhKIXissDbGS6GoreU-Fw-wGPY238exlaOG8Fw/viewform?usp=sf_link"
                 className="inline-flex text-nowrap items-center px-6 py-3 text-ws-primary font-bold gap-3 bg-ws-white border-4 border-ws-white rounded-full shadow hover:opacity-80"
               >
                 <CiMail className="text-4xl" />
                 お問い合わせ
               </Link>
-            </div> */}
+            </div>
             <div className="text-xl lg:text-2xl">
               <a
                 href="https://line.me/R/ti/p/@183ehjyb"
@@ -92,7 +92,10 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/ongoing" className="hover:underline">
+                <Link
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSdLSt6eRfqxkhKIXissDbGS6GoreU-Fw-wGPY238exlaOG8Fw/viewform?usp=sf_link"
+                  className="hover:underline"
+                >
                   お問い合わせ
                 </Link>
               </li>
@@ -102,13 +105,13 @@ export default function Footer() {
             <h4 className="font-bold text-white mb-2">規約等</h4>
             <ul>
               <li>
-                <Link href="/ongoing" className="hover:underline">
+                <Link href="/policy?s=policy" className="hover:underline">
                   プライバシーポリシー
                 </Link>
               </li>
               <li>
-                <Link href="/ongoing" className="hover:underline">
-                  利用規約
+                <Link href="/policy?s=rule" className="hover:underline">
+                  オンラインコミュニティ利用規定
                 </Link>
               </li>
             </ul>
