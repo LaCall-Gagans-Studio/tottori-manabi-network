@@ -136,20 +136,20 @@ export default function NewsClient({ allData }: { allData: News[] }) {
           </div>
           <div className="mt-8 grid grid-cols-2 lg:grid-cols-3 justify-center gap-8 text-xl">
             <a
-              href="/ongoing"
+              href="/news?q=notice"
               className="bg-ws-white col-span-2 lg:col-span-1 text-ws-primary py-2 px-6 rounded-full text-center border-2 border-ws-primary hover:opacity-70"
             >
               お知らせ一覧
             </a>
             <a
-              href="/ongoing"
-              className="bg-ws-primary text-ws-white py-2 px-6 rounded-full text-center hover:opacity-70"
+              href="/news?q=events"
+              className="bg-ws-secondary text-ws-white py-2 px-6 rounded-full text-center hover:opacity-70"
             >
               イベント一覧
             </a>
             <a
-              href="/ongoing"
-              className="bg-ws-secondary text-ws-white py-2 px-6 rounded-full text-center hover:opacity-70"
+              href="/news?q=article"
+              className="bg-ws-primary text-ws-white py-2 px-6 rounded-full text-center hover:opacity-70"
             >
               コラム・特集一覧
             </a>
