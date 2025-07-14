@@ -5,7 +5,5 @@ export default async function News() {
   // データ取得
   const rawNews = await getNews()
 
-  console.log(rawNews)
-
   return <NewsClient allData={rawNews} />
 }

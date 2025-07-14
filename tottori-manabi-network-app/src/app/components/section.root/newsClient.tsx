@@ -12,6 +12,7 @@ import {
 import Image from 'next/image'
 import { FormatDate } from '@/app/(frontend)/lib/utils'
 import type { News } from '@/app/(frontend)/lib/getNews'
+import Link from 'next/link'
 
 // --- propsとしてデータを受け取る ---
 export default function NewsClient({ allData }: { allData: News[] }) {
@@ -31,12 +32,24 @@ export default function NewsClient({ allData }: { allData: News[] }) {
   const tabContents = [allNewsData, eventNewsData, infoNewsData, otherNewsData]
 
   const carouselImages = [
-    { url: '/root/hero-title.png', alt: '2025夏季とっとりインターンシップ' },
-    { url: '/root/hero-title.png', alt: '個別相談受付中' },
-    { url: '/root/hero-title.png', alt: '2025夏季とっとりインターンシップ' },
-    { url: '/root/hero-title.png', alt: '個別相談受付中' },
-    { url: '/root/hero-title.png', alt: '2025夏季とっとりインターンシップ' },
-    { url: '/root/hero-title.png', alt: '個別相談受付中' },
+    {
+      url: '/root/hero-title.png',
+      alt: '2025夏季とっとりインターンシップ',
+      link: 'https://www.tuna-kan.org/dicts',
+    },
+    { url: '/root/hero-title.png', alt: '個別相談受付中', link: 'https://www.tuna-kan.org/dicts' },
+    {
+      url: '/root/hero-title.png',
+      alt: '2025夏季とっとりインターンシップ',
+      link: 'https://www.tuna-kan.org/dicts',
+    },
+    { url: '/root/hero-title.png', alt: '個別相談受付中', link: 'https://www.tuna-kan.org/dicts' },
+    {
+      url: '/root/hero-title.png',
+      alt: '2025夏季とっとりインターンシップ',
+      link: 'https://www.tuna-kan.org/dicts',
+    },
+    { url: '/root/hero-title.png', alt: '個別相談受付中', link: 'https://www.tuna-kan.org/dicts' },
   ]
 
   React.useEffect(() => {
@@ -65,13 +78,15 @@ export default function NewsClient({ allData }: { allData: News[] }) {
           <CarouselContent>
             {carouselImages.map((item, index) => (
               <CarouselItem key={index} className="flex justify-center lg:basis-1/2">
-                <Image
-                  src={item.url}
-                  alt={item.alt}
-                  width={640}
-                  height={200}
-                  className="rounded border shadow-md object-contain"
-                />
+                <Link href={item.link}>
+                  <Image
+                    src={item.url}
+                    alt={item.alt}
+                    width={640}
+                    height={200}
+                    className="rounded border shadow-md object-contain"
+                  />
+                </Link>
               </CarouselItem>
             ))}
           </CarouselContent>

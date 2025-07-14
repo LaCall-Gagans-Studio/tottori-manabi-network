@@ -68,7 +68,7 @@ export default function Links() {
             url="/dicts?type=3"
           />
           <Bottun_links num={2} text={<>医療機関一覧</>} sub="Hospital List" url="#" />
-          <Bottun_links num={3} text={<>よくあるご質問</>} sub="FAQ" url="#" />
+          <Bottun_links num={3} text={<>よくあるご質問</>} sub="FAQ" url="/faq" />
         </ul>
       </div>
 

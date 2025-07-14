@@ -12,7 +12,7 @@ export default function Footer() {
             <h3 className="font-bold text-6xl">CONTACT</h3>
             <p className="mt-2 mb-4 font-semibold">お気軽にご質問・ご相談ください</p>
             <div className="flex justify-center mt-2 gap-2">
-              <Link href="/ongoing" className="underline pointer-events-auto cursor-pointer">
+              <Link href="/faq" className="underline pointer-events-auto cursor-pointer">
                 よくあるご質問
               </Link>
               ｜
@@ -87,7 +87,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/ongoing" className="hover:underline">
+                <Link href="/faq" className="hover:underline">
                   よくあるご質問
                 </Link>
               </li>

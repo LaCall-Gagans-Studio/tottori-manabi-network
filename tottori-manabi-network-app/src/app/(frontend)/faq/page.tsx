@@ -1,5 +1,5 @@
-'use client'
-
+import Header from '@/app/components/header'
+import Footer from '@/app/components/footer'
 import {
   Accordion,
   AccordionContent,
@@ -51,7 +51,7 @@ const faqs = [
             </Link>
           </li>
         </ul>
-        もちろん、われわれ【つなかん】も、皆さんのちょっとした悩みから、通所に関する悩みまで対応しています。
+        もちろん、われわれ【つなかん】も、皆さんのちょっとした悩みから、通所に関する悩みまで窓口を対応しています。
         <br />
         とにかく話を聞いてほしいという方は、
         <Link
@@ -72,14 +72,24 @@ const faqs = [
         <ul className="list-disc list-inside mt-2 space-y-1">
           <li>
             <strong>教育支援センター（適応指導教室）</strong>は、市町村が設置する公立施設で、
+            <br />
             学校復帰を目指した学習支援や体験活動を行う場です。
+            <br />
+            <Link href="https://www.tuna-kan.org/dicts?type=3" className="text-ws-primary">
+              　▶教育支援センターの一覧を見る
+            </Link>
           </li>
           <li>
             <strong>フリースクール</strong>は、民間やNPOが運営する自由な学びの場で、
-            学校に代わる「自分らしく過ごせる場所」として利用されます。
+            <br />
+            学校に代わる「自分らしく過ごせる場所」として利用されます。その特徴は施設によって様々です。
+            <br />
+            <Link href="https://www.tuna-kan.org/dicts?type=1" className="text-ws-primary">
+              　▶フリースクールの一覧を見る
+            </Link>
           </li>
         </ul>
-        どちらも子どもにとって安心できる選択肢です。子どもの性格や状態に応じて使い分けましょう。
+        どちらも子どもにとって安心できる選択肢です。子どもの性格や状態に応じて合うのはどちらか探ってみましょう。
       </>
     ),
   },
@@ -93,7 +103,12 @@ const faqs = [
           </li>
           <li>
             <strong>フリースクール</strong>は各施設によって異なり、
+            <br />
             授業料や活動費が必要な場合があります（施設ごとに詳細をご確認ください）。
+            <br />
+            <Link href="https://www.tuna-kan.org/dicts?type=1" className="text-ws-primary">
+              　▶フリースクールの一覧を見る
+            </Link>
           </li>
         </ul>
         経済的な不安がある場合は、助成制度や行政の支援制度を相談してみてください。
@@ -112,28 +127,45 @@ const faqs = [
       </>
     ),
   },
+  {
+    question: 'つなかんが県の認可を得ているとはどういうことですか？',
+    answer: (
+      <>
+        「つなかん」は、鳥取県の<strong>令和7年度不登校支援情報発信・相談業務</strong>
+        として委託を受けて運営されています。
+        <br />
+        鳥取県が公式に関与し、認定フリースクールや教育支援センターに関する正確な情報を提供する公的性のあるプロジェクトです。
+        <br />
+        行政と民間が連携して、信頼できる情報発信と相談支援を行う体制の一環として位置づけられています。
+      </>
+    ),
+  },
 ]
 
-export default function FAQ() {
+export default function Faq() {
   return (
-    <section className="w-full">
-      <h2 className="text-2xl text-center mb-8">よくあるご質問</h2>
-      <Accordion type="single" collapsible className="w-full space-y-6">
-        {faqs.map((faq, idx) => (
-          <AccordionItem
-            key={idx}
-            value={`item-${idx}`}
-            className="border border-ws-primary rounded-lg"
-          >
-            <AccordionTrigger className="px-4 py-3 text-left text-lg">
-              {faq.question}
-            </AccordionTrigger>
-            <AccordionContent className="px-4 pb-4 text-base leading-relaxed text-gray-600">
-              {faq.answer}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </section>
+    <main>
+      <Header />
+      <section className="w-5/6 lg:w-1/2 mx-auto whitespace-pre-line leading-relaxed text-wrap py-16">
+        <h2 className="text-2xl text-center mb-8">よくあるご質問</h2>
+        <Accordion type="single" collapsible className="w-full space-y-6">
+          {faqs.map((faq, idx) => (
+            <AccordionItem
+              key={idx}
+              value={`item-${idx}`}
+              className="border border-ws-primary rounded-lg"
+            >
+              <AccordionTrigger className="px-4 py-3 text-left text-lg">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="px-4 pb-4 text-base leading-relaxed text-gray-600">
+                {faq.answer}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </section>
+      <Footer />
+    </main>
   )
 }
