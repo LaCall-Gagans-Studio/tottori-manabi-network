@@ -47,11 +47,11 @@ export default async function NewsPage({
                 <time className="text-gray-500 text-sm text-nowrap group-hover:underline mb-1">
                   <FormatDate date={article.date_created} />
                 </time>
-                <div className="flex items-center gap-5">
-                  <CiSquareChevRight className="text-3xl text-ws-primary" />
+                <div className="flex items-center justify-between gap-3 sm:gap-5">
+                  <CiSquareChevRight className="text-2xl sm:text-3xl text-ws-primary group-hover:text-white group-hover:bg-ws-primary rounded-lg duration-300" />
                   <Link
                     href={article.link}
-                    className="hover:underline mt-2 lg:mt-0 text-ws-primary text-nowrap group-hover:underline text-xl font-semibold line-clamp-1 leading-relaxed"
+                    className="hover:underline w-11/12 text-ws-primary text-base sm:text-xl font-semibold group-hover:underline leading-relaxed line-clamp-1"
                   >
                     {article.name}
                   </Link>
