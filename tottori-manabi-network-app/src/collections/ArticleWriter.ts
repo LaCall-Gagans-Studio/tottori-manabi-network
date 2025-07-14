@@ -40,5 +40,12 @@ export const ArticleWriter: CollectionConfig = {
       type: 'richText',
       label: 'プロフィール',
     },
+    {
+      // コメント
+      name: 'comment',
+      type: 'text',
+      required: true,
+      label: 'コメント',
+    },
   ],
 }

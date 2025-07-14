@@ -385,6 +385,7 @@ export interface ArticleWriter {
     };
     [k: string]: unknown;
   } | null;
+  comment: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -634,6 +635,7 @@ export interface ArticleWriterSelect<T extends boolean = true> {
   position?: T;
   icon?: T;
   main?: T;
+  comment?: T;
   updatedAt?: T;
   createdAt?: T;
 }
