@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 // import RadarChartBlock from '@/app/components/section.dict/radarChartBlock'
 import WordCloudCanvas from '@/app/components/section.dict/wordCloudBlock'
-import { Metadata } from 'next'
 import { siteConfig } from '../../siteConfig'
 
 // components
@@ -34,8 +33,9 @@ import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa6'
 import Header from '@/app/components/header'
 import Footer from '@/app/components/footer'
 
-export default async function DictPage({ params }: { params: { slug: string } }) {
-  const dict = await getDict(params.slug)
+export default async function DictPage(props: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await props.params
+  const dict = await getDict(resolvedParams.slug)
 
   if (!dict) return notFound()
 
@@ -245,12 +245,10 @@ export default async function DictPage({ params }: { params: { slug: string } })
   )
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string }
-}): Promise<Metadata> {
-  const dict = await getDict(params.slug)
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await props.params
+  const dict = await getDict(resolvedParams.slug)
+
   if (!dict) return {}
 
   const title = `${dict.name} | 鳥取のフリースクール・教育支援センター・不登校関連情報を解説`
@@ -258,7 +256,7 @@ export async function generateMetadata({
     dict.slogan_short?.slice(0, 100) +
     `${dict.name} の紹介ページです。対象・送迎・費用などの情報を詳しく掲載しています`
   const image = dict.gallery?.[0]?.url || `${siteConfig.url}/logo.png`
-  const url = `${siteConfig.url}/dicts/${params.slug}`
+  const url = `${siteConfig.url}/dicts/${dict.id}`
   const keywords = [...(siteConfig.keywords || []), dict.name, dict.org]
 
   return {

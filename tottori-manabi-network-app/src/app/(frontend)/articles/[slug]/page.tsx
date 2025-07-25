@@ -1,7 +1,6 @@
 // libs
 import { notFound } from 'next/navigation'
 import { RichText } from '@payloadcms/richtext-lexical/react'
-import { Metadata } from 'next'
 import { siteConfig } from '../../siteConfig'
 
 // components
@@ -10,11 +9,13 @@ import { FormatDate } from '../../lib/utils'
 import { ShareButton } from '@/app/components/section.article/shareButton'
 import Header from '@/app/components/header'
 import Footer from '@/app/components/footer'
+import type { Metadata } from 'next'
 
 // icons
 
-export default async function ArticlePage({ params }: { params: { slug: string } }) {
-  const article = await getArticle(params.slug)
+export default async function ArticlePage(props: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await props.params
+  const article = await getArticle(resolvedParams.slug)
 
   if (!article) return notFound()
 
@@ -85,12 +86,9 @@ export default async function ArticlePage({ params }: { params: { slug: string }
   )
 }
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string }
-}): Promise<Metadata> {
-  const article = await getArticle(params.slug)
+export async function generateMetadata(props: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = await props.params
+  const article = await getArticle(resolvedParams.slug)
 
   if (!article) return {}
 
@@ -99,7 +97,7 @@ export async function generateMetadata({
     article.slogan_short?.slice(0, 100) +
     `${article.name} の取材記事です。不登校に関する生の声や支援の実態を紹介します。`
   const image = article.thumbnail?.url || `${siteConfig.url}/logo.png`
-  const url = `${siteConfig.url}/dicts/${params.slug}`
+  const url = `${siteConfig.url}/articles/${article.id}`
   const keywords = [...(siteConfig.keywords || []), article.name]
 
   return {
@@ -126,7 +124,8 @@ export async function generateMetadata({
       description,
       images: [image],
     },
-    metadataBase: new URL('https://tuna-kan.org'),
+    // metadataBase は new URL() ではなく文字列で指定することが推奨されています
+    metadataBase: new URL('https://tuna-kan.org'), // このままでも動作しますが、警告が出る可能性があります
     alternates: {
       canonical: url,
     },
