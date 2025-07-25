@@ -3,6 +3,7 @@ import { getArticles } from '../lib/getArticle'
 import Header from '@/app/components/header'
 import Footer from '@/app/components/footer'
 import { FormatDate } from '../lib/utils'
+import { ShareButton } from '@/app/components/section.article/shareButton'
 
 // icon
 import { CiHeart, CiShare2 } from 'react-icons/ci'
@@ -55,9 +56,9 @@ export default async function ArticlesPage({
                 </div>
               </a>
               <div className="flex items-center gap-2">
-                <CiHeart className="text-2xl cursor-pointer" />
-                <span className="text-sm font-thin">22</span>
-                <CiShare2 className="text-2xl ml-1 cursor-pointer" />
+                {/* <CiHeart className="text-2xl cursor-pointer" />
+                <span className="text-sm font-thin">22</span> */}
+                <ShareButton title={article.name} id={article.id} />
               </div>
             </div>
           ))}
@@ -67,4 +68,54 @@ export default async function ArticlesPage({
       <Footer />
     </main>
   )
+}
+
+import { Metadata } from 'next'
+import { siteConfig } from '../siteConfig'
+
+const title = '鳥取の不登校・教育支援コラム一覧'
+const description =
+  '鳥取県内のフリースクールや教育支援に関する記事・体験談・コラムを一覧で紹介。不登校支援のヒントや地域の取り組みを知るための読み物コンテンツです。'
+const url = `${siteConfig.url}/articles`
+const image = `${siteConfig.url}/logo.png`
+const keywords = [
+  ...siteConfig.keywords,
+  '不登校コラム',
+  '教育支援',
+  'フリースクール',
+  '体験談',
+  '子ども支援',
+  '鳥取',
+  '読み物',
+  '教育記事',
+]
+
+export const metadata: Metadata = {
+  title,
+  description,
+  keywords,
+  metadataBase: new URL(siteConfig.url),
+  openGraph: {
+    title,
+    description,
+    url,
+    type: 'website',
+    images: [
+      {
+        url: image,
+        width: 1200,
+        height: 630,
+        alt: title,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description,
+    images: [image],
+  },
+  alternates: {
+    canonical: url,
+  },
 }

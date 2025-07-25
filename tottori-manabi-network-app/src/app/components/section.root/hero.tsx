@@ -7,10 +7,9 @@ import Autoplay from 'embla-carousel-autoplay'
 
 // icons
 import { AiOutlineQuestion } from 'react-icons/ai'
-
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
-
 import { Button_big } from '../button-big'
+import { FiInfo } from 'react-icons/fi'
 
 const carouselImages = [
   {
@@ -98,15 +97,15 @@ export default function Hero() {
               <br className="lg:hidden" />
               とは
             </Link>
-            {/* <Link
-              href="#"
+            <Link
+              href="/articles/3"
               className="px-4 flex gap-2 items-center justify-center py-2 border border-gray-300 bg-ws-white rounded-full shadow text-gray-700 text-sm hover:text-ws-white hover:bg-ws-primary duration-300"
             >
               <FiInfo className="text-lg lg:text-base" />
               お子さんが学校に
               <br className="lg:hidden" />
               行かなくなったら
-            </Link> */}
+            </Link>
           </div>
         </div>
 

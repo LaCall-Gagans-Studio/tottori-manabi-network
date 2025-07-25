@@ -109,8 +109,6 @@ export const GoogleMapEmbed: React.FC<{
 
   const mapSrc = `https://maps.google.co.jp/maps?&q=${location[0]},${location[1]}&output=embed&t=m&z=17`
 
-  console.log('mapSrc')
-
   return (
     <iframe
       width={width}

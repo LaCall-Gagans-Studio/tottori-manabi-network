@@ -1,3 +1,7 @@
+// libs
+import { Metadata } from 'next'
+import { siteConfig } from '../siteConfig'
+
 // components
 import { getDicts } from '../lib/getDict'
 import { DictFilter } from './dictsFilter'
@@ -145,4 +149,51 @@ export default async function DictsPage({
       <Footer />
     </main>
   )
+}
+
+const title = '鳥取のフリースクール・教育支援施設 一覧'
+const description =
+  '鳥取県内のフリースクールや教育支援センター、不登校支援施設などの情報を一覧で紹介。不登校・学びの多様性に関心のある方必見の施設ガイドです。'
+const url = `${siteConfig.url}/dicts`
+const image = `${siteConfig.url}/logo.png`
+const keywords = [
+  ...siteConfig.keywords,
+  '鳥取',
+  '不登校',
+  'フリースクール',
+  '教育支援',
+  '居場所',
+  '多様な学び',
+  '支援機関',
+  '一覧',
+]
+
+export const metadata: Metadata = {
+  title,
+  description,
+  keywords,
+  metadataBase: new URL(siteConfig.url),
+  openGraph: {
+    title,
+    description,
+    url,
+    type: 'website',
+    images: [
+      {
+        url: image,
+        width: 1200,
+        height: 630,
+        alt: title,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description,
+    images: [image],
+  },
+  alternates: {
+    canonical: url,
+  },
 }

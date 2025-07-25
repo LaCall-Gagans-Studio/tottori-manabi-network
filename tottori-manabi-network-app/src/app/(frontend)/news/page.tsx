@@ -68,3 +68,50 @@ export default async function NewsPage({
     </main>
   )
 }
+
+import { Metadata } from 'next'
+import { siteConfig } from '../siteConfig'
+
+const title = '最新のお知らせ・コラム・相談会情報 - 鳥取のフリースクールポータル「つなかん」'
+const description =
+  '鳥取県内の不登校支援に関する最新情報を掲載。相談会、イベント、配信、コラム、お知らせなどを随時更新。不登校の子どもと保護者をサポートする「つなかん」の公式インフォメーションページ。'
+const url = `${siteConfig.url}/news`
+const image = `${siteConfig.url}/logo.png`
+const keywords = [
+  ...siteConfig.keywords,
+  'イベント情報',
+  '不登校 相談会',
+  'コラム 鳥取',
+  '不登校支援 情報',
+  'お知らせ フリースクール',
+]
+
+export const metadata: Metadata = {
+  title,
+  description,
+  keywords,
+  metadataBase: new URL(siteConfig.url),
+  openGraph: {
+    title,
+    description,
+    url,
+    type: 'website',
+    images: [
+      {
+        url: image,
+        width: 1200,
+        height: 630,
+        alt: title,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description,
+    images: [image],
+  },
+  alternates: {
+    canonical: url,
+  },
+}

@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 // import RadarChartBlock from '@/app/components/section.dict/radarChartBlock'
 import WordCloudCanvas from '@/app/components/section.dict/wordCloudBlock'
+import { Metadata } from 'next'
+import { siteConfig } from '../../siteConfig'
 
 // components
 import { getDict } from '../../lib/getDict'
@@ -242,4 +244,51 @@ export default async function DictPage(props: { params: Promise<{ slug: string }
       <Footer />
     </main>
   )
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string }
+}): Promise<Metadata> {
+  const dict = await getDict(params.slug)
+  if (!dict) return {}
+
+  const title = `${dict.name} | 鳥取のフリースクール・教育支援センター・不登校関連情報を解説`
+  const description =
+    dict.slogan_short?.slice(0, 100) +
+    `${dict.name} の紹介ページです。対象・送迎・費用などの情報を詳しく掲載しています`
+  const image = dict.gallery?.[0]?.url || `${siteConfig.url}/logo.png`
+  const url = `${siteConfig.url}/dicts/${params.slug}`
+  const keywords = [...(siteConfig.keywords || []), dict.name, dict.org]
+
+  return {
+    title,
+    description,
+    keywords,
+    metadataBase: new URL(siteConfig.url),
+    openGraph: {
+      title,
+      description,
+      url,
+      type: 'article',
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: dict.name,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
+    alternates: {
+      canonical: url,
+    },
+  }
 }

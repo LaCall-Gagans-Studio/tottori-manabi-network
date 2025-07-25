@@ -179,3 +179,52 @@ const Title_small = ({ text }: { text: string }) => {
     </div>
   )
 }
+
+import { Metadata } from 'next'
+import { siteConfig } from '../siteConfig'
+
+const title = '「つなかん」とは？鳥取のフリースクール・教育支援情報ポータル「つなかん」'
+const description =
+  '鳥取県でフリースクールや教育支援センターを探すなら「つなかん」。県内すべての認定施設の情報や、不登校支援に役立つ記事・相談先を網羅した情報サイトです。'
+const url = siteConfig.url
+const image = `${siteConfig.url}/logo.png`
+const keywords = [
+  ...siteConfig.keywords,
+  'フリースクール 鳥取',
+  '教育支援センター',
+  '不登校支援',
+  '学校以外の学び',
+  '子どもの居場所',
+  '保護者の悩み',
+  'つなかん',
+]
+
+export const metadata: Metadata = {
+  title,
+  description,
+  keywords,
+  metadataBase: new URL(siteConfig.url),
+  openGraph: {
+    title,
+    description,
+    url,
+    type: 'website',
+    images: [
+      {
+        url: image,
+        width: 1200,
+        height: 630,
+        alt: title,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description,
+    images: [image],
+  },
+  alternates: {
+    canonical: url,
+  },
+}
