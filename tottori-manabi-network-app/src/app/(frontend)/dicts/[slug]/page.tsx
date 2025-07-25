@@ -34,9 +34,8 @@ import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa6'
 import Header from '@/app/components/header'
 import Footer from '@/app/components/footer'
 
-export default async function DictPage(props: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = await props.params
-  const dict = await getDict(resolvedParams.slug)
+export default async function DictPage({ params }: { params: { slug: string } }) {
+  const dict = await getDict(params.slug)
 
   if (!dict) return notFound()
 
