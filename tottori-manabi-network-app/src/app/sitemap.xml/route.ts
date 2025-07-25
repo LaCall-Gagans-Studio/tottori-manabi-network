@@ -6,7 +6,7 @@ export async function GET() {
   const baseUrl = siteConfig.url
 
   // 固定ページのルート
-  const staticRoutes = ['', 'dicts', 'articles', 'news', 'about', 'contact']
+  const staticRoutes = ['', 'dicts', 'articles', 'news', 'about']
 
   // データ取得
   const [dicts, articles] = await Promise.all([getDicts(), getArticles()])
