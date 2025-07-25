@@ -13,9 +13,8 @@ import Footer from '@/app/components/footer'
 
 // icons
 
-export default async function ArticlePage(props: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = await props.params
-  const article = await getArticle(resolvedParams.slug)
+export default async function ArticlePage({ params }: { params: { slug: string } }) {
+  const article = await getArticle(params.slug)
 
   if (!article) return notFound()
 
