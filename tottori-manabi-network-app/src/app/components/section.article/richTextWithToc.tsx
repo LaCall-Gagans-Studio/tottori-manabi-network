@@ -39,7 +39,7 @@ export default function RichTextWithToc({ data }: { data: any }) {
   const displayedToc = showAll ? toc : toc.slice(0, 10)
 
   return (
-    <div className="flex flex-col gap-12">
+    <div className="flex flex-col gap-12 my-12 w-full">
       <div className="bg-slate-100 border border-gray-200 rounded-md p-4">
         <h2 className="font-bold text-gray-800 text-base mb-4">目次</h2>
         <ul className="text-xs lg:text-sm text-gray-700 space-y-2">
@@ -64,8 +64,11 @@ export default function RichTextWithToc({ data }: { data: any }) {
         )}
       </div>
 
-      <article ref={contentRef} className="prose-sm lg:prose max-w-none text-slate-600">
-        <RichText data={data} />
+      <article
+        ref={contentRef}
+        className="prose-sm lg:first:prose text-slate-600 max-w-none w-full"
+      >
+        <RichText data={data} className="max-w-none" />
       </article>
     </div>
   )

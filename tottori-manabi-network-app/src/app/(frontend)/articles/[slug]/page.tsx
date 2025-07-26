@@ -79,8 +79,8 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
             </div>
           </div>
           <div className="">
-            <RichText data={article.pre} />
-            <RichTextWithToc data={article.main}></RichTextWithToc>
+            <RichText data={article.pre} className="max-w-none" />
+            <RichTextWithToc data={article.main} />
           </div>
         </div>
       </div>
