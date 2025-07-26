@@ -1,6 +1,7 @@
 // library
 import Link from 'next/link'
 import Image from 'next/image'
+import { RichText } from '@payloadcms/richtext-lexical/react'
 
 // icons
 import { FiChevronRight } from 'react-icons/fi'
@@ -9,8 +10,11 @@ import { FiChevronRight } from 'react-icons/fi'
 import Header from '@/app/components/header'
 import Footer from '@/app/components/footer'
 import { Button_big } from '@/app/components/button-big'
+import { getArticleWriter } from '../lib/getArticleWriter'
 
 export default async function HomePage() {
+  const Writers = await getArticleWriter()
+
   const merits = [
     {
       num: '01',
@@ -153,7 +157,45 @@ export default async function HomePage() {
 
         <div className="mt-12" id="staff">
           <Title text="運営メンバー" />
-          <p>今しばらくお待ちください。</p>
+          {Writers.length > 0 ? (
+            <ul className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {Writers.map((writer) => (
+                <div key={writer.id} className="flex border-b-2 py-4 group text-left">
+                  <div className="mr-6 w-20 flex-shrink-0">
+                    <img
+                      className="w-20 h-20 rounded-full flex-shrink-0"
+                      src={
+                        writer.icon && typeof writer.icon === 'object'
+                          ? (writer.icon.url ?? undefined)
+                          : undefined
+                      }
+                      alt="ライターのアイコン"
+                    />
+                    <p className="text-center mt-4 text-sm">{writer.position}</p>
+                  </div>
+
+                  <div className="">
+                    <p className="text-xl font-medium ">
+                      {writer?.name ? writer.name : '匿名投稿'}
+                    </p>
+                    <p className="mt-2 text-sm pl-2 border-l-2 border-l-ws-primary">
+                      {writer?.comment ? writer.comment : '匿名で投稿されています。'}
+                    </p>
+
+                    <div className="mt-1 text-xs lg:text-sm text-slate-500">
+                      {writer?.main ? (
+                        <RichText data={writer.main} className="whitespace-pre-wrap" />
+                      ) : (
+                        '匿名で投稿されています。'
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-gray-500 text-center py-8">今しばらくお待ちください。</p>
+          )}
         </div>
       </div>
 

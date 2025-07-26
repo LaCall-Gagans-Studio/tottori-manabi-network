@@ -174,7 +174,11 @@ export default async function DictPage(props: { params: Promise<{ slug: string }
               <CiBookmarkCheck />
               <p>認定の有無</p>
               <div className="text-black text-sm lg:text-base">
-                {dict.recognition ? '認定済み' : 'まだ認定されていません'}
+                {dict.type?.[0]?.id == 3
+                  ? '行政の施設です'
+                  : dict.recognition
+                    ? '認定済み'
+                    : 'まだ認定されていません'}
               </div>
               <Tooltips
                 main={
