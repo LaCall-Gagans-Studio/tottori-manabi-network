@@ -66,7 +66,7 @@ export default function RichTextWithToc({ data }: { data: any }) {
 
       <article
         ref={contentRef}
-        className="prose-sm lg:first:prose text-slate-600 max-w-none w-full"
+        className="prose-sm lg:prose text-slate-600 max-w-none lg:max-w-none w-full"
       >
         <RichText data={data} className="max-w-none" />
       </article>
