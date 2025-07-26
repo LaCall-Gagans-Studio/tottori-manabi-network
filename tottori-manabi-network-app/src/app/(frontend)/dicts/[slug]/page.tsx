@@ -132,7 +132,7 @@ export default async function DictPage(props: { params: Promise<{ slug: string }
               </div>
 
               <div className="w-full lg:w-4/6 h-auto px-2 pb-3 lg:pb-1 bg-ws-gray rounded-md">
-                <img src="/dict/kanako_anime.png" alt="可奈子ポイント" className="h-24 w-auto" />
+                <img src="/dict/point.webp" alt="可奈子ポイント" className="h-auto w-full mt-4" />
                 <div className="text-sm prose">
                   <RichText data={dict.point} className="" />
                 </div>

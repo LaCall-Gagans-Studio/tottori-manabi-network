@@ -27,7 +27,7 @@ export default function Header() {
       <div className="hidden lg:block justify-between items-center w-full mt-2 pb-3">
         <div className="flex justify-around items-center px-6 py-6 h-24">
           {/* ロゴ */}
-          <Link href="/" className="text-2xl font-bold">
+          <Link href="/" className="text-2xl font-bold hover:opacity-50 duration-300">
             <Image src="/logo-long.png" alt="logo" width={500} height={100} />
           </Link>
 
@@ -35,10 +35,10 @@ export default function Header() {
           <div className="flex justify-between items-center px-6 py-4">
             <div className="flex justify-between items-center space-x-2">
               <a href="https://line.me/R/ti/p/@183ehjyb">
-                <FaLine className="ml-4 text-3xl text-green-500" />
+                <FaLine className="ml-4 text-3xl text-green-500 hover:opacity-50 duration-300" />
               </a>
               <a href="https://www.instagram.com/tottori.manabi.network?igsh=MXd3NTNtbWJmejlwbA==">
-                <FaInstagram className="text-3xl text-black" />
+                <FaInstagram className="text-3xl text-black hover:opacity-50 duration-300" />
               </a>
             </div>
             {/* CTAボタン */}
@@ -76,7 +76,7 @@ export default function Header() {
               alt="logo"
               width={300}
               height={60}
-              className="py-2 px-2 object-contain"
+              className="py-2 px-2 object-contain hover:opacity-50 duration-300"
             />
           </Link>
         </div>
@@ -132,22 +132,22 @@ export default function Header() {
             <div className="flex flex-col items-center mt-6 space-y-3 px-4">
               <Link
                 href="/dicts"
-                className="flex items-center text-lg justify-center w-full py-2 bg-cyan-500 text-white font-bold rounded-full"
+                className="flex items-center text-lg justify-center w-full py-2 bg-cyan-500 hover:bg-opacity-50 duration-300 text-white font-bold rounded-full"
               >
                 <FaSearch className="mr-2 " /> フリースクールを探す
               </Link>
               <Link
                 href="/articles/3"
-                className="w-full text-lg py-2 flex justify-center bg-rose-400 text-white font-bold rounded-full"
+                className="w-full text-lg py-2 flex justify-center bg-rose-400 hover:bg-opacity-50 duration-300 text-white font-bold rounded-full"
               >
                 不登校になったら
               </Link>
               <div className="flex gap-4 pt-2">
                 <a href="https://line.me/R/ti/p/@183ehjyb">
-                  <FaLine className="text-4xl text-green-500" />
+                  <FaLine className="text-4xl text-green-500 hover:opacity-50 duration-300" />
                 </a>
                 <a href="https://www.instagram.com/tottori.manabi.network?igsh=MXd3NTNtbWJmejlwbA==">
-                  <FaInstagram className="text-4xl text-black" />
+                  <FaInstagram className="text-4xl text-black hover:opacity-50 duration-300" />
                 </a>
               </div>
             </div>
