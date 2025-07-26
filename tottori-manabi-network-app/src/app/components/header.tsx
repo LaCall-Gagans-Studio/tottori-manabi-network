@@ -109,7 +109,10 @@ export default function Header() {
 
             {/* ナビゲーション */}
             <nav className="flex flex-col space-y-4 text-base font-medium w-full  ">
-              <Link href="/" className="border-b py-4 px-4 bg-slate-100 text-slate-500 text-sm">
+              <Link
+                href="/"
+                className="border-b py-4 px-4 bg-slate-100 text-slate-500 text-sm hover:text-ws-primary duration-300"
+              >
                 HOME
               </Link>
               {navItems.map((item, i) => (
@@ -118,7 +121,9 @@ export default function Header() {
                   className="flex items-center space-x-2 px-4 py-2 border-b pb-2 text-lg whitespace-pre-wrap"
                 >
                   <span className="text-ws-primary text-2xl font-normal">/</span>
-                  <Link href={item.href}>{item.label}</Link>
+                  <Link href={item.href} className="hover:text-ws-primary duration-300">
+                    {item.label}
+                  </Link>
                 </div>
               ))}
             </nav>

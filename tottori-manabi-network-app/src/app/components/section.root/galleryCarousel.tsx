@@ -36,6 +36,7 @@ export const GalleryCarousel = ({ dicts }: { dicts: any }) => {
       <CarouselContent>
         {dicts
           .filter((item: any) => item.hasPage) // ← ここでfalseのものを除外
+          .sort(() => Math.random() - 0.5) // ← ランダムに並び替え
           .map((item: any, index: number) => (
             <CarouselItem
               key={index}
