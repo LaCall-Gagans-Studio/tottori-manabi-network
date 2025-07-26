@@ -4,8 +4,11 @@ import { RichText } from '@payloadcms/richtext-lexical/react'
 // import RadarChartBlock from '@/app/components/section.dict/radarChartBlock'
 import WordCloudCanvas from '@/app/components/section.dict/wordCloudBlock'
 import { siteConfig } from '../../siteConfig'
+import Link from 'next/link'
 
 // components
+import Header from '@/app/components/header'
+import Footer from '@/app/components/footer'
 import { getDict } from '../../lib/getDict'
 import {
   Accordion,
@@ -30,8 +33,6 @@ import {
   CiStopwatch,
 } from 'react-icons/ci'
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa6'
-import Header from '@/app/components/header'
-import Footer from '@/app/components/footer'
 
 export default async function DictPage(props: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await props.params
@@ -50,12 +51,13 @@ export default async function DictPage(props: { params: Promise<{ slug: string }
 
           <div className="text-sm flex gap-1 lg:gap-2 py-2 flex-wrap">
             {dict.tags?.map((tag) => (
-              <div
+              <Link
+                href={'/dicts?tags=' + tag.id}
                 key={tag.id}
-                className="bg-ws-black px-1 py-1 rounded text-slate-50 cursor-pointer"
+                className="bg-ws-black px-1 py-1 rounded text-slate-50 cursor-pointer hover:bg-ws-primary duration-300"
               >
                 {tag.name}
-              </div>
+              </Link>
             ))}
           </div>
 

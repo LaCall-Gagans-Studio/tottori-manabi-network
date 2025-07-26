@@ -151,7 +151,7 @@ export default async function HomePage() {
           props="mt-6 px-12"
         />
 
-        <div className="mt-12">
+        <div className="mt-12" id="staff">
           <Title text="運営メンバー" />
           <p>今しばらくお待ちください。</p>
         </div>
