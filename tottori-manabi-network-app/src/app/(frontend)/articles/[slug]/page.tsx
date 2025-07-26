@@ -9,7 +9,8 @@ import { FormatDate } from '../../lib/utils'
 import { ShareButton } from '@/app/components/section.article/shareButton'
 import Header from '@/app/components/header'
 import Footer from '@/app/components/footer'
-import type { Metadata } from 'next'
+
+import RichTextWithToc from '@/app/components/section.article/richTextWithToc'
 
 // icons
 
@@ -46,12 +47,14 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
           </div>
         </div> */}
 
-        <div className="w-full lg:w-1/2 mx-auto">
-          <img
-            className="w-full h-full max-h-96 rounded-lg object-cover mb-24"
-            src={article.thumbnail?.url ?? undefined}
-            alt="サムネイル"
-          />
+        <div className="w-11/12 lg:w-1/2 mx-auto">
+          <div className="w-full aspect-[4/3] rounded-lg overflow-hidden mb-12 lg:mb-24">
+            <img
+              className="w-full h-full object-cover"
+              src={article.thumbnail?.url ?? undefined}
+              alt="サムネイル"
+            />
+          </div>
           <h1 className="text-3xl font-bold text-ws-primary">{article.name}</h1>
           <div className="flex items-center my-6 mb-12">
             <img
@@ -76,7 +79,8 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
             </div>
           </div>
           <div className="">
-            <RichText data={article.main} className="prose max-w-none text-slate-600" />
+            <RichText data={article.pre} />
+            <RichTextWithToc data={article.main}></RichTextWithToc>
           </div>
         </div>
       </div>
@@ -113,7 +117,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
         {
           url: image,
           width: 1200,
-          height: 630,
+          height: 800,
           alt: article.name,
         },
       ],
@@ -124,8 +128,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
       description,
       images: [image],
     },
-    // metadataBase は new URL() ではなく文字列で指定することが推奨されています
-    metadataBase: new URL('https://tuna-kan.org'), // このままでも動作しますが、警告が出る可能性があります
+    metadataBase: new URL('https://tuna-kan.org'),
     alternates: {
       canonical: url,
     },

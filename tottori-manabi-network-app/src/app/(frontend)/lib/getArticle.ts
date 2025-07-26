@@ -17,6 +17,7 @@ export interface Articles {
 
 export interface Article extends Articles {
   // richTexts
+  pre: SerializedEditorState
   main: SerializedEditorState
 }
 

@@ -30,7 +30,7 @@ export default async function ArticlesPage({
                 className="relative group duration-300 cursor-pointer flex-col flex gap-2 group"
               >
                 <img
-                  className="w-full h-44 rounded-lg object-cover group-hover:opacity-30 group-hover:duration-300"
+                  className="w-full aspect-[4/3] rounded-lg object-cover group-hover:opacity-30 group-hover:duration-300"
                   src={article.thumbnail?.url ?? undefined}
                   alt="サムネイル"
                 />
@@ -104,7 +104,7 @@ export const metadata: Metadata = {
       {
         url: image,
         width: 1200,
-        height: 630,
+        height: 800,
         alt: title,
       },
     ],

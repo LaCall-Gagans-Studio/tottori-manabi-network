@@ -100,7 +100,7 @@ export const metadata: Metadata = {
       {
         url: image,
         width: 1200,
-        height: 630,
+        height: 800,
         alt: title,
       },
     ],

@@ -337,6 +337,21 @@ export interface Article {
         id?: string | null;
       }[]
     | null;
+  pre?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   main?: {
     root: {
       type: string;
@@ -624,6 +639,7 @@ export interface ArticleSelect<T extends boolean = true> {
         keyword?: T;
         id?: T;
       };
+  pre?: T;
   main?: T;
   date_created?: T;
   date_updated?: T;

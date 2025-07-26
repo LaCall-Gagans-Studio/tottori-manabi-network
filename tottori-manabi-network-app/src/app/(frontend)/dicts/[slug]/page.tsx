@@ -273,7 +273,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
         {
           url: image,
           width: 1200,
-          height: 630,
+          height: 800,
           alt: dict.name,
         },
       ],

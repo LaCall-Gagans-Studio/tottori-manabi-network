@@ -49,7 +49,7 @@ export const Article: CollectionConfig = {
       // アイキャッチ（短）
       name: 'slogan_short',
       type: 'text',
-      label: 'アイキャッチ（短）',
+      label: 'アイキャッチ',
     },
     {
       // タグ
@@ -77,6 +77,12 @@ export const Article: CollectionConfig = {
           type: 'text',
         },
       ],
+    },
+    {
+      // 序文
+      name: 'pre',
+      type: 'richText',
+      label: '序文',
     },
     {
       // 本文
