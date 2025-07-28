@@ -9,7 +9,10 @@ export async function GET() {
   const staticRoutes = ['', 'dicts', 'articles', 'news', 'about']
 
   // データ取得
-  const [dicts, articles] = await Promise.all([getDicts(), getArticles()])
+  const [dicts, articles] = await Promise.all([
+    getDicts('where[hasPage][equals]=true'),
+    getArticles(),
+  ])
 
   // 辞書エントリ（dicts）は ID で遷移しているようなので注意
   const dictRoutes = dicts.map((entry) => `dicts/${entry.id}`)
@@ -23,7 +26,7 @@ ${allRoutes
   .map(
     (route) => `
   <url>
-    <loc>${baseUrl}/${route}</loc>
+    <loc>${baseUrl}${route ? '/' + route : ''}</loc>
   </url>`,
   )
   .join('')}
