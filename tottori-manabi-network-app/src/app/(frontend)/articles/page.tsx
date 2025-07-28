@@ -25,12 +25,9 @@ export default async function ArticlesPage({
 
   const query = buildArticleQuery({ tags })
   const rawArticles = await getArticles(query)
-  const filteredArticles = tags.length
+  const articles = tags.length
     ? rawArticles.filter((article) => article.tags?.some((tag) => tags.includes(tag.id)))
     : rawArticles
-  const articles = !resolvedParams.sort
-    ? filteredArticles.sort(() => Math.random() - 0.5)
-    : filteredArticles
 
   return (
     <main>
