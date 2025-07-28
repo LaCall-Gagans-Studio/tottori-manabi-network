@@ -47,12 +47,12 @@ export default function Hero() {
         <div className="max-w-6xl mx-auto text-center py-2 px-4">
           <p className="font-bold">
             <Link
-              href="/dicts/4"
+              href="/dicts/10"
               target="_blank"
               rel="noopener noreferrer"
               className="text-base text-ws-white hover:underline"
             >
-              フリースクールこ・ラボを追加しました👉🔘
+              フリースクールきょういく米子校を追加しました👉🔘
             </Link>
           </p>
         </div>
