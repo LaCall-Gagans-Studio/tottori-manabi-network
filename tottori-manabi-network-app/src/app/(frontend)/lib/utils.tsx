@@ -4,6 +4,8 @@ import React, { ReactNode, useState, useEffect } from 'react'
 import { FaQuestionCircle } from 'react-icons/fa'
 
 // ImageCarousel
+import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from '@/components/ui/carousel'
+
 type CarouselImage = {
   id: number
   alt: string
@@ -11,57 +13,47 @@ type CarouselImage = {
 }
 
 export function ImageCarousel({ imgs }: { imgs: CarouselImage[] }) {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [api, setApi] = React.useState<CarouselApi>()
+  const [currentIndex, setCurrentIndex] = React.useState(0)
 
-  // 自動で画像を切り替えるためのuseEffect
-  useEffect(() => {
+  // 5秒ごとに自動スライド
+  React.useEffect(() => {
     const interval = setInterval(() => {
-      slideToNext()
-    }, 5000) // 5秒ごとに切り替わる
+      if (!api) return
+      const nextIndex = (currentIndex + 1) % imgs.length
+      api.scrollTo(nextIndex)
+      setCurrentIndex(nextIndex)
+    }, 5000)
 
-    return () => clearInterval(interval) // クリーンアップ
-  }, [])
+    return () => clearInterval(interval)
+  }, [api, currentIndex, imgs.length])
 
-  // スライドを次の画像へ
-  const slideToNext = () => {
-    setTimeout(() => {
-      setCurrentIndex((prevIndex) => (prevIndex === imgs.length - 1 ? 0 : prevIndex + 1))
-    }, 500) // アニメーションの時間
-  }
-
-  // ポツ点をクリックしたときに画像を切り替える
+  // ドットを押したとき
   const goToSlide = (index: number) => {
-    setTimeout(() => {
-      setCurrentIndex(index)
-    }, 500) // アニメーションの時間
+    if (!api) return
+    api.scrollTo(index)
+    setCurrentIndex(index)
   }
 
   return (
-    <div className="w-full flex flex-col items-center relative h-full border-ws-black bg-ws-black border pb-1">
-      {/* 画像のスライダー部分 */}
-      <div className="relative overflow-hidden">
-        <div
-          className="flex transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        >
-          {imgs?.map((img) => (
-            <img
-              key={img.id}
-              src={img.url}
-              alt={img.alt}
-              className="px-1 py-1 rounded text-slate-50 w-auto min-h-96 object-cover object-top"
-            />
+    <div className="w-full flex flex-col items-center relative  border border-ws-black bg-ws-black">
+      <Carousel setApi={setApi} opts={{ align: 'start', loop: true }} className="w-full">
+        <CarouselContent className="h-72 lg:h-96">
+          {imgs.map((img) => (
+            <CarouselItem key={img.id} className="basis-full flex items-center justify-center">
+              <img src={img.url} alt={img.alt} className="w-full h-full object-cover rounded p-1" />
+            </CarouselItem>
           ))}
-        </div>
-      </div>
+        </CarouselContent>
+      </Carousel>
 
-      {/* ポツ点部分 */}
+      {/* ドットインジケーター */}
       <div className="flex mt-2 space-x-2 absolute bottom-2">
-        {imgs?.map((_, index) => (
+        {imgs.map((_, index) => (
           <button
             key={index}
             aria-label={`スライド${index + 1}`}
-            className={`h-3 w-3 rounded-full ${
+            className={`h-4 w-4 rounded-full transition-colors ${
               currentIndex === index ? 'bg-ws-primary' : 'bg-gray-400'
             }`}
             onClick={() => goToSlide(index)}
