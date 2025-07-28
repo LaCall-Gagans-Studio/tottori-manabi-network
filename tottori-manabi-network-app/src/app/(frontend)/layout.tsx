@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 import './styles.css'
 import { siteConfig } from './siteConfig'
+import { Analytics } from '@vercel/analytics/next'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -115,7 +116,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
       </head>
-      <body className="bg-slate-50">{children}</body>
+      <body className="bg-slate-50">
+        {children}
+        <Analytics />
+      </body>
     </html>
   )
 }
