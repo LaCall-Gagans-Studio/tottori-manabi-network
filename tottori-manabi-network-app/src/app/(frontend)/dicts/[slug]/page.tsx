@@ -167,7 +167,7 @@ export default async function DictPage(props: { params: Promise<{ slug: string }
               <CiFaceSmile />
               <p>定員</p>
               <div className="text-black text-sm lg:text-base">
-                {dict.capacity === 0 ? '定員上限なし' : dict.capacity}
+                {dict.capacity === 99 ? '定員上限なし' : dict.capacity}
               </div>
             </div>
             <div className="border-ws-primary text-ws-primary pl-3 border-l-2 gap-2 flex items-center text-lg">
