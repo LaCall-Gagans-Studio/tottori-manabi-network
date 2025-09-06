@@ -134,7 +134,7 @@ export default function Footer() {
                 href="mailto:tottori-manabi-network@gmail.com"
                 className="text-ws-primary hover:underline"
               >
-                tottori-manabi-network@gmail.com
+                tottori.manabi.network@gmail.com
               </a>
             </p>
           </div>

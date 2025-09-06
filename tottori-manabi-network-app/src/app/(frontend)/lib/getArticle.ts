@@ -27,6 +27,29 @@ export interface Article extends Articles {
 export async function getArticles(queryString: string = ''): Promise<Articles[]> {
   const baseParams = new URLSearchParams({
     'where[published][equals]': 'true',
+    'where[type][equals]': 'article',
+    depth: '2',
+    limit: '1000',
+  })
+
+  // 追加クエリがある場合は末尾に追加
+  const finalQuery = queryString ? `${baseParams.toString()}&${queryString}` : baseParams.toString()
+
+  console.log(finalQuery)
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/article?${finalQuery}`, {
+    cache: 'no-store',
+  })
+
+  const json = await res.json()
+  return json.docs
+}
+
+// getEvents
+export async function getEvents(queryString: string = ''): Promise<Articles[]> {
+  const baseParams = new URLSearchParams({
+    'where[published][equals]': 'true',
+    'where[type][equals]': 'events',
     depth: '2',
     limit: '1000',
   })

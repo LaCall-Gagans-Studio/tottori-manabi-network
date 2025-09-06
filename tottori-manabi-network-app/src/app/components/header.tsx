@@ -18,7 +18,7 @@ export default function Header() {
     { label: 'つなかんとは？', href: '/about' },
     { label: 'フリースクール等・支援機関検索', href: '/dicts' },
     { label: 'みんなの声', href: '/articles' },
-    { label: 'イベント・相談会', href: '/ongoing' },
+    { label: 'イベント・相談会', href: '/events' },
   ]
 
   return (
