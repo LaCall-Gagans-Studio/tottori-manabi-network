@@ -12,7 +12,7 @@ export const Button_big = ({
   props?: string
 }) => {
   return (
-    // yes
+    // ye
     <div className={`text-xl lg:text-2xl ${props}`}>
       <a
         href={url}
