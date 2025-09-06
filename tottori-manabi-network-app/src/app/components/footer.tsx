@@ -127,7 +127,7 @@ export default function Footer() {
               <span className="text-sm font-normal">とっとりフリースクールネットワーク</span>
             </p>
             <p>鳥取県令和7年度不登校支援情報発信・相談業務事業</p>
-            <p>〒680-0843 鳥取県鳥取市南吉方3丁目215番地 Tel: Not prepared</p>
+            <p>〒680-0843 鳥取県鳥取市南吉方3丁目215番地 Tel: Not Prepared</p>
             <p>
               E-mail:{' '}
               <a
