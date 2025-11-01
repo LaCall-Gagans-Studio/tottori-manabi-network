@@ -62,7 +62,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/ongoing" className="hover:underline">
+                <Link href="/articles?tags=5" className="hover:underline">
                   教育者の声
                 </Link>
               </li>
@@ -72,7 +72,7 @@ export default function Footer() {
             <h4 className="font-bold text-white mb-2">学生向け</h4>
             <ul>
               <li>
-                <Link href="/ongoing" className="hover:underline">
+                <Link href="/articles?tags=3" className="hover:underline">
                   OB・OGの声
                 </Link>
               </li>
@@ -82,7 +82,7 @@ export default function Footer() {
             <h4 className="font-bold text-white mb-2">その他</h4>
             <ul>
               <li>
-                <Link href="/ongoing" className="hover:underline">
+                <Link href="/news?q=notice" className="hover:underline">
                   お知らせ
                 </Link>
               </li>
