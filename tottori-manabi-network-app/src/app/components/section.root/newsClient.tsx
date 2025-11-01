@@ -40,13 +40,13 @@ export default function NewsClient({ allData }: { allData: News[] }) {
     { url: '/root/hero-title.png', alt: '個別相談受付中', link: 'https://www.tuna-kan.org/dicts' },
     {
       url: '/root/hero-title.png',
-      alt: '2025夏季とっとりインターンシップ',
+      alt: '保護者向け相談会、実施しています',
       link: 'https://www.tuna-kan.org/dicts',
     },
     { url: '/root/hero-title.png', alt: '個別相談受付中', link: 'https://www.tuna-kan.org/dicts' },
     {
       url: '/root/hero-title.png',
-      alt: '2025夏季とっとりインターンシップ',
+      alt: '保護者向け相談会、実施しています',
       link: 'https://www.tuna-kan.org/dicts',
     },
     { url: '/root/hero-title.png', alt: '個別相談受付中', link: 'https://www.tuna-kan.org/dicts' },
@@ -169,10 +169,12 @@ const NewsList = ({ articles }: { articles: News[] }) => {
     notice: { label: 'お知らせ', class: 'bg-ws-tertiary' },
   }
 
+  const limitedArticles = articles.slice(0, 6)
+
   return (
     <ul>
-      {articles.length > 0 ? (
-        articles.map((article) => (
+      {limitedArticles.length > 0 ? (
+        limitedArticles.map((article) => (
           <li
             key={article.id}
             className="flex flex-col lg:flex-row item-start lg:items-center justify-start lg:justify-center border-b py-2 lg:py-5"
