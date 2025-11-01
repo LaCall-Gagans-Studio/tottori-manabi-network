@@ -15,7 +15,7 @@ export default function Links() {
       <div className="max-w-6xl mx-auto px-4 pb-6">
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-6 mb-10">
           <li>
-            <Link href="/ongoing'" target="_blank">
+            <Link href="/articles?tags=5" target="_blank">
               <div className="relative w-full aspect-[3/1] hover:opacity-90">
                 <Image
                   src="/root/links-staff.png"
@@ -28,7 +28,7 @@ export default function Links() {
             </Link>
           </li>
           <li>
-            <Link href="/ongoing'" target="_blank">
+            <Link href="/articles?tags=3" target="_blank">
               <div className="relative w-full aspect-[3/1] hover:opacity-90">
                 <Image
                   src="/root/links-student.png"
