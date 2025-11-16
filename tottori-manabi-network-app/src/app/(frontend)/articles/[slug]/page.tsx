@@ -58,7 +58,7 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
           </div>
         </aside>
 
-        <div className="w-11/12 lg:w-1/2 mx-auto">
+        <div className="w-11/12 lg:w-1/2 mx-auto text-wrap">
           <div className="w-full aspect-[4/3] rounded-lg overflow-hidden mb-12 lg:mb-24">
             <img
               className="w-full h-full object-cover"
@@ -89,8 +89,8 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
               <ShareButton title={article.name} id={article.id} />
             </div>
           </div>
-          <div className="flex gap-2">
-            <div>
+          <div className="flex gap-2 max-w-full">
+            <div className="break-all">
               <RichText data={article.pre} className="max-w-none" />
               <RichTextWithToc data={article.main} />
             </div>
