@@ -4,6 +4,7 @@ import { ReactNode } from 'react'
 import './styles.css'
 import { siteConfig } from './siteConfig'
 import { Analytics } from '@vercel/analytics/next'
+import Script from 'next/script'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -119,6 +120,19 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body className="bg-slate-50">
         {children}
         <Analytics />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-CKW0PM7XRJ"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-CKW0PM7XRJ');
+          `}
+        </Script>
       </body>
     </html>
   )
