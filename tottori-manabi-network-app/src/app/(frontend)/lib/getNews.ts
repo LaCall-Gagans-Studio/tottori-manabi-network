@@ -12,18 +12,23 @@ export interface News {
 export async function getNews(queryString: string = ''): Promise<News[]> {
   const baseParams = new URLSearchParams({
     depth: '1',
-    limit: '1000',
+    limit: '200',
   })
 
-  // 追加クエリがある場合は末尾に追加
   const finalQuery = queryString ? `${baseParams.toString()}&${queryString}` : baseParams.toString()
 
-  console.log(finalQuery)
-
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/news?${finalQuery}`, {
-    cache: 'no-store',
-  })
-
-  const json = await res.json()
-  return json.docs
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/news?${finalQuery}`, {
+      next: { revalidate: 60 },
+    })
+    if (!res.ok) {
+      console.error(`[getNews] fetch failed: ${res.status} ${res.statusText}`)
+      return []
+    }
+    const json = await res.json()
+    return json.docs ?? []
+  } catch (err) {
+    console.error('[getNews] unexpected error:', err)
+    return []
+  }
 }

@@ -28,21 +28,26 @@ export async function getArticles(queryString: string = ''): Promise<Articles[]>
   const baseParams = new URLSearchParams({
     'where[published][equals]': 'true',
     'where[type][equals]': 'article',
-    depth: '2',
-    limit: '1000',
+    depth: '1',
+    limit: '100',
   })
 
-  // 追加クエリがある場合は末尾に追加
   const finalQuery = queryString ? `${baseParams.toString()}&${queryString}` : baseParams.toString()
 
-  console.log(finalQuery)
-
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/article?${finalQuery}`, {
-    cache: 'no-store',
-  })
-
-  const json = await res.json()
-  return json.docs
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/article?${finalQuery}`, {
+      next: { revalidate: 60 },
+    })
+    if (!res.ok) {
+      console.error(`[getArticles] fetch failed: ${res.status} ${res.statusText}`)
+      return []
+    }
+    const json = await res.json()
+    return json.docs ?? []
+  } catch (err) {
+    console.error('[getArticles] unexpected error:', err)
+    return []
+  }
 }
 
 // getEvents
@@ -50,37 +55,47 @@ export async function getEvents(queryString: string = ''): Promise<Articles[]> {
   const baseParams = new URLSearchParams({
     'where[published][equals]': 'true',
     'where[type][equals]': 'events',
-    depth: '2',
-    limit: '1000',
+    depth: '1',
+    limit: '100',
   })
 
-  // 追加クエリがある場合は末尾に追加
   const finalQuery = queryString ? `${baseParams.toString()}&${queryString}` : baseParams.toString()
 
-  console.log(finalQuery)
-
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/article?${finalQuery}`, {
-    cache: 'no-store',
-  })
-
-  const json = await res.json()
-  return json.docs
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/article?${finalQuery}`, {
+      next: { revalidate: 60 },
+    })
+    if (!res.ok) {
+      console.error(`[getEvents] fetch failed: ${res.status} ${res.statusText}`)
+      return []
+    }
+    const json = await res.json()
+    return json.docs ?? []
+  } catch (err) {
+    console.error('[getEvents] unexpected error:', err)
+    return []
+  }
 }
 
 // getArticle
-export async function getArticle(id: string): Promise<Article> {
+export async function getArticle(id: string): Promise<Article | null> {
   const params = new URLSearchParams({
     'where[published][equals]': 'true',
     depth: '2',
   })
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/article/${id}?${params.toString()}`,
-    {
-      cache: 'no-store',
-    },
-  )
-
-  const json = await res.json()
-  return json
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/article/${id}?${params.toString()}`,
+      { next: { revalidate: 60 } },
+    )
+    if (!res.ok) {
+      console.error(`[getArticle] fetch failed: ${res.status} ${res.statusText}`)
+      return null
+    }
+    return await res.json()
+  } catch (err) {
+    console.error('[getArticle] unexpected error:', err)
+    return null
+  }
 }

@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import Header from '@/app/components/header'
 import Footer from '@/app/components/footer'
 import { getNews } from '../lib/getNews'
@@ -8,6 +9,59 @@ import Link from 'next/link'
 // icon
 import { CiSquareChevRight } from 'react-icons/ci'
 
+const categoryMap: Record<News['type'], { label: string; class: string }> = {
+  events: { label: '相談会・配信', class: 'bg-ws-secondary' },
+  article: { label: 'コラム・特集', class: 'bg-ws-primary' },
+  notice: { label: 'お知らせ', class: 'bg-ws-tertiary' },
+}
+
+// ─── Skeleton ───────────────────────────────────
+function NewsListSkeleton() {
+  return (
+    <ul className="animate-pulse">
+      {[...Array(8)].map((_, i) => (
+        <li key={i} className="border-b-2 border-dotted border-ws-black py-4">
+          <div className="h-3 bg-gray-200 rounded w-24 mb-2" />
+          <div className="h-5 bg-gray-200 rounded w-3/4" />
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+// ─── データ取得コンポーネント ────────────────────────
+async function NewsList({ q }: { q: string }) {
+  const queryString = `where[type][equals]=${q}`
+  const filteredNews = await getNews(queryString)
+
+  return filteredNews.length > 0 ? (
+    <ul>
+      {filteredNews.map((article) => (
+        <li
+          key={article.id}
+          className="flex flex-col item-start border-b-2 border-dotted border-ws-black py-4 group"
+        >
+          <time className="text-gray-500 text-sm text-nowrap group-hover:underline mb-1">
+            <FormatDate date={article.date_created} />
+          </time>
+          <div className="flex items-center justify-between gap-3 sm:gap-5">
+            <CiSquareChevRight className="text-2xl sm:text-3xl text-ws-primary group-hover:text-white group-hover:bg-ws-primary rounded-lg duration-300" />
+            <Link
+              href={article.link}
+              className="hover:underline w-11/12 text-ws-primary text-base sm:text-xl font-semibold group-hover:underline leading-relaxed line-clamp-1"
+            >
+              {article.name}
+            </Link>
+          </div>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p className="text-gray-500 text-center py-8">現在、記事はありません。</p>
+  )
+}
+
+// ─── ページ ─────────────────────────────────────
 export default async function NewsPage({
   searchParams,
 }: {
@@ -15,18 +69,6 @@ export default async function NewsPage({
 }) {
   const resolvedParams = await searchParams
   const q = resolvedParams.q || 'notice'
-
-  // PayloadCMS 用のクエリを構築
-  const queryString = `where[type][equals]=${q}`
-
-  // 絞り込んで取得
-  const filteredNews = await getNews(queryString)
-
-  const categoryMap: Record<News['type'], { label: string; class: string }> = {
-    events: { label: '相談会・配信', class: 'bg-ws-secondary' },
-    article: { label: 'コラム・特集', class: 'bg-ws-primary' },
-    notice: { label: 'お知らせ', class: 'bg-ws-tertiary' },
-  }
 
   return (
     <main>
@@ -37,31 +79,9 @@ export default async function NewsPage({
           {categoryMap[q as keyof typeof categoryMap]?.label ?? '最新情報'}
         </h1>
 
-        {filteredNews.length > 0 ? (
-          <ul>
-            {filteredNews.map((article) => (
-              <li
-                key={article.id}
-                className="flex flex-col item-start border-b-2 border-dotted border-ws-black py-4 group"
-              >
-                <time className="text-gray-500 text-sm text-nowrap group-hover:underline mb-1">
-                  <FormatDate date={article.date_created} />
-                </time>
-                <div className="flex items-center justify-between gap-3 sm:gap-5">
-                  <CiSquareChevRight className="text-2xl sm:text-3xl text-ws-primary group-hover:text-white group-hover:bg-ws-primary rounded-lg duration-300" />
-                  <Link
-                    href={article.link}
-                    className="hover:underline w-11/12 text-ws-primary text-base sm:text-xl font-semibold group-hover:underline leading-relaxed line-clamp-1"
-                  >
-                    {article.name}
-                  </Link>
-                </div>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-gray-500 text-center py-8">現在、記事はありません。</p>
-        )}
+        <Suspense fallback={<NewsListSkeleton />}>
+          <NewsList q={q} />
+        </Suspense>
       </section>
 
       <Footer />
@@ -96,22 +116,8 @@ export const metadata: Metadata = {
     description,
     url,
     type: 'website',
-    images: [
-      {
-        url: image,
-        width: 1200,
-        height: 800,
-        alt: title,
-      },
-    ],
+    images: [{ url: image, width: 1200, height: 800, alt: title }],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title,
-    description,
-    images: [image],
-  },
-  alternates: {
-    canonical: url,
-  },
+  twitter: { card: 'summary_large_image', title, description, images: [image] },
+  alternates: { canonical: url },
 }

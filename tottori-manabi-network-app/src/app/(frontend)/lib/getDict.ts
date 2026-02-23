@@ -48,36 +48,46 @@ export async function getDicts(queryString: string = ''): Promise<Dicts[]> {
   const baseParams = new URLSearchParams({
     'where[published][equals]': 'true',
     depth: '1',
-    limit: '1000',
+    limit: '200',
   })
 
-  // 追加クエリがある場合は末尾に追加
   const finalQuery = queryString ? `${baseParams.toString()}&${queryString}` : baseParams.toString()
 
-  console.log(finalQuery)
-
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dict?${finalQuery}`, {
-    cache: 'no-store',
-  })
-
-  const json = await res.json()
-  return json.docs
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dict?${finalQuery}`, {
+      next: { revalidate: 60 },
+    })
+    if (!res.ok) {
+      console.error(`[getDicts] fetch failed: ${res.status} ${res.statusText}`)
+      return []
+    }
+    const json = await res.json()
+    return json.docs ?? []
+  } catch (err) {
+    console.error('[getDicts] unexpected error:', err)
+    return []
+  }
 }
 
 // getDict
-export async function getDict(id: string): Promise<Dict> {
+export async function getDict(id: string): Promise<Dict | null> {
   const params = new URLSearchParams({
     'where[published][equals]': 'true',
     depth: '2',
   })
 
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/dict/${id}?${params.toString()}`,
-    {
-      cache: 'no-store',
-    },
-  )
-
-  const json = await res.json()
-  return json
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/dict/${id}?${params.toString()}`,
+      { next: { revalidate: 60 } },
+    )
+    if (!res.ok) {
+      console.error(`[getDict] fetch failed: ${res.status} ${res.statusText}`)
+      return null
+    }
+    return await res.json()
+  } catch (err) {
+    console.error('[getDict] unexpected error:', err)
+    return null
+  }
 }
