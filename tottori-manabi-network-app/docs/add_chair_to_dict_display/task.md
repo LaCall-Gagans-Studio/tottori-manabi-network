@@ -1,10 +1,11 @@
 - [x] 調査と計画
-  - [x] `Dict.ts` でのフィールド名確認 (`chair`)
+  - [x] `Dict.ts` ででのフィールド名確認 (`chair`)
   - [x] `page.tsx` での表示場所確認
   - [x] `getDict.ts` での型定義確認
 - [x] 型定義の更新
   - [x] `src/app/(frontend)/lib/getDict.ts` の `Dict` インターフェースに `chair` を追加
 - [x] ページコンポーネントの修正
   - [x] `src/app/(frontend)/dicts/[slug]/page.tsx` に代表者氏名の表示処理を追加
-- [/] 動作確認
-  - [/] コードの整合性確認
+  - [x] 代表者氏名が空欄の場合の非表示処理を追加
+- [x] 動作確認
+  - [x] コードの整合性確認

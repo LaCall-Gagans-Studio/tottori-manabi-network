@@ -10,7 +10,7 @@
 
 ### ページコンポーネントの修正
 
-- [page.tsx](<file:///c:/Users/Tohma/Dev/tottori-manabi-network/tottori-manabi-network-app/src/app/(frontend)/dicts/[slug]/page.tsx>): 団体名の下に「代表者：{代表者氏名}」を表示するように追加しました。
+- [page.tsx](<file:///c:/Users/Tohma/Dev/tottori-manabi-network/tottori-manabi-network-app/src/app/(frontend)/dicts/[slug]/page.tsx>): 団体名の下に「代表者：{代表者氏名}」を表示するように追加しました。また、代表者氏名が空欄の場合は何も表示されないように条件付きレンダリングを実装しました。
 
 ## 確認内容
 
@@ -20,11 +20,11 @@
 
 ### 表示内容
 
-団体名の直下に、住所と同様のスタイルで「代表者：〇〇」が表示されることを確認しました。
+団体名の直下に、住所と同様のスタイルで「代表者：〇〇」が表示されること、および空欄時は表示されないことを確認しました。
 
 ```tsx
 <h1 className="text-3xl font-bold text-ws-primary">{dict.name}</h1>
 <h2 className="text-lg">{dict.org}</h2>
-<p className="text-sm text-slate-500">代表者：{dict.chair}</p> {/* 追加 */}
+{dict.chair && <p className="text-sm text-slate-500">代表者：{dict.chair}</p>} {/* 追加 */}
 <p className="text-sm text-slate-500">{dict.address}</p>
 ```

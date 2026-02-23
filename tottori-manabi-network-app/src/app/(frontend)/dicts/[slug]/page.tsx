@@ -47,7 +47,8 @@ export default async function DictPage(props: { params: Promise<{ slug: string }
         <div className="w-full lg:max-w-[1200px] lg:w-4/5 h-auto mx-auto">
           <h1 className="text-3xl font-bold text-ws-primary">{dict.name}</h1>
           <h2 className="text-lg">{dict.org}</h2>
-          <p className="text-sm text-slate-500">代表者：{dict.chair}</p>
+
+          {dict.chair && <p className="text-sm text-slate-500">代表者：{dict.chair}</p>}
           <p className="text-sm text-slate-500">{dict.address}</p>
 
           <div className="text-sm flex gap-1 lg:gap-2 py-2 flex-wrap">
