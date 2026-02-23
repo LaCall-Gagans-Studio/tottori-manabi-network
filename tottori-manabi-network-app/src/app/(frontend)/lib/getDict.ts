@@ -26,6 +26,7 @@ export interface Dicts {
 }
 
 export interface Dict extends Dicts {
+  chair: string
   date_recognized: string
   gallery: Media[]
   transport: string
