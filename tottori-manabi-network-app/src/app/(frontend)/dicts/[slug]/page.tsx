@@ -116,11 +116,32 @@ export default async function DictPage(props: { params: Promise<{ slug: string }
             </a>
           </div>
 
-          <div className="flex relative flex-col lg:flex-row mt-24 justify-between">
-            <div className="w-full lg:w-7/12 prose">
-              <RichText data={dict.main} className="" />
+          <div className="flex relative flex-col lg:flex-row mt-24 justify-between gap-12 lg:gap-0">
+            <div className="w-full lg:w-7/12 flex flex-col">
+              <div className="prose">
+                <RichText data={dict.main} className="" />
+              </div>
+
+              <div className="mt-12 text-sm lg:text-base flex flex-col gap-8 lg:gap-10">
+                <Accordion
+                  icon={<CiClock1 />}
+                  title="時間割"
+                  text={<RichText data={dict.schedule} className="prose" />}
+                />
+                <Accordion
+                  icon={<CiCoins1 />}
+                  title="費用"
+                  text={<RichText data={dict.costs} className="prose" />}
+                />
+                <Accordion
+                  icon={<CiCalendarDate />}
+                  title="行事など"
+                  text={<RichText data={dict.events} className="prose" />}
+                />
+              </div>
             </div>
-            <div className="w-11/12 lg:w-5/12 mx-auto lg:mx-0 flex flex-col justify-center items-center overflow-visible">
+
+            <div className="w-11/12 lg:w-5/12 mx-auto lg:mx-0 flex flex-col justify-start items-center overflow-visible">
               {/* レーダーチャート */}
               {/* <RadarChartBlock data={dict.keywords} /> */}
 
@@ -133,31 +154,13 @@ export default async function DictPage(props: { params: Promise<{ slug: string }
                 <WordCloudCanvas keywords={dict.keywords} />
               </div>
 
-              <div className="w-full lg:w-4/6 h-auto px-2 pb-3 lg:pb-1 bg-ws-gray rounded-md">
+              <div className="w-full lg:w-4/6 h-auto px-2 pb-3 lg:pb-1 bg-ws-gray rounded-md mt-4 lg:mt-0">
                 <img src="/dict/point.webp" alt="可奈子ポイント" className="h-auto w-full mt-4" />
                 <div className="text-sm prose">
                   <RichText data={dict.point} className="" />
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className="mt-12 text-sm lg:text-base lg:mt-24 flex flex-col gap-8 lg:gap-10">
-            <Accordion
-              icon={<CiClock1 />}
-              title="時間割"
-              text={<RichText data={dict.schedule} className="prose" />}
-            />
-            <Accordion
-              icon={<CiCoins1 />}
-              title="費用"
-              text={<RichText data={dict.costs} className="prose" />}
-            />
-            <Accordion
-              icon={<CiCalendarDate />}
-              title="行事など"
-              text={<RichText data={dict.events} className="prose" />}
-            />
           </div>
 
           <div className="flex mt-8 lg:mt-12 text-ws-primary text-2xl items-center font-semibold gap-2">
