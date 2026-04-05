@@ -32,11 +32,6 @@ export default function NewsClient({ allData }: { allData: News[] }) {
   const tabContents = [allNewsData, eventNewsData, infoNewsData, otherNewsData]
 
   const carouselImages = [
-    {
-      url: '/root/hero-banner.png',
-      alt: '保護者向け相談会、実施しています',
-      link: 'https://www.tuna-kan.org/articles/17',
-    },
     { url: '/root/hero-title.png', alt: '個別相談受付中', link: 'https://www.tuna-kan.org/dicts' },
     {
       url: '/root/hero-title.png',

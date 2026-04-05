@@ -47,12 +47,12 @@ export default function Hero() {
         <div className="max-w-6xl mx-auto text-center py-2 px-4">
           <p className="font-bold">
             <Link
-              href="/dicts/10"
+              href="/dicts"
               target="_blank"
               rel="noopener noreferrer"
               className="text-base text-ws-white hover:underline"
             >
-              フリースクールきょういく米子校を追加しました👉🔘
+              県内フリースクール・教育支援センターの一覧はこちら👉🔘
             </Link>
           </p>
         </div>

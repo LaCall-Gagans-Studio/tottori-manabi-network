@@ -109,7 +109,7 @@ export default async function HomePage() {
         </p>
 
         <Link
-          href="https://www.instagram.com/tottori.manabi.network/"
+          href="https://www.instagram.com/tunakan_tottori/"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block bg-white border font-semibold border-ws-primary text-ws-primary py-6 px-12 rounded-full hover:bg-red-50 transition-colors my-10"

@@ -34,10 +34,7 @@ export default function Header() {
           {/* SNSアイコン */}
           <div className="flex justify-between items-center px-6 py-4">
             <div className="flex justify-between items-center space-x-2">
-              <a href="https://line.me/R/ti/p/@183ehjyb">
-                <FaLine className="ml-4 text-3xl text-green-500 hover:opacity-50 duration-300" />
-              </a>
-              <a href="https://www.instagram.com/tottori.manabi.network?igsh=MXd3NTNtbWJmejlwbA==">
+              <a href="https://www.instagram.com/tunakan_tottori/">
                 <FaInstagram className="text-3xl text-black hover:opacity-50 duration-300" />
               </a>
             </div>
@@ -143,10 +140,7 @@ export default function Header() {
                 不登校になったら
               </Link>
               <div className="flex gap-4 pt-2">
-                <a href="https://line.me/R/ti/p/@183ehjyb">
-                  <FaLine className="text-4xl text-green-500 hover:opacity-50 duration-300" />
-                </a>
-                <a href="https://www.instagram.com/tottori.manabi.network?igsh=MXd3NTNtbWJmejlwbA==">
+                <a href="https://www.instagram.com/tunakan_tottori/">
                   <FaInstagram className="text-4xl text-black hover:opacity-50 duration-300" />
                 </a>
               </div>

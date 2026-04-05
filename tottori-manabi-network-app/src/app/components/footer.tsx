@@ -1,5 +1,5 @@
 import { CiMail } from 'react-icons/ci'
-import { FaLine } from 'react-icons/fa6'
+import { FaInstagram, FaLine } from 'react-icons/fa6'
 import Link from 'next/link'
 
 export default function Footer() {
@@ -34,11 +34,11 @@ export default function Footer() {
             </div>
             <div className="text-xl lg:text-2xl">
               <a
-                href="https://line.me/R/ti/p/@183ehjyb"
+                href="https://www.instagram.com/tunakan_tottori/"
                 className="inline-flex text-nowrap items-center px-6 py-3 text-ws-primary font-bold gap-3 bg-ws-white border-4 border-ws-white rounded-full shadow hover:opacity-80"
               >
-                <FaLine className="text-4xl" />
-                公式LINEを追加する
+                <FaInstagram className="text-4xl" />
+                公式SNSからDMで相談する
               </a>
             </div>
           </div>
