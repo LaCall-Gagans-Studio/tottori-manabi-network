@@ -32,19 +32,27 @@ export default function NewsClient({ allData }: { allData: News[] }) {
   const tabContents = [allNewsData, eventNewsData, infoNewsData, otherNewsData]
 
   const carouselImages = [
-    { url: '/root/hero-title.png', alt: '個別相談受付中', link: 'https://www.tuna-kan.org/dicts' },
     {
-      url: '/root/hero-title.png',
-      alt: '保護者向け相談会、実施しています',
+      url: '/root/banner-email.png',
+      alt: 'Email相談',
       link: 'https://www.tuna-kan.org/dicts',
     },
-    { url: '/root/hero-title.png', alt: '個別相談受付中', link: 'https://www.tuna-kan.org/dicts' },
     {
-      url: '/root/hero-title.png',
-      alt: '保護者向け相談会、実施しています',
-      link: 'https://www.tuna-kan.org/dicts',
+      url: '/root/banner-freeschoolList.png',
+      alt: '認定フリースクール検索',
+      link: 'https://www.tuna-kan.org/dicts?type=1&recognized=true',
     },
-    { url: '/root/hero-title.png', alt: '個別相談受付中', link: 'https://www.tuna-kan.org/dicts' },
+
+    {
+      url: '/root/banner-dm.png',
+      alt: 'dm相談',
+      link: 'https://www.instagram.com/tunakan_tottori/',
+    },
+    {
+      url: '/root/banner-govcenterList.png',
+      alt: '教育支援センター検索',
+      link: 'https://www.tuna-kan.org/dicts?type=3',
+    },
   ]
 
   React.useEffect(() => {
@@ -61,7 +69,7 @@ export default function NewsClient({ allData }: { allData: News[] }) {
   return (
     <section className="py-6 lg:py-12 px-6 lg:px-0">
       {/* ニュース画像 */}
-      <div className="w-full max-w-4xl mx-auto py-6 lg:py-12">
+      <div className="w-full max-w-5xl mx-auto py-6 lg:py-12">
         <Carousel
           setApi={setApi}
           opts={{
@@ -77,8 +85,8 @@ export default function NewsClient({ allData }: { allData: News[] }) {
                   <Image
                     src={item.url}
                     alt={item.alt}
-                    width={640}
-                    height={200}
+                    width={960}
+                    height={250}
                     className="rounded border shadow-md object-contain"
                   />
                 </Link>

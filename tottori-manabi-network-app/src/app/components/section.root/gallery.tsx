@@ -90,7 +90,7 @@ export default async function Gallery() {
             <li>
               <Link href="/dicts?recognized=true" target="_blank">
                 <Image
-                  src="/root/gallery-recognized.png"
+                  src="/root/banner-freeschoolList.png"
                   alt="通学費用が半額に！認定フリースクール一覧"
                   width={600}
                   height={300}
@@ -101,8 +101,8 @@ export default async function Gallery() {
             <li>
               <Link href="https://line.me/R/ti/p/@183ehjyb" target="_blank">
                 <Image
-                  src="/root/gallery-line.png"
-                  alt="はじめての方へ まずはLINE登録"
+                  src="/root/banner-email.png"
+                  alt="お困りの方へ 困ったらメールで相談"
                   width={600}
                   height={300}
                   className="w-full hover:opacity-90 transition-opacity"
