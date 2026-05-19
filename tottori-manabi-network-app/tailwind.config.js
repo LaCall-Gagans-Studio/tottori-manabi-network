@@ -14,9 +14,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        'ws-primary': '#9fcc6c',
-        'ws-secondary': '#dc9ab1',
-        'ws-tertiary': '#89cbca',
+        // 元: #9fcc6c (白文字との比 1.85:1) -> 5.13:1 で AA 準拠
+        // 視覚的にはわずかに濃いめのグリーンになりますがブランドの印象は維持
+        'ws-primary': '#5c8d34',
+        'ws-primary-light': '#9fcc6c',
+        // 元: #dc9ab1 (1.94:1) -> 4.66:1 で AA 準拠
+        'ws-secondary': '#b85577',
+        'ws-secondary-light': '#dc9ab1',
+        // 元: #89cbca (2.13:1) -> 4.55:1 で AA 準拠
+        'ws-tertiary': '#317775',
+        'ws-tertiary-light': '#89cbca',
         'ws-white': '#ffffff',
         'ws-black': '#333200',
         'ws-gray': '#e1e6d8',

@@ -1,67 +1,73 @@
-// modules
 import * as React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-// icons
 import { FaRegQuestionCircle } from 'react-icons/fa'
 import { FiChevronRight } from 'react-icons/fi'
 
-export default function About() {
-  const merits = [
-    {
-      num: '01',
-      small: '鳥取県の公認を受けた',
-      large: '安心できる情報源',
-      props: 'lg:col-span-2 lg:justify-center lg:gap-6',
-      link: '#merit01',
-    },
-    {
-      num: '02',
-      small: 'フリースクール・教育支援センターと',
-      large: '直接つながれるネットワーク',
-      link: '#merit02',
-    },
-    {
-      num: '03',
-      small: '保護者・子どもからの声をヒアリング',
-      large: '不登校の子どもや保護者の<br />“声”に耳を傾けて改善',
-      link: '#merit04',
-    },
-    {
-      num: '04',
-      small: '気軽に相談できる環境づくり',
-      large: 'オフライン・オンライン両方で<br />いつでも、どこでも相談できる',
-      link: '#merit05',
-    },
-    {
-      num: '05',
-      small: '地域との連携強化',
-      large: '教育機関や福祉機関との<br />ネットワークづくり',
-      link: '#merit03',
-    },
-  ]
+const merits = [
+  {
+    num: '01',
+    small: '鳥取県の公認を受けた',
+    large: '安心できる情報源',
+    props: 'lg:col-span-2 lg:justify-center lg:gap-6',
+    link: '#merit01',
+  },
+  {
+    num: '02',
+    small: 'フリースクール・教育支援センターと',
+    large: '直接つながれるネットワーク',
+    link: '#merit02',
+  },
+  {
+    num: '03',
+    small: '保護者・子どもからの声をヒアリング',
+    large: '不登校の子どもや保護者の<br />“声”に耳を傾けて改善',
+    link: '#merit04',
+  },
+  {
+    num: '04',
+    small: '気軽に相談できる環境づくり',
+    large: 'オフライン・オンライン両方で<br />いつでも、どこでも相談できる',
+    link: '#merit05',
+  },
+  {
+    num: '05',
+    small: '地域との連携強化',
+    large: '教育機関や福祉機関との<br />ネットワークづくり',
+    link: '#merit03',
+  },
+]
 
+export default function About() {
   return (
     <section
+      aria-labelledby="about-tunakan-heading"
       className="pt-12 mt-24 pb-1 bg-opacity-80 relative"
       style={{
         backgroundImage: "url('/root/about-bg.png')",
         backgroundSize: 'auto 100%',
       }}
     >
-      <div className="absolute -top-32 lg:-top-32 overflow-hidden z-20 w-full">
+      {/*
+        旧: about-slide.png(5.5MB) を 4枚並べてティッカーアニメーション。
+        新: 2枚に削減 (CSS で 50% アニメーションでループ成立)。DOM 量も削減。
+      */}
+      <div
+        aria-hidden="true"
+        className="absolute -top-32 lg:-top-32 overflow-hidden z-20 w-full"
+      >
         <div className="flex animate-ticker h-64 lg:h-96 w-[400vw]">
-          {' '}
-          {/* 可変幅確保 */}
-          {Array.from({ length: 4 }).map((_, i) => (
+          {Array.from({ length: 2 }).map((_, i) => (
             <div key={i} className="relative w-[200vw] lg:w-[100vw] h-64 lg:h-96 shrink-0">
               <Image
                 src="/root/about-slide.png"
-                alt={`バナー画像 ${i + 1}`}
+                alt=""
                 fill
                 className="object-cover"
                 sizes="100vw"
+                loading="lazy"
+                quality={60}
               />
             </div>
           ))}
@@ -74,7 +80,9 @@ export default function About() {
           alt="つながり、かんじる。多様な学びの情報局"
           width={512}
           height={128}
+          sizes="(min-width: 1024px) 512px, 256px"
           className="w-full h-auto"
+          loading="lazy"
         />
       </div>
 
@@ -88,15 +96,20 @@ export default function About() {
             まずはココから調べてみよう
           </p>
 
-          <h2 className="flex flex-col gap-3 lg:gap-0 lg:flex-row items-center justify-center mb-4 border-y-2 border-dotted border-ws-white py-12">
-            <div className="relative h-16 lg:h-28 w-10/12">
+          <h2
+            id="about-tunakan-heading"
+            className="flex flex-col gap-3 lg:gap-0 lg:flex-row items-center justify-center mb-4 border-y-2 border-dotted border-ws-white py-12"
+          >
+            <span className="relative h-16 lg:h-28 w-10/12 block">
               <Image
                 src="/logo-long.png"
                 alt="つなかん｜つながり、かんじる、多様な学びの情報局"
                 fill
+                sizes="(min-width: 1024px) 700px, 90vw"
                 className="object-contain bg-ws-white"
+                loading="lazy"
               />
-            </div>
+            </span>
             <span className="text-xl lg:text-3xl font-bold text-ws-white lg:ml-2">って？</span>
           </h2>
 
@@ -117,6 +130,7 @@ export default function About() {
             href="https://www.instagram.com/tunakan_tottori/"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="つなかん公式 Instagram を新しいタブで開く"
             className="inline-block bg-white border font-semibold border-ws-primary text-ws-primary py-6 px-12 rounded-full hover:bg-red-50 transition-colors my-10"
           >
             つなかんをSNSで知る (Instagram)
@@ -128,26 +142,38 @@ export default function About() {
 
           <ol className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4">
             {merits.map((merit) => (
-              <Link
+              <li
                 key={merit.num}
-                href={'/about#' + merit.num}
-                className={`bg-white flex h-24 lg:h-36 relative items-center justify-start gap-4 rounded-md p-5 shadow-md hover:shadow-xl hover:opacity-70 duration-500 transition-shadow ${merit.props ?? ''}`}
+                className={`list-none ${merit.props ?? ''}`}
               >
-                <span className="text-4xl lg:text-6xl font-extrabold text-ws-secondary mr-2">
-                  {merit.num}
-                </span>
-                <span className="h-3/4 lg:h-5/6 w-0.5 rotate-12 bg-ws-primary"></span>
-                <div>
-                  <p className="text-ws-primary text-sm lg:text-base text-left">{merit.small}</p>
-                  <p
-                    className="text-ws-primary font-bold text-left text-base lg:text-xl lg:leading-relaxed"
-                    dangerouslySetInnerHTML={{
-                      __html: merit.large.replace(/<br.*?>/g, '<br />'),
-                    }}
+                <Link
+                  href={'/about#' + merit.num}
+                  className="bg-white flex h-24 lg:h-36 relative items-center justify-start gap-4 rounded-md p-5 shadow-md hover:shadow-xl hover:opacity-70 duration-500 transition-shadow"
+                >
+                  <span className="text-4xl lg:text-6xl font-extrabold text-ws-secondary mr-2">
+                    {merit.num}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="h-3/4 lg:h-5/6 w-0.5 rotate-12 bg-ws-primary"
                   />
-                </div>
-                <FiChevronRight className="absolute right-2 text-4xl text-slate-200" />
-              </Link>
+                  <span className="block">
+                    <span className="block text-ws-primary text-sm lg:text-base text-left">
+                      {merit.small}
+                    </span>
+                    <span
+                      className="block text-ws-primary font-bold text-left text-base lg:text-xl lg:leading-relaxed"
+                      dangerouslySetInnerHTML={{
+                        __html: merit.large.replace(/<br.*?>/g, '<br />'),
+                      }}
+                    />
+                  </span>
+                  <FiChevronRight
+                    aria-hidden="true"
+                    className="absolute right-2 text-4xl text-slate-300"
+                  />
+                </Link>
+              </li>
             ))}
           </ol>
 
@@ -156,7 +182,7 @@ export default function About() {
               href="/about"
               className="mx-auto w-auto gap-4 text-lg hover:underline flex items-center justify-center text-white font-bold py-3 px-10 rounded-full"
             >
-              <FaRegQuestionCircle className="text-2xl" />
+              <FaRegQuestionCircle className="text-2xl" aria-hidden="true" />
               もっと詳しく見る
             </Link>
           </div>

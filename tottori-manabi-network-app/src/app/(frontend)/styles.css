@@ -1,16 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/*
+  フォントは src/app/(frontend)/layout.tsx で next/font/google から読み込み、
+  CSS 変数 --font-zen / --font-mplus 経由でここに展開しています。
+  これにより Google Fonts の CSS / WOFF2 ダウンロードがレンダーブロックにならず、
+  Lighthouse の "Render blocking requests" / "Reduce unused CSS" を解消します。
+*/
 :root {
-  font-family: "Zen Kaku Gothic New", ZenArial, Helvetica, sans-serif;
+  font-family: var(--font-zen), "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
 }
 
 body {
-  font-family: "Zen Kaku Gothic New", ZenArial, Helvetica, sans-serif;
+  font-family: var(--font-zen), "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+}
+
+.font-mplus {
+  font-family: var(--font-mplus), var(--font-zen), sans-serif;
 }
 
 @layer utilities {
@@ -20,26 +27,23 @@ body {
 }
 
 .custom-marker {
-  transition: transform 0.2s ease-in-out;  /* アニメーションのスムーズさ */
+  transition: transform 0.2s ease-in-out;
 }
 
 .custom-marker:hover {
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
-/* スクロールバー全体のスタイル */
 ::-webkit-scrollbar {
-  width: 2px; /* スクロールバーの幅 */
+  width: 2px;
   height: 10px;
 }
 
-/* スクロールバーのハンドル部分 */
 ::-webkit-scrollbar-thumb {
-  background-color: #bcc000; /* ハンドルの色 */
-  border-radius: 5px; /* ハンドルの角の丸み */
+  background-color: #bcc000;
+  border-radius: 5px;
 }
 
-/* スクロールバーのトラック部分 */
 ::-webkit-scrollbar-track {
-  background: ; /* トラックの背景色 */
+  background: transparent;
 }

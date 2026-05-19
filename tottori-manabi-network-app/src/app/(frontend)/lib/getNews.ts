@@ -1,3 +1,5 @@
+import { apiUrl } from './apiBaseUrl'
+
 export interface News {
   id: string
   name: string
@@ -18,7 +20,7 @@ export async function getNews(queryString: string = ''): Promise<News[]> {
   const finalQuery = queryString ? `${baseParams.toString()}&${queryString}` : baseParams.toString()
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/news?${finalQuery}`, {
+    const res = await fetch(apiUrl(`/api/news?${finalQuery}`), {
       next: { revalidate: 60 },
     })
     if (!res.ok) {

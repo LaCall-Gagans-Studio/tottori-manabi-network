@@ -1,15 +1,14 @@
 'use client'
 
-// modules
 import Image from 'next/image'
 import Link from 'next/link'
 import Autoplay from 'embla-carousel-autoplay'
 
-// icons
 import { AiOutlineQuestion } from 'react-icons/ai'
+import { FiInfo } from 'react-icons/fi'
+
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
 import { Button_big } from '../button-big'
-import { FiInfo } from 'react-icons/fi'
 
 const carouselImages = [
   {
@@ -29,28 +28,41 @@ const carouselImages = [
 export default function Hero() {
   return (
     <section
-      className="bg-cover bg-center relative z-0"
-      style={{
-        backgroundImage: "url('/root/hero-bg.png')",
-      }}
+      aria-label="メインビジュアル"
+      className="relative z-0 overflow-hidden"
     >
-      {/* 子ども画像 */}
+      {/*
+        旧: <section style={{ backgroundImage: 'url(/root/hero-bg.png)' }}> で 2.4MB の PNG を生配信。
+        新: next/image の fill+priority で AVIF/WebP 変換しつつ LCP discovery を最適化。
+      */}
+      <Image
+        src="/root/hero-bg.png"
+        alt=""
+        role="presentation"
+        fill
+        priority
+        fetchPriority="high"
+        sizes="100vw"
+        quality={70}
+        className="object-cover object-center -z-10"
+      />
+
+      {/* 子ども画像（装飾） */}
       <div
+        aria-hidden="true"
         className="h-24 w-full absolute bottom-0 bg-repeat-x bg-contain z-10"
         style={{
-          backgroundImage: "url('root/hero-child.png')",
+          backgroundImage: "url('/root/hero-child.png')",
         }}
       />
 
       {/* トップお知らせ */}
-      <div className="bg-ws-primary border-t border-b border-ws-secondary z-20">
+      <div className="bg-ws-primary border-t border-b border-ws-secondary z-20 relative">
         <div className="max-w-6xl mx-auto text-center py-2 px-4">
           <p className="font-bold">
             <Link
               href="/dicts"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-base text-ws-white hover:underline"
+              className="text-base text-ws-white hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
             >
               県内フリースクール・教育支援センターの一覧はこちら👉🔘
             </Link>
@@ -59,15 +71,17 @@ export default function Hero() {
       </div>
 
       {/* ヒーローメイン */}
-      <div className="px-2 lg:px-12 mx-auto py-8 lg:py-20 flex flex-col lg:flex-row items-center justify-between z-20 w-full">
+      <div className="relative px-2 lg:px-12 mx-auto py-8 lg:py-20 flex flex-col lg:flex-row items-center justify-between z-20 w-full">
         {/* モバイルタイトル */}
         <div className="lg:hidden order-1 w-full">
           <Image
             src="/root/hero-title.png"
             alt="県外の方も! 鳥取県のフリースクール・相談できる場所を探そう!"
-            width={800}
-            height={200}
-            className="mx-auto lg:hidden"
+            width={1080}
+            height={343}
+            priority
+            sizes="(max-width: 1024px) 92vw, 0"
+            className="mx-auto h-auto w-full max-w-[693px]"
           />
         </div>
 
@@ -76,9 +90,11 @@ export default function Hero() {
           <Image
             src="/root/hero-title.png"
             alt="県外の方も! 鳥取県のフリースクール・相談できる場所を探そう!"
-            width={800}
-            height={200}
-            className="mx-auto hidden lg:block"
+            width={1080}
+            height={343}
+            priority
+            sizes="(min-width: 1024px) 50vw, 0"
+            className="mx-auto hidden lg:block h-auto w-full max-w-[800px]"
           />
           <Button_big
             text={<p>フリースクール・教育支援センターを探す</p>}
@@ -89,19 +105,21 @@ export default function Hero() {
           {/* サブボタン */}
           <div className="mt-6 flex flex-row gap-4 px-6 lg:px-0 mb-20 lg:mb-0 justify-center lg:justify-start text-nowrap">
             <Link
-              href="#"
+              href="/about"
+              aria-label="フリースクールとは何かを解説したページへ"
               className="px-4 flex gap-2 items-center justify-center text-left py-2 border border-gray-300 bg-ws-white rounded-full shadow text-gray-700 text-sm hover:text-ws-white hover:bg-ws-primary duration-300"
             >
-              <AiOutlineQuestion className="text-lg lg:text-base" />
+              <AiOutlineQuestion className="text-lg lg:text-base" aria-hidden="true" />
               フリースクール
               <br className="lg:hidden" />
               とは
             </Link>
             <Link
               href="/articles/3"
+              aria-label="お子さんが学校に行かなくなったらの解説記事へ"
               className="px-4 flex gap-2 items-center justify-center py-2 border border-gray-300 bg-ws-white rounded-full shadow text-gray-700 text-sm hover:text-ws-white hover:bg-ws-primary duration-300"
             >
-              <FiInfo className="text-lg lg:text-base" />
+              <FiInfo className="text-lg lg:text-base" aria-hidden="true" />
               お子さんが学校に
               <br className="lg:hidden" />
               行かなくなったら
@@ -123,15 +141,23 @@ export default function Hero() {
                 }),
               ]}
               className="w-full h-full"
+              aria-label="活動写真のスライドショー"
             >
-              <CarouselContent className=" ">
+              <CarouselContent>
                 {carouselImages.map((item, index) => (
                   <CarouselItem
                     key={index}
-                    className="relative h-full  overflow-hidden w-full flex justify-center items-center"
+                    className="relative h-full overflow-hidden w-full flex justify-center items-center"
                   >
-                    <div className="h-56 lg:h-96">
-                      <Image src={item.url} alt={item.alt} fill={true} className="object-cover" />
+                    <div className="relative h-56 lg:h-96 w-full">
+                      <Image
+                        src={item.url}
+                        alt={item.alt}
+                        fill
+                        sizes="(min-width: 1024px) 384px, 320px"
+                        loading={index === 0 ? 'eager' : 'lazy'}
+                        className="object-cover"
+                      />
                     </div>
                   </CarouselItem>
                 ))}

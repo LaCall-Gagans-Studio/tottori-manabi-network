@@ -1,6 +1,7 @@
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
 import { ArticleTag, ArticleWriter } from '@/payload-types'
 import { Media } from '@/payload-types'
+import { apiUrl } from './apiBaseUrl'
 
 export interface Articles {
   id: string
@@ -35,7 +36,7 @@ export async function getArticles(queryString: string = ''): Promise<Articles[]>
   const finalQuery = queryString ? `${baseParams.toString()}&${queryString}` : baseParams.toString()
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/article?${finalQuery}`, {
+    const res = await fetch(apiUrl(`/api/article?${finalQuery}`), {
       next: { revalidate: 60 },
     })
     if (!res.ok) {
@@ -62,7 +63,7 @@ export async function getEvents(queryString: string = ''): Promise<Articles[]> {
   const finalQuery = queryString ? `${baseParams.toString()}&${queryString}` : baseParams.toString()
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/article?${finalQuery}`, {
+    const res = await fetch(apiUrl(`/api/article?${finalQuery}`), {
       next: { revalidate: 60 },
     })
     if (!res.ok) {
@@ -85,10 +86,9 @@ export async function getArticle(id: string): Promise<Article | null> {
   })
 
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/article/${id}?${params.toString()}`,
-      { next: { revalidate: 60 } },
-    )
+    const res = await fetch(apiUrl(`/api/article/${id}?${params.toString()}`), {
+      next: { revalidate: 60 },
+    })
     if (!res.ok) {
       console.error(`[getArticle] fetch failed: ${res.status} ${res.statusText}`)
       return null

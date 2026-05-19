@@ -68,6 +68,5 @@ export function buildDictQuery({
       break
   }
 
-  params.set('depth', '1')
   return params.toString()
 }

@@ -1,4 +1,3 @@
-// modules
 import { ReactElement } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -6,6 +5,7 @@ import Image from 'next/image'
 export default function Links() {
   return (
     <section
+      aria-label="関連リンク・関連サイト"
       className="bg-cover bg-center relative z-0 pt-24"
       style={{
         backgroundImage: "url('/root/links-bg.png')",
@@ -15,26 +15,28 @@ export default function Links() {
       <div className="max-w-6xl mx-auto px-4 pb-6">
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-6 mb-10">
           <li>
-            <Link href="/articles?tags=5" target="_blank">
+            <Link href="/articles?tags=5">
               <div className="relative w-full aspect-[3/1] hover:opacity-90">
                 <Image
                   src="/root/links-staff.png"
                   alt="各種支援機関などスタッフの声"
                   fill
-                  sizes="100vw"
+                  sizes="(max-width: 768px) 92vw, (max-width: 1280px) 50vw, 600px"
+                  loading="lazy"
                   className="object-cover"
                 />
               </div>
             </Link>
           </li>
           <li>
-            <Link href="/articles?tags=3" target="_blank">
+            <Link href="/articles?tags=3">
               <div className="relative w-full aspect-[3/1] hover:opacity-90">
                 <Image
                   src="/root/links-student.png"
                   alt="不登校・行き渋りを経験した先輩たちの声"
                   fill
-                  sizes="100vw"
+                  sizes="(max-width: 768px) 92vw, (max-width: 1280px) 50vw, 600px"
+                  loading="lazy"
                   className="object-cover"
                 />
               </div>
@@ -67,7 +69,7 @@ export default function Links() {
             sub="Support Center List"
             url="/dicts?type=3"
           />
-          <Bottun_links num={2} text={<>医療機関一覧</>} sub="Hospital List" url="#" />
+          <Bottun_links num={2} text={<>医療機関一覧</>} sub="Hospital List" url="/ongoing" />
           <Bottun_links num={3} text={<>よくあるご質問</>} sub="FAQ" url="/faq" />
         </ul>
       </div>
@@ -78,7 +80,7 @@ export default function Links() {
           {[
             {
               src: '/root/links-tottori.jpg',
-              alt: '鳥取県',
+              alt: '鳥取県公式ホームページ',
               url: 'http://www.pref.tottori.lg.jp/',
             },
           ].map((banner) => (
@@ -87,13 +89,15 @@ export default function Links() {
               href={banner.url}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`${banner.alt}を新しいタブで開く`}
               className="relative w-full aspect-[3/1] rounded shadow hover:opacity-90"
             >
               <Image
                 src={banner.src}
                 alt={banner.alt}
                 fill
-                sizes="(max-width: 768px) 100vw, 33vw"
+                sizes="(max-width: 768px) 45vw, 25vw"
+                loading="lazy"
                 className="object-cover rounded"
               />
             </Link>
@@ -121,13 +125,15 @@ const Bottun_links = ({
     <li key={num} className="relative overflow-hidden">
       <Link
         href={url}
-        className={`block bg-white p-6 py-3 lg:py-12 border-ws-primary border-2 rounded-lg text-left shadow hover:shadow-md transition-shadow h-full relative hover:opacity-80 duration-300 ${props}`}
+        className={`block bg-white p-6 py-3 lg:py-12 border-ws-primary border-2 rounded-lg text-left shadow hover:shadow-md transition-shadow h-full relative hover:opacity-80 duration-300 ${props ?? ''}`}
       >
         <span className="font-bold text-black text-base lg:text-xl">{text}</span>
         <span className="block font-semibold text-ws-primary text-sm lg:text-base">{sub}</span>
 
-        {/* ▼ 右下の三角（外側45度） */}
-        <span className="absolute bottom-0 right-0 w-0 h-0 border-b-[30px] border-l-[30px] border-b-ws-primary border-l-transparent" />
+        <span
+          aria-hidden="true"
+          className="absolute bottom-0 right-0 w-0 h-0 border-b-[30px] border-l-[30px] border-b-ws-primary border-l-transparent"
+        />
       </Link>
     </li>
   )

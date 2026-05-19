@@ -1,12 +1,15 @@
 import { Suspense } from 'react'
+import { Metadata } from 'next'
+import Link from 'next/link'
+
 import Header from '@/app/components/header'
 import Footer from '@/app/components/footer'
 import { getNews } from '../lib/getNews'
 import { FormatDate } from '@/app/(frontend)/lib/utils'
 import type { News } from '../lib/getNews'
-import Link from 'next/link'
+import { siteConfig } from '../siteConfig'
+import { JsonLd, buildBreadcrumbSchema } from '../JsonLd'
 
-// icon
 import { CiSquareChevRight } from 'react-icons/ci'
 
 const categoryMap: Record<News['type'], { label: string; class: string }> = {
@@ -15,10 +18,9 @@ const categoryMap: Record<News['type'], { label: string; class: string }> = {
   notice: { label: 'お知らせ', class: 'bg-ws-tertiary' },
 }
 
-// ─── Skeleton ───────────────────────────────────
 function NewsListSkeleton() {
   return (
-    <ul className="animate-pulse">
+    <ul className="animate-pulse" aria-hidden="true">
       {[...Array(8)].map((_, i) => (
         <li key={i} className="border-b-2 border-dotted border-ws-black py-4">
           <div className="h-3 bg-gray-200 rounded w-24 mb-2" />
@@ -29,7 +31,6 @@ function NewsListSkeleton() {
   )
 }
 
-// ─── データ取得コンポーネント ────────────────────────
 async function NewsList({ q }: { q: string }) {
   const queryString = `where[type][equals]=${q}`
   const filteredNews = await getNews(queryString)
@@ -41,11 +42,17 @@ async function NewsList({ q }: { q: string }) {
           key={article.id}
           className="flex flex-col item-start border-b-2 border-dotted border-ws-black py-4 group"
         >
-          <time className="text-gray-500 text-sm text-nowrap group-hover:underline mb-1">
+          <time
+            dateTime={article.date_created}
+            className="text-gray-700 text-sm text-nowrap group-hover:underline mb-1"
+          >
             <FormatDate date={article.date_created} />
           </time>
           <div className="flex items-center justify-between gap-3 sm:gap-5">
-            <CiSquareChevRight className="text-2xl sm:text-3xl text-ws-primary group-hover:text-white group-hover:bg-ws-primary rounded-lg duration-300" />
+            <CiSquareChevRight
+              className="text-2xl sm:text-3xl text-ws-primary group-hover:text-white group-hover:bg-ws-primary rounded-lg duration-300"
+              aria-hidden="true"
+            />
             <Link
               href={article.link}
               className="hover:underline w-11/12 text-ws-primary text-base sm:text-xl font-semibold group-hover:underline leading-relaxed line-clamp-1"
@@ -57,11 +64,10 @@ async function NewsList({ q }: { q: string }) {
       ))}
     </ul>
   ) : (
-    <p className="text-gray-500 text-center py-8">現在、記事はありません。</p>
+    <p className="text-gray-700 text-center py-8">現在、記事はありません。</p>
   )
 }
 
-// ─── ページ ─────────────────────────────────────
 export default async function NewsPage({
   searchParams,
 }: {
@@ -69,28 +75,42 @@ export default async function NewsPage({
 }) {
   const resolvedParams = await searchParams
   const q = resolvedParams.q || 'notice'
+  const categoryLabel = categoryMap[q as keyof typeof categoryMap]?.label ?? '最新情報'
 
   return (
-    <main>
+    <>
       <Header />
+      <main>
+        <section
+          className="w-11/12 lg:w-3/4 mx-auto py-12"
+          aria-labelledby="news-page-heading"
+        >
+          <h1 id="news-page-heading" className="text-center text-3xl font-bold mb-6 text-gray-800">
+            {categoryLabel}
+          </h1>
 
-      <section className="w-11/12 lg:w-3/4 mx-auto py-12">
-        <h1 className="text-center text-3xl font-bold mb-6 text-gray-800">
-          {categoryMap[q as keyof typeof categoryMap]?.label ?? '最新情報'}
-        </h1>
-
-        <Suspense fallback={<NewsListSkeleton />}>
-          <NewsList q={q} />
-        </Suspense>
-      </section>
-
+          <Suspense fallback={<NewsListSkeleton />}>
+            <NewsList q={q} />
+          </Suspense>
+        </section>
+      </main>
       <Footer />
-    </main>
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: `${categoryLabel} | ${siteConfig.siteName}`,
+          url: `${siteConfig.url}/news?q=${q}`,
+          isPartOf: { '@id': `${siteConfig.url}/#website` },
+          breadcrumb: buildBreadcrumbSchema([
+            { name: 'ホーム', url: '/' },
+            { name: categoryLabel, url: `/news?q=${q}` },
+          ]),
+        }}
+      />
+    </>
   )
 }
-
-import { Metadata } from 'next'
-import { siteConfig } from '../siteConfig'
 
 const title = '最新のお知らせ・コラム・相談会情報 - 鳥取のフリースクールポータル「つなかん」'
 const description =
@@ -119,5 +139,5 @@ export const metadata: Metadata = {
     images: [{ url: image, width: 1200, height: 800, alt: title }],
   },
   twitter: { card: 'summary_large_image', title, description, images: [image] },
-  alternates: { canonical: url },
+  alternates: { canonical: '/news' },
 }

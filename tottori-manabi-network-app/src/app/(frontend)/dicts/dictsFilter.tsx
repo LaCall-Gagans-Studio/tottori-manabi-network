@@ -13,12 +13,10 @@ import {
 import { Input } from '@/components/ui/input'
 
 // payload
-import { Dicts } from '../lib/getDict'
-import { getDictTags } from '../lib/getDictTags'
-import { getDictType } from '../lib/getDictType'
-import { getDictTargets } from '../lib/getDictTargets'
 import { buildDictQuery } from '../lib/dictQuery'
 import { getDicts } from '../lib/getDict'
+
+export type DictFilterOption = { id: number; name: string }
 
 function parseNumberArray(value: string | null): number[] {
   if (!value) return []
@@ -27,21 +25,42 @@ function parseNumberArray(value: string | null): number[] {
     .map((v) => parseInt(v))
     .filter((n) => !isNaN(n))
 }
-export const DictFilter: React.FC<{ initialResults: Dicts[] }> = ({ initialResults }) => {
+
+type DictFilterProps = {
+  initialCount: number
+  initialTags: number[]
+  initialType: number[]
+  initialTargets: number[]
+  initialRecognized: boolean | null
+  initialKeyword: string
+  initialSortBy: string
+  availableTags: DictFilterOption[]
+  availableType: DictFilterOption[]
+  availableTargets: DictFilterOption[]
+}
+
+export const DictFilter: React.FC<DictFilterProps> = ({
+  initialCount,
+  initialTags,
+  initialType,
+  initialTargets,
+  initialRecognized,
+  initialKeyword,
+  initialSortBy,
+  availableTags,
+  availableType,
+  availableTargets,
+}) => {
   const router = useRouter()
   const searchParams = useSearchParams()
 
-  const [tags, setTags] = useState<number[]>([])
-  const [type, setType] = useState<number[]>([])
-  const [targets, setTargets] = useState<number[]>([])
-  const [recognized, setRecognized] = useState<boolean | null>(null)
-  const [keyword, setKeyword] = useState<string>('')
-  const [sortBy, setSortBy] = useState<string>('')
-  const [resultsCount, setResultsCount] = useState<number>(initialResults.length)
-
-  const [availableTags, setAvailableTags] = useState<{ id: number; name: string }[]>([])
-  const [availableTargets, setAvailableTargets] = useState<{ id: number; name: string }[]>([])
-  const [availableType, setAvailableType] = useState<{ id: number; name: string }[]>([])
+  const [tags, setTags] = useState<number[]>(initialTags)
+  const [type, setType] = useState<number[]>(initialType)
+  const [targets, setTargets] = useState<number[]>(initialTargets)
+  const [recognized, setRecognized] = useState<boolean | null>(initialRecognized)
+  const [keyword, setKeyword] = useState<string>(initialKeyword)
+  const [sortBy, setSortBy] = useState<string>(initialSortBy)
+  const [resultsCount, setResultsCount] = useState<number>(initialCount)
 
   useEffect(() => {
     setTags(parseNumberArray(searchParams.get('tags')))
@@ -52,7 +71,8 @@ export const DictFilter: React.FC<{ initialResults: Dicts[] }> = ({ initialResul
     )
     setKeyword(searchParams.get('keyword') ?? '')
     setSortBy(searchParams.get('sort') ?? '')
-  }, [])
+    setResultsCount(initialCount)
+  }, [searchParams, initialCount])
 
   useEffect(() => {
     const params = new URLSearchParams()
@@ -63,25 +83,17 @@ export const DictFilter: React.FC<{ initialResults: Dicts[] }> = ({ initialResul
     if (keyword) params.set('keyword', keyword)
     if (sortBy) params.set('sort', sortBy)
     router.replace(`?${params.toString()}`, { scroll: false })
-  }, [tags, type, targets, recognized, keyword, sortBy])
-
-  useEffect(() => {
-    getDictTags().then((tags) => {
-      setAvailableTags(tags.map((t) => ({ id: t.id, name: t.name })))
-    })
-    getDictType().then((type) => {
-      setAvailableType(type.map((t) => ({ id: t.id, name: t.name })))
-    })
-    getDictTargets().then((targets) => {
-      setAvailableTargets(targets.map((t) => ({ id: t.id, name: t.name })))
-    })
-  }, [])
+  }, [tags, type, targets, recognized, keyword, sortBy, router])
 
   useEffect(() => {
     const query = buildDictQuery({ tags, type, targets, recognized, keyword, sortBy })
+    let cancelled = false
     getDicts(query).then((res) => {
-      setResultsCount(res.length)
+      if (!cancelled) setResultsCount(res.length)
     })
+    return () => {
+      cancelled = true
+    }
   }, [tags, type, targets, recognized, keyword, sortBy])
 
   const toggleItem = (item: number, setFunc: React.Dispatch<React.SetStateAction<number[]>>) => {
@@ -107,6 +119,7 @@ export const DictFilter: React.FC<{ initialResults: Dicts[] }> = ({ initialResul
             return (
               <button
                 key={item.id}
+                type="button"
                 onClick={() => toggleFn(item.id)}
                 className={`px-3 py-1 rounded-full border text-sm hover:opacity-80 ${style}`}
               >
@@ -142,10 +155,10 @@ export const DictFilter: React.FC<{ initialResults: Dicts[] }> = ({ initialResul
         </select>
       </div>
 
-      {/* キーワード検索 */}
       <Input
         type="text"
         className="text-lg"
+        value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
         placeholder="キーワード検索"
       />
@@ -153,7 +166,6 @@ export const DictFilter: React.FC<{ initialResults: Dicts[] }> = ({ initialResul
       <div className="flex justify-between items-center">
         <div className="text-right text-sm text-slate-500">{resultsCount} 件が見つかりました</div>
 
-        {/* 並び替え */}
         <Select value={sortBy} onValueChange={setSortBy}>
           <SelectTrigger className="w-36">
             <SelectValue placeholder="並び替え" />

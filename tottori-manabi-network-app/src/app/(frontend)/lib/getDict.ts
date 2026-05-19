@@ -3,6 +3,7 @@ import { DictTag } from '@/payload-types'
 import { DictTarget } from '@/payload-types'
 import { DictType } from '@/payload-types'
 import { Media } from '@/payload-types'
+import { apiUrl } from './apiBaseUrl'
 
 export interface Dicts {
   id: string
@@ -54,7 +55,7 @@ export async function getDicts(queryString: string = ''): Promise<Dicts[]> {
   const finalQuery = queryString ? `${baseParams.toString()}&${queryString}` : baseParams.toString()
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dict?${finalQuery}`, {
+    const res = await fetch(apiUrl(`/api/dict?${finalQuery}`), {
       next: { revalidate: 60 },
     })
     if (!res.ok) {
@@ -77,10 +78,9 @@ export async function getDict(id: string): Promise<Dict | null> {
   })
 
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/dict/${id}?${params.toString()}`,
-      { next: { revalidate: 60 } },
-    )
+    const res = await fetch(apiUrl(`/api/dict/${id}?${params.toString()}`), {
+      next: { revalidate: 60 },
+    })
     if (!res.ok) {
       console.error(`[getDict] fetch failed: ${res.status} ${res.statusText}`)
       return null

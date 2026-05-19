@@ -1,18 +1,16 @@
-// library
 import Link from 'next/link'
 import Image from 'next/image'
 import { RichText } from '@payloadcms/richtext-lexical/react'
+import type { Metadata } from 'next'
 
-// icons
-import { FiChevronRight } from 'react-icons/fi'
-
-// components
 import Header from '@/app/components/header'
 import Footer from '@/app/components/footer'
 import { Button_big } from '@/app/components/button-big'
 import { getArticleWriter } from '../lib/getArticleWriter'
+import { siteConfig } from '../siteConfig'
+import { JsonLd, buildBreadcrumbSchema } from '../JsonLd'
 
-export default async function HomePage() {
+export default async function AboutPage() {
   const Writers = await getArticleWriter()
 
   const merits = [
@@ -59,176 +57,212 @@ export default async function HomePage() {
   ]
 
   return (
-    <main>
+    <>
       <Header />
-      <div className="pt-24 bg-opacity-80 relative w-11/12 lg:w-auto max-w-5xl mx-auto px-4 text-center pb-12">
-        <p className="text-xl lg:text-2xl font-bold  leading-relaxed mb-14 text-ws-primary">
-          鳥取県でフリースクール<span className="hidden lg:inline">・</span>
-          <br />
-          相談できる場所を探すなら、
-          <br className="lg:hidden" />
-          まずはココから調べてみよう
-        </p>
-
-        <Title text="そもそも教育支援センター・フリースクールって何？" />
-        <div className="text-left">
-          <Title_small text="教育支援センター（適応指導教室）とは？" />
-          <p className="ml-4">
-            鳥取県内の市町が設置する公立の支援施設です。
+      <main>
+        <article className="pt-24 bg-opacity-80 relative w-11/12 lg:w-auto max-w-5xl mx-auto px-4 text-center pb-12">
+          <h1 className="text-2xl lg:text-3xl font-bold text-ws-primary mb-6">
+            「つなかん」とは？鳥取のフリースクール・教育支援情報ポータル
+          </h1>
+          <p className="text-xl lg:text-2xl font-bold leading-relaxed mb-14 text-ws-primary">
+            鳥取県でフリースクール<span className="hidden lg:inline">・</span>
             <br />
-            不登校や登校が難しい小・中学生が、安心して通える「学校以外の学びの場」として利用できます。
-            <br />
-            学校復帰に向けた学習や相談、体験活動を通じて、子どもたちの成長を支援しています。現在、県内には11か所設置されています。
+            相談できる場所を探すなら、
+            <br className="lg:hidden" />
+            まずはココから調べてみよう
           </p>
 
-          <Title_small text="フリースクールとは？" />
-          <p className="ml-4">
-            民間の団体やNPOが運営する、自由な学びや体験の場です。主に不登校の小学生から高校生までを対象に、学校の代わりとなる日中の過ごし場所や学習支援を提供しています。
+          <Title text="そもそも教育支援センター・フリースクールって何？" />
+          <div className="text-left">
+            <Title_small text="教育支援センター（適応指導教室）とは？" />
+            <p className="ml-4">
+              鳥取県内の市町が設置する公立の支援施設です。
+              <br />
+              不登校や登校が難しい小・中学生が、安心して通える「学校以外の学びの場」として利用できます。
+              <br />
+              学校復帰に向けた学習や相談、体験活動を通じて、子どもたちの成長を支援しています。現在、県内には11か所設置されています。
+            </p>
+
+            <Title_small text="フリースクールとは？" />
+            <p className="ml-4">
+              民間の団体やNPOが運営する、自由な学びや体験の場です。主に不登校の小学生から高校生までを対象に、学校の代わりとなる日中の過ごし場所や学習支援を提供しています。
+              <br />
+              鳥取県のガイドラインに基づく認定制度があり、認定されたフリースクールでの活動は学校の出席扱いとして認められることがあります。現在、県内に10か所の認定施設があります。
+            </p>
+
+            <p className="mt-5">
+              不登校の児童生徒は全国的に増えており、鳥取県も例外ではありません。だからこそ、学校以外にも「安心して過ごせる場所」「自分らしく学べる環境」が必要です。行政と民間が連携し、地域全体で子どもたちの学びと成長を支える取り組みが進んでいます。
+            </p>
+          </div>
+
+          <Title text="つなかんって？" />
+
+          <p className="font-semibold mt-6 text-2xl mb-2 text-left">
+            つながり、かんじる、
+            <br className="lg:hidden" />
+            多様な学びの情報局。
+          </p>
+
+          <p className="mb-6 text-base lg:text-lg text-left">
+            『つなかん』は、鳥取県にあるすべてのフリースクールの情報を掲載することを目指して活動しているプロジェクトです。
+            元教諭の３児の母と、不登校支援に携わる大学生が主に運営しています。
             <br />
-            鳥取県のガイドラインに基づく認定制度があり、認定されたフリースクールでの活動は学校の出席扱いとして認められることがあります。現在、県内に10か所の認定施設があります。
+            フリースクール情報の他にも、相談窓口、保護者コミュニティの場、他の専門機関の紹介ページなど、不登校や行きしぶりへの不安が軽減されていくコンテンツを随時追加していきます。
           </p>
 
-          <p className="mt-5">
-            不登校の児童生徒は全国的に増えており、鳥取県も例外ではありません。だからこそ、学校以外にも「安心して過ごせる場所」「自分らしく学べる環境」が必要です。行政と民間が連携し、地域全体で子どもたちの学びと成長を支える取り組みが進んでいます。
-          </p>
-        </div>
+          <Link
+            href="https://www.instagram.com/tunakan_tottori/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="つなかん公式 Instagram を新しいタブで開く"
+            className="inline-block bg-white border font-semibold border-ws-primary text-ws-primary py-6 px-12 rounded-full hover:bg-red-50 transition-colors my-10"
+          >
+            つなかんをSNSで知る (Instagram)
+          </Link>
 
-        <Title text="つなかんって？" />
+          <Title text="つなかんの特徴" />
 
-        <p className=" font-semibold mt-6 text-2xl mb-2 text-left">
-          つながり、かんじる、
-          <br className="lg:hidden" />
-          多様な学びの情報局。
-        </p>
-
-        <p className=" mb-6 text-base lg:text-lg text-left">
-          『つなかん』は、鳥取県にあるすべてのフリースクールの情報を掲載することを目指して活動しているプロジェクトです。
-          元教諭の３児の母と、不登校支援に携わる大学生が主に運営しています。
-          <br />
-          フリースクール情報の他にも、相談窓口、保護者コミュニティの場、他の専門機関の紹介ページなど、不登校や行きしぶりへの不安が軽減されていくコンテンツを随時追加していきます。
-        </p>
-
-        <Link
-          href="https://www.instagram.com/tunakan_tottori/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block bg-white border font-semibold border-ws-primary text-ws-primary py-6 px-12 rounded-full hover:bg-red-50 transition-colors my-10"
-        >
-          つなかんをSNSで知る (Instagram)
-        </Link>
-
-        <Title text="つなかんの特徴" />
-
-        <ol className="grid grid-cols-1 gap-2 lg:gap-4">
-          {merits.map((merit) => (
-            <div key={merit.num} id={merit.num} className="bg-slate-100 shadow-md  my-3 p-5">
-              <div className="flex h-24 lg:h-36 relative items-center justify-start gap-4 rounded-md">
-                <span className="text-4xl lg:text-6xl font-extrabold text-ws-secondary mr-2">
-                  {merit.num}
-                </span>
-                <span className="h-3/4 lg:h-5/6 w-0.5 rotate-12 bg-ws-primary"></span>
-                <div>
-                  <p className="text-ws-primary text-sm lg:text-lg text-left">{merit.small}</p>
+          <ol className="grid grid-cols-1 gap-2 lg:gap-4">
+            {merits.map((merit) => (
+              <li
+                key={merit.num}
+                id={merit.num}
+                className="list-none bg-slate-100 shadow-md my-3 p-5 text-left"
+              >
+                <div className="flex h-24 lg:h-36 relative items-center justify-start gap-4 rounded-md">
+                  <span className="text-4xl lg:text-6xl font-extrabold text-ws-secondary mr-2">
+                    {merit.num}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="h-3/4 lg:h-5/6 w-0.5 rotate-12 bg-ws-primary"
+                  />
+                  <div>
+                    <p className="text-ws-primary text-sm lg:text-lg text-left">{merit.small}</p>
+                    <p
+                      className="text-ws-primary font-bold text-left text-base lg:text-2xl lg:leading-relaxed"
+                      dangerouslySetInnerHTML={{
+                        __html: merit.large.replace(/<br.*?>/g, '<br />'),
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="mt-2 pt-2 border-t border-ws-black">
                   <p
-                    className="text-ws-primary font-bold text-left text-base lg:text-2xl lg:leading-relaxed"
+                    className="font-base lg:text-lg text-left text-base leading-relaxed"
                     dangerouslySetInnerHTML={{
-                      __html: merit.large.replace(/<br.*?>/g, '<br />'),
+                      __html: merit.detail.replace(/<br.*?>/g, '<br />'),
                     }}
                   />
                 </div>
-              </div>
-              <div className="mt-2 pt-2 border-t border-ws-black">
-                <p
-                  className="font-base lg:text-lg text-left text-base leading-relaxed"
-                  dangerouslySetInnerHTML={{
-                    __html: merit.detail.replace(/<br.*?>/g, '<br />'),
-                  }}
-                />
-              </div>
-            </div>
-          ))}
-        </ol>
+              </li>
+            ))}
+          </ol>
 
-        <Button_big
-          text={<p>さっそくフリースクール・教育支援センターを探す</p>}
-          url="/dicts"
-          props="mt-6 px-12"
-        />
+          <Button_big
+            text={<p>さっそくフリースクール・教育支援センターを探す</p>}
+            url="/dicts"
+            props="mt-6 px-12"
+          />
 
-        <div className="mt-12" id="staff">
-          <Title text="運営メンバー" />
-          {Writers.length > 0 ? (
-            <ul className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {Writers.map((writer) => (
-                <div key={writer.id} className="flex border-b-2 py-4 group text-left">
-                  <div className="mr-6 w-20 flex-shrink-0">
-                    <img
-                      className="w-20 h-20 rounded-full flex-shrink-0"
-                      src={
-                        writer.icon && typeof writer.icon === 'object'
-                          ? (writer.icon.url ?? undefined)
-                          : undefined
-                      }
-                      alt="ライターのアイコン"
-                    />
-                    <p className="text-center mt-4 text-sm">{writer.position}</p>
-                  </div>
-
-                  <div className="">
-                    <p className="text-xl font-medium ">
-                      {writer?.name ? writer.name : '匿名投稿'}
-                    </p>
-                    <p className="mt-2 text-sm pl-2 border-l-2 border-l-ws-primary">
-                      {writer?.comment ? writer.comment : '匿名で投稿されています。'}
-                    </p>
-
-                    <div className="mt-1 text-xs lg:text-sm text-slate-500">
-                      {writer?.main ? (
-                        <RichText data={writer.main} className="whitespace-pre-wrap" />
+          <section className="mt-12" id="staff" aria-labelledby="staff-heading">
+            <Title text="運営メンバー" id="staff-heading" />
+            {Writers.length > 0 ? (
+              <ul className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {Writers.map((writer) => (
+                  <li key={writer.id} className="flex border-b-2 py-4 group text-left list-none">
+                    <div className="mr-6 w-20 flex-shrink-0">
+                      {writer.icon && typeof writer.icon === 'object' && writer.icon.url ? (
+                        <Image
+                          src={writer.icon.url}
+                          alt={`${writer.name ?? '匿名'} のプロフィール画像`}
+                          width={80}
+                          height={80}
+                          className="w-20 h-20 rounded-full object-cover"
+                          loading="lazy"
+                          sizes="80px"
+                        />
                       ) : (
-                        '匿名で投稿されています。'
+                        <div
+                          className="w-20 h-20 rounded-full bg-slate-200"
+                          aria-hidden="true"
+                        />
                       )}
+                      <p className="text-center mt-4 text-sm">{writer.position}</p>
                     </div>
-                  </div>
-                </div>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-gray-500 text-center py-8">今しばらくお待ちください。</p>
-          )}
-        </div>
-      </div>
+
+                    <div>
+                      <p className="text-xl font-medium">
+                        {writer?.name ? writer.name : '匿名投稿'}
+                      </p>
+                      <p className="mt-2 text-sm pl-2 border-l-2 border-l-ws-primary">
+                        {writer?.comment ? writer.comment : '匿名で投稿されています。'}
+                      </p>
+
+                      <div className="mt-1 text-xs lg:text-sm text-slate-600">
+                        {writer?.main ? (
+                          <RichText data={writer.main} className="whitespace-pre-wrap" />
+                        ) : (
+                          '匿名で投稿されています。'
+                        )}
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-gray-600 text-center py-8">今しばらくお待ちください。</p>
+            )}
+          </section>
+        </article>
+      </main>
 
       <Footer />
-    </main>
+
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'AboutPage',
+          name: title,
+          description,
+          url: aboutUrl,
+          inLanguage: 'ja',
+          isPartOf: { '@id': `${siteConfig.url}/#website` },
+          about: { '@id': `${siteConfig.url}/#organization` },
+          breadcrumb: buildBreadcrumbSchema([
+            { name: 'ホーム', url: '/' },
+            { name: 'つなかんとは？', url: '/about' },
+          ]),
+        }}
+      />
+    </>
   )
 }
 
-const Title = ({ text }: { text: string }) => {
+const Title = ({ text, id }: { text: string; id?: string }) => {
   return (
     <div className="flex items-center mb-4 border-b-2 border-gray-300 mt-8">
-      <div className="w-3 h-12 bg-ws-primary mr-3"></div>
-      <h1 className="text-xl lg:text-2xl font-bold py-2 text-left">{text}</h1>
+      <div aria-hidden="true" className="w-3 h-12 bg-ws-primary mr-3"></div>
+      <h2 id={id} className="text-xl lg:text-2xl font-bold py-2 text-left">
+        {text}
+      </h2>
     </div>
   )
 }
 
 const Title_small = ({ text }: { text: string }) => {
   return (
-    <div className="flex items-center mb-4  border-gray-300 mt-6">
-      <div className="w-3 h-6 bg-ws-primary mr-3"></div>
-      <h1 className="text-base lg:text-lg font-thin py-2">{text}</h1>
+    <div className="flex items-center mb-4 border-gray-300 mt-6">
+      <div aria-hidden="true" className="w-3 h-6 bg-ws-primary mr-3"></div>
+      <h3 className="text-base lg:text-lg font-thin py-2">{text}</h3>
     </div>
   )
 }
 
-import { Metadata } from 'next'
-import { siteConfig } from '../siteConfig'
-
 const title = '「つなかん」とは？鳥取のフリースクール・教育支援情報ポータル「つなかん」'
 const description =
   '鳥取県でフリースクールや教育支援センターを探すなら「つなかん」。県内すべての認定施設の情報や、不登校支援に役立つ記事・相談先を網羅した情報サイトです。'
-const url = siteConfig.url
+const aboutUrl = `${siteConfig.url}/about`
 const image = `${siteConfig.url}/logo.png`
 const keywords = [
   ...siteConfig.keywords,
@@ -249,7 +283,7 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description,
-    url,
+    url: aboutUrl,
     type: 'website',
     images: [
       {
@@ -267,6 +301,6 @@ export const metadata: Metadata = {
     images: [image],
   },
   alternates: {
-    canonical: url,
+    canonical: '/about',
   },
 }

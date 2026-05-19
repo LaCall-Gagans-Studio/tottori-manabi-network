@@ -1,21 +1,17 @@
-// modules
 import * as React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getDicts } from '@/app/(frontend)/lib/getDict'
 
-// icons
 import { FiChevronDown } from 'react-icons/fi'
 import { Button_big } from '../button-big'
-
-// comps
 import { GalleryCarousel } from './galleryCarousel'
 
 export default async function Gallery() {
   const rawDicts = await getDicts()
 
   return (
-    <section className="w-full">
+    <section aria-labelledby="spaces-heading" className="w-full">
       {/* ピックアップゾーン */}
       <div
         className="px-4 py-24 bg-cover bg-center"
@@ -23,16 +19,19 @@ export default async function Gallery() {
           backgroundImage: "url('/root/gallery-bg.png')",
         }}
       >
-        <h2 className="text-center pb-10 relative">
-          <span className="text-5xl lg:text-4xl font-thin text-gray-400 tracking-widest">
+        <h2 id="spaces-heading" className="text-center pb-10 relative">
+          <span className="text-5xl lg:text-4xl font-thin text-gray-500 tracking-widest">
             SPACES
           </span>
           <span className="block text-xl font-bold text-gray-800 mt-1">
             フリースクール・教育支援センター
           </span>
-          <div className="absolute -top-4 lg:-top-16 right-1/2 translate-x-40 lg:w-20 w-12">
-            <Image src="/root/gallery-pickup.png" alt="Pick up!" width={80} height={80} />
-          </div>
+          <span
+            aria-hidden="true"
+            className="absolute -top-4 lg:-top-16 right-1/2 translate-x-40 lg:w-20 w-12"
+          >
+            <Image src="/root/gallery-pickup.png" alt="" width={80} height={80} />
+          </span>
         </h2>
 
         <div className="w-full px-5 lg:px-0 max-w-4xl mx-auto py-12">
@@ -52,28 +51,34 @@ export default async function Gallery() {
         />
       </div>
 
-      {/* エリア */}
+      {/* エリアマップ */}
       <div className="relative bg-cover bg-center h-auto w-full">
         <Image
           src="/root/gallery-area.png"
-          alt="鳥取県の地図"
+          alt="鳥取県内のフリースクール・教育支援センターの地域分布マップ"
           width={1200}
           height={500}
+          sizes="(max-width: 1024px) 0px, 100vw"
           className="hidden lg:block w-full h-auto"
         />
         <Image
           src="/root/gallery-area-sm.png"
-          alt="鳥取県の地図"
-          width={600}
-          height={400}
+          alt="鳥取県内のフリースクール・教育支援センターの地域分布マップ"
+          width={1080}
+          height={1080}
+          sizes="(max-width: 1024px) 100vw, 0px"
           className="relative lg:hidden w-full h-auto"
         />
-        <div className="absolute right-7 top-4 lg:left-1/2 lg:-translate-x-1/2 lg:top-1/2 lg:-translate-y-3/4 w-16 lg:w-24">
+        <div
+          aria-hidden="true"
+          className="absolute right-7 top-4 lg:left-1/2 lg:-translate-x-1/2 lg:top-1/2 lg:-translate-y-3/4 w-16 lg:w-24"
+        >
           <Image
             src="/root/gallery-area-choose.png"
-            alt="探したいエリアを選択!"
+            alt=""
             width={96}
             height={96}
+            sizes="96px"
           />
         </div>
         <div className="max-w-4xl flex mx-auto lg:mx-0 px-4 absolute z-10 bottom-10 left-1/2 -translate-x-1/2 lg:translate-x-20 lg:top-1/2 lg:-translate-y-3 lg:right-0 gap-8 lg:gap-20">
@@ -88,24 +93,30 @@ export default async function Gallery() {
         <div className="max-w-5xl mx-auto px-4">
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-6">
             <li>
-              <Link href="/dicts?recognized=true" target="_blank">
+              <Link href="/dicts?recognized=true">
                 <Image
                   src="/root/banner-freeschoolList.png"
                   alt="通学費用が半額に！認定フリースクール一覧"
-                  width={600}
-                  height={300}
-                  className="w-full hover:opacity-90 transition-opacity"
+                  width={1200}
+                  height={313}
+                  sizes="(max-width: 768px) 92vw, 600px"
+                  className="w-full h-auto hover:opacity-90 transition-opacity"
                 />
               </Link>
             </li>
             <li>
-              <Link href="https://line.me/R/ti/p/@183ehjyb" target="_blank">
+              <Link
+                href="https://line.me/R/ti/p/@183ehjyb"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Image
                   src="/root/banner-email.png"
                   alt="お困りの方へ 困ったらメールで相談"
-                  width={600}
-                  height={300}
-                  className="w-full hover:opacity-90 transition-opacity"
+                  width={1200}
+                  height={313}
+                  sizes="(max-width: 768px) 92vw, 600px"
+                  className="w-full h-auto hover:opacity-90 transition-opacity"
                 />
               </Link>
             </li>
@@ -121,13 +132,14 @@ const Button_area = ({ text, url, props }: { text: string; url: string; props: s
     <div className="text-center">
       <Link
         href={url}
+        aria-label={`${text}地域のフリースクール・教育支援センター施設一覧へ`}
         className={`p-4 flex flex-col justify-center border-ws-black items-center border-2  lg:w-32 lg:h-32 rounded-full text-center backdrop-blur-sm hover:opacity-70 duration-300 ${props}`}
       >
         <span className="text-ws-white font-bold text-xl lg:text-2xl">{text}</span>
         <span className="text-ws-white font-medium text-sm lg:text-lg mb-2 text-nowrap">
           施設一覧
         </span>
-        <FiChevronDown className="text-2xl lg:text-3xl text-ws-white" />
+        <FiChevronDown className="text-2xl lg:text-3xl text-ws-white" aria-hidden="true" />
       </Link>
     </div>
   )
