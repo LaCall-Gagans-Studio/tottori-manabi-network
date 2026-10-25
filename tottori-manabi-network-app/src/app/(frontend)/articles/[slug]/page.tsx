@@ -10,6 +10,7 @@ import Header from '@/app/components/header'
 import Footer from '@/app/components/footer'
 import { siteConfig } from '../../siteConfig'
 import RichTextWithToc from '@/app/components/section.article/richTextWithToc'
+import RelatedDicts from '@/app/components/section.article/relatedDicts'
 import {
   JsonLd,
   buildArticleSchema,
@@ -201,6 +202,8 @@ export default async function ArticlePage(props: { params: Promise<{ slug: strin
           </div>
         </div>
       </section>
+
+      <RelatedDicts articleId={String(article.id)} />
 
       <Footer />
 
